@@ -7,55 +7,113 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f9f9f9;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
+            background-color: #f9f9f9;
         }
         header {
             background: #333;
             color: white;
-            padding: 20px 0;
+            padding: 20px;
+            text-align: center;
         }
         section {
             padding: 20px;
+            max-width: 900px;
+            margin: auto;
         }
-        a {
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 5px;
+        }
+        .project {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .project img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .links a {
+            display: inline-block;
+            margin-right: 10px;
             color: #007acc;
             text-decoration: none;
+            border: 1px solid #007acc;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .links a:hover {
+            background: #007acc;
+            color: white;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Hi, I'm Sara Ameli</h1>
+        <h1>Hi, I'm [Your Name]</h1>
+        <p>Welcome to my personal webpage!</p>
     </header>
-
-
-   <section>
-        <h2>About Me</h2>
-        <p>I’m passionate about technology, learning, and creating cool projects. My work spans research and development in various technical areas.</p>
-    </section>
 
     <section>
         <h2>Projects</h2>
-        <ul>
-            <li><strong>Nonlinear Dynamics in Networks</strong> – Studying how complex network systems behave under nonlinear interactions.</li>
-            <li><strong>Control Theory and Iterative Control</strong> – Designing feedback and feedforward control strategies for dynamic systems.</li>
-            <li><strong>Associative Computing</strong> – Exploring memory-driven computation for pattern matching and retrieval.</li>
-            <li><strong>Generative Learning</strong> – Investigating AI models for creative and generative problem-solving.</li>
-            <li><strong>Image/Video Processing</strong> – Building algorithms for visual data analysis and transformation.</li>
-        </ul>
+
+        <div class="project">
+            <h3>Nonlinear Dynamics in Networks</h3>
+            <img src="images/nonlinear_networks.jpg" alt="Nonlinear dynamics illustration">
+            <p>Studying how complex network systems behave under nonlinear interactions, with applications in biological, social, and technological networks.</p>
+            <div class="links">
+                <a href="https://example.com/publication1" target="_blank">Publication</a>
+                <a href="https://github.com/example/repo" target="_blank">Code</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Control Theory and Iterative Control</h3>
+            <img src="images/control_theory.jpg" alt="Control theory diagram">
+            <p>Designing feedback and feedforward control strategies for dynamic systems, focusing on stability and robustness.</p>
+            <div class="links">
+                <a href="https://example.com/publication2" target="_blank">Publication</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Associative Computing</h3>
+            <img src="images/associative_computing.jpg" alt="Associative computing diagram">
+            <p>Exploring memory-driven computation for pattern matching, retrieval, and knowledge representation.</p>
+            <div class="links">
+                <a href="https://example.com/publication3" target="_blank">Publication</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Generative Learning</h3>
+            <img src="images/generative_learning.jpg" alt="Generative AI illustration">
+            <p>Investigating AI models for creative and generative problem-solving in text, audio, and visual domains.</p>
+            <div class="links">
+                <a href="https://example.com/publication4" target="_blank">Publication</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <h3>Image/Video Processing</h3>
+            <img src="images/image_video_processing.jpg" alt="Image processing illustration">
+            <p>Building algorithms for visual data analysis, transformation, and enhancement, including motion tracking and object detection.</p>
+            <div class="links">
+                <a href="https://example.com/publication5" target="_blank">Publication</a>
+            </div>
+        </div>
     </section>
 
-
-
-
-
-    
     <section>
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:your@email.com">sara.ameli.ka@gmail.com</a></p>
+        <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
     </section>
 </body>
 </html>
