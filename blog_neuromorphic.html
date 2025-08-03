@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
+            max-width: 1000px;
             margin: auto;
             padding: 20px;
             background: #f9f9f9;
@@ -16,29 +16,99 @@
             text-align: center;
             border-bottom: 2px solid #007acc;
             padding-bottom: 10px;
+            margin-bottom: 30px;
         }
-        article {
+        .section {
+            display: flex;
+            flex-wrap: wrap;
             background: white;
-            padding: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             border-radius: 8px;
             box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
-        article h2 {
-            margin-top: 0;
+        .text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        .text h2 {
             color: #007acc;
+            margin-top: 0;
+        }
+        .text p {
+            margin: 10px 0;
+        }
+        .text a {
+            color: #007acc;
+            text-decoration: none;
+        }
+        .image {
+            flex: 1;
+            min-width: 300px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .back {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .back a {
+            color: #007acc;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Neuromorphic Computing</h1>
 
-    <article>
-        <h2>In-memory Computing</h2>
-        <p><em>August 3, 2025</em></p>
-        <p>This blog post explains neuromorphic computing.</p>
-    </article>
+<h1>Nonlinear Dynamics in Networks</h1>
 
-    <p><a href="index.html">← Back to Home</a></p>
+<!-- Section 1 -->
+<div class="section">
+    <div class="text">
+        <h2>Introduction</h2>
+        <p>This section explains the basics of nonlinear dynamics in complex networks...</p>
+        <p><a href="https://example.com/publication1" target="_blank">📄 View Publications</a></p>
+    </div>
+    <div class="image">
+        <img src="images/nonlinear_section1.jpg" alt="Nonlinear dynamics illustration">
+    </div>
+</div>
+
+<!-- Section 2 -->
+<div class="section">
+    <div class="text">
+        <h2>Research Highlights</h2>
+        <p>Key findings and important results from our research...</p>
+        <p><a href="https://example.com/publication2" target="_blank">📄 View Publications</a></p>
+    </div>
+    <div class="image">
+        <img src="images/nonlinear_section2.jpg" alt="Research highlights">
+    </div>
+</div>
+
+<!-- Section 3 -->
+<div class="section">
+    <div class="text">
+        <h2>Applications</h2>
+        <p>How this research applies to real-world problems...</p>
+        <p><a href="https://example.com/publication3" target="_blank">📄 View Publications</a></p>
+    </div>
+    <div class="image">
+        <img src="images/nonlinear_section3.jpg" alt="Applications of nonlinear dynamics">
+    </div>
+</div>
+
+<div class="back">
+    <a href="index.html">← Back to Home</a>
+</div>
+
 </body>
 </html>
