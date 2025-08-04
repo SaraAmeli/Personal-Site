@@ -3,135 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Neuromorphic Computing</title>
+    <title>In-Memory Computing: Bringing Memory and Processing Together</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 1000px;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #333;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            max-width: 1200px;
             margin: auto;
             padding: 20px;
-            background: #f9f9f9;
+            gap: 20px;
         }
-        h1 {
-            text-align: center;
-            border-bottom: 2px solid #007acc;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        .section {
-            display: flex;
-            flex-wrap: wrap;
+
+        article {
+            flex: 3; /* Larger space for text */
             background: white;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
-            overflow: hidden;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
-        .text {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-        .text h2 {
-            color: #007acc;
-            margin-top: 0;
-        }
-        .text p {
-            margin: 10px 0;
-        }
-        .text a {
-            color: #007acc;
-            text-decoration: none;
-        }
-        .image {
-            flex: 1;
-            min-width: 300px;
+
+        aside {
+            flex: 1; /* Smaller space for figures */
             background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.05);
         }
-        .image img {
-            max-width: 100%;
-            height: auto;
+
+        h1, h2, h3 {
+            color: #1a1a1a;
         }
-        .back {
+
+        strong {
+            color: #000;
+        }
+
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        figure {
+            margin: 0 0 20px 0;
             text-align: center;
-            margin-top: 40px;
         }
-        .back a {
-            color: #007acc;
-            text-decoration: none;
-            font-weight: bold;
+
+        figure img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        figcaption {
+            font-size: 0.9em;
+            color: #555;
         }
     </style>
 </head>
 <body>
 
-<h1>Neuromorphic Computing</h1>
+<header>
+    <h1>In-Memory Computing: Bringing Memory and Processing Together</h1>
+</header>
 
-<!-- Section 1 -->
-<div class="section">
-    <div class="text">
-        <h2> Introduction to in-memory computing </h2>
-        <p>In-Memory Computing: Bringing Memory and Processing Together
+<main>
+    <!-- Main Article Section -->
+    <article>
+        <p>One of the biggest bottlenecks in today’s computers isn’t how fast they can calculate — it’s how often they have to <strong>move data</strong> between the processor and the memory.
+        This constant back-and-forth, known as the <strong>von Neumann bottleneck</strong>, wastes time and energy.</p>
 
-One of the biggest bottlenecks in today’s computers isn’t how fast they can calculate — it’s how often they have to move data between the processor and the memory.
-This constant back-and-forth, known as the von Neumann bottleneck, wastes time and energy.
+        <p><strong>In-memory computing</strong> aims to solve this by doing something radically different:<br>
+        💡 <strong>Perform the computation directly where the data is stored.</strong></p>
 
-In-memory computing aims to solve this by doing something radically different:
-💡 Perform the computation directly where the data is stored.
+        <hr>
 
-Why Moving Data is a Problem
+        <h3>Why Moving Data is a Problem</h3>
+        <p>In a traditional computer:</p>
+        <ol>
+            <li>Data is stored in <strong>memory</strong> (RAM, cache, or storage).</li>
+            <li>The processor <strong>fetches</strong> the data from memory.</li>
+            <li>The processor <strong>processes</strong> the data.</li>
+            <li>Results are <strong>sent back</strong> to memory.</li>
+        </ol>
+        <p>For small tasks, this works fine. But modern AI workloads deal with billions of data points. Fetching and writing data over and over wastes huge amounts of energy.</p>
 
-In a traditional computer:
+        <hr>
 
-    Data is stored in memory (RAM, cache, or storage).
+        <h3>How In-Memory Computing Works</h3>
+        <p>Instead of separating memory and logic:</p>
+        <ul>
+            <li>Memory cells (like <strong>memristors</strong>, phase-change memory, or MRAM) are designed to <strong>store data and also perform operations</strong>.</li>
+            <li>Common tasks, like multiplication and addition for neural networks, can happen <strong>inside</strong> the memory array.</li>
+            <li>This reduces data movement, making computation <strong>faster and far more energy-efficient</strong>.</li>
+        </ul>
 
-    The processor fetches the data from memory.
+        <hr>
 
-    The processor processes the data.
+        <h3>Why It’s Important for Neuromorphic Computing</h3>
+        <p>Neuromorphic chips mimic the brain’s neuron–synapse structure. In biology:</p>
+        <ul>
+            <li><strong>Neurons</strong> process signals.</li>
+            <li><strong>Synapses</strong> both store connection strength and influence signal transmission.</li>
+        </ul>
+        <p>In-memory computing is the hardware counterpart to that idea — the “synapse” stores and processes at the same location. This:</p>
+        <ul>
+            <li>Reduces latency.</li>
+            <li>Cuts power consumption.</li>
+            <li>Enables real-time processing in AI and edge devices.</li>
+        </ul>
 
-    Results are sent back to memory.
+        <hr>
 
-For small tasks, this works fine. But modern AI workloads deal with billions of data points. Fetching and writing data over and over wastes huge amounts of energy.
+        <h3>Real-World Examples</h3>
+        <ul>
+            <li><strong>IBM</strong> is exploring in-memory computing for AI accelerators.</li>
+            <li><strong>Intel’s Loihi</strong> uses concepts similar to in-memory processing for neuromorphic tasks.</li>
+            <li>Research labs are building <strong>memristor-based arrays</strong> that can perform matrix multiplication inside memory.</li>
+        </ul>
+    </article>
 
-        
-        </p>
-        <p><a href="https://example.com/publication1" target="_blank">📄 View Publications</a></p>
-    </div>
-    <div class="image">
-        <img src="images/nonlinear_section1.jpg" alt="Nonlinear dynamics illustration">
-    </div>
-</div>
+    <!-- Sidebar for Figures -->
+    <aside>
+        <figure>
+            <img src="in-memory-vs-vonneumann.png" alt="Von Neumann vs In-Memory Computing">
+            <figcaption>Traditional vs. in-memory architecture.</figcaption>
+        </figure>
 
-<!-- Section 2 -->
-<div class="section">
-    <div class="text">
-        <h2>Research Highlights</h2>
-        <p>Key findings and important results from our research...</p>
-        <p><a href="https://example.com/publication2" target="_blank">📄 View Publications</a></p>
-    </div>
-    <div class="image">
-        <img src="images/nonlinear_section2.jpg" alt="Research highlights">
-    </div>
-</div>
-
-<!-- Section 3 -->
-<div class="section">
-    <div class="text">
-        <h2>Applications</h2>
-        <p>How this research applies to real-world problems...</p>
-        <p><a href="https://example.com/publication3" target="_blank">📄 View Publications</a></p>
-    </div>
-    <div class="image">
-        <img src="images/nonlinear_section3.jpg" alt="Applications of nonlinear dynamics">
-    </div>
-</div>
-
-<div class="back">
-    <a href="index.html">← Back to Home</a>
-</div>
+        <figure>
+            <img src="memristor-array.png" alt="Memristor Array">
+            <figcaption>Memristor-based in-memory computing array.</figcaption>
+        </figure>
+    </aside>
+</main>
 
 </body>
 </html>
