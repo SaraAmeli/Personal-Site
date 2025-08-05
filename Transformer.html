@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State of the Art in Transformers - 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    figure {
+      text-align: center;
+      margin: 20px 0;
+    }
+    figcaption {
+      font-size: 0.9em;
+      color: #555;
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      overflow-x: auto;
+      border-radius: 5px;
+    }
+    a {
+      color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚀 The State of the Art in Transformers - 2025</h1>
+    <p><em>Exploring the latest advances, architectures, and breakthroughs in transformer models.</em></p>
+  </header>
+
+  <section>
+    <h2>1. Introduction</h2>
+    <p>
+      Transformers have revolutionized natural language processing and beyond. 
+      Since the original <strong>Attention is All You Need</strong> paper in 2017, 
+      we've seen continuous innovations in architecture, efficiency, and applications.
+    </p>
+  </section>
+
+  <section>
+    <h2>2. Evolution of Transformers</h2>
+    <p>
+      From <strong>BERT</strong> to <strong>GPT-4</strong>, and now multimodal giants like <strong>Gemini</strong> and <strong>Claude</strong>, 
+      transformer research has rapidly advanced. 
+    </p>
+
+    <figure>
+      <img src="images/transformer_timeline.png" alt="Transformer Timeline" width="80%">
+      <figcaption>Figure 1: Evolution of transformer models from 2017 to 2025.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>3. Key Innovations in 2024-2025</h2>
+    <ul>
+      <li><strong>Mixture of Experts (MoE)</strong> scaling for efficiency.</li>
+      <li><strong>Sparse Attention</strong> for long-context processing.</li>
+      <li><strong>Multimodal Transformers</strong> for text, images, audio, and video.</li>
+      <li>Advances in <strong>instruction tuning</strong> and alignment.</li>
+    </ul>
+
+    <figure>
+      <img src="images/moe_architecture.png" alt="Mixture of Experts Architecture" width="80%">
+      <figcaption>Figure 2: Example of Mixture of Experts architecture for large models.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>4. Example: Minimal Transformer in Code</h2>
+    <pre><code class="language-python">
+import torch
+from torch import nn
+
+class MiniTransformer(nn.Module):
+    def __init__(self, vocab_size=5000, d_model=512, nhead=8, num_layers=6):
+        super().__init__()
+        self.embedding = nn.Embedding(vocab_size, d_model)
+        encoder_layer = nn.TransformerEncoderLayer(d_model, nhead)
+        self.transformer = nn.TransformerEncoder(encoder_layer, num_layers)
+        self.fc = nn.Linear(d_model, vocab_size)
+
+    def forward(self, x):
+        x = self.embedding(x)
+        x = self.transformer(x)
+        return self.fc(x)
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>5. Looking Ahead</h2>
+    <p>
+      With ongoing research into efficiency, reasoning capabilities, and cross-modal learning, 
+      transformers are likely to become even more capable and integrated into everyday technology.
+    </p>
+  </section>
+
+  <footer>
+    <p>📅 Last updated: August 2025</p>
+    <p>✍️ Author: [Your Name] | <a href="#">Follow me on Twitter</a></p>
+  </footer>
+
+</body>
+</html>
