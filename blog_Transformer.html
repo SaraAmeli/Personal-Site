@@ -81,29 +81,9 @@
     </figure>
   </section>
 
-  <section>
-    <h2>4. Example: Minimal Transformer in Code</h2>
-    <pre><code class="language-python">
-import torch
-from torch import nn
-
-class MiniTransformer(nn.Module):
-    def __init__(self, vocab_size=5000, d_model=512, nhead=8, num_layers=6):
-        super().__init__()
-        self.embedding = nn.Embedding(vocab_size, d_model)
-        encoder_layer = nn.TransformerEncoderLayer(d_model, nhead)
-        self.transformer = nn.TransformerEncoder(encoder_layer, num_layers)
-        self.fc = nn.Linear(d_model, vocab_size)
-
-    def forward(self, x):
-        x = self.embedding(x)
-        x = self.transformer(x)
-        return self.fc(x)
-    </code></pre>
-  </section>
 
   <section>
-    <h2>5. Looking Ahead</h2>
+    <h2>4. Looking Ahead</h2>
     <p>
       With ongoing research into efficiency, reasoning capabilities, and cross-modal learning, 
       transformers are likely to become even more capable and integrated into everyday technology.
