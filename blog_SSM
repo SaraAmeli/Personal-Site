@@ -18,4 +18,29 @@
     Smith, Jimmy T.H.; Warrington, Andrew; Linderman, Scott W. (2022).  
     <em>arXiv preprint arXiv:2208.04933</em>.
   </li>
+  <li>
+    <strong>
+      vMamba: Visual state space model
+    </strong><br>
+    Liu, Yue; Tian, Yunjie; Zhao, Yuzhong; Yu, Hongtian; Xie, Lingxi; Wang, Yaowei; Ye, Qixiang; Jiao, Jianbin; Liu, Yunfan. (2024).  
+    <em>Advances in Neural Information Processing Systems</em>, 37, 103031–103063.
+  </li>
+  <li>
+    <strong>
+      <a href="https://arxiv.org/abs/2111.00396" target="_blank">
+        Efficiently modeling long sequences with structured state spaces
+      </a>
+    </strong><br>
+    Gu, Albert; Goel, Karan; Ré, Christopher. (2021).  
+    <em>arXiv preprint arXiv:2111.00396</em>.
+  </li>
+  <li>
+    <strong>
+      <a href="https://arxiv.org/abs/2403.01590" target="_blank">
+        The hidden attention of Mamba models
+      </a>
+    </strong><br>
+    Ali, Ameen; Zimerman, Itamar; Wolf, Lior. (2024).  
+    <em>arXiv preprint arXiv:2403.01590</em>.
+  </li>
 </ul>
