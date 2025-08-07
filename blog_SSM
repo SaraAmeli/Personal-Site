@@ -1,10 +1,12 @@
 <h2>References</h2>
 <ul>
   <li>
-    <strong>Review of memristor devices in neuromorphic computing: materials sciences and device challenges.</strong><br>
-    Li, Yibo; Wang, Zhongrui; Midya, Rivu; Xia, Qiangfei; Yang, J. Joshua.  
-    <em>Journal of Physics D: Applied Physics</em>, 51(50), 503002 (2018).  
-    IOP Publishing.
+    <strong>
+      <a href="https://arxiv.org/abs/2312.00752" target="_blank">
+        Mamba: Linear-time sequence modeling with selective state spaces
+      </a>
+    </strong><br>
+    Gu, Albert; Dao, Tri. (2023).  
+    <em>arXiv preprint arXiv:2312.00752</em>.
   </li>
 </ul>
-
