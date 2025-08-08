@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +29,13 @@
         .section {
             margin-bottom: 40px;
         }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -39,8 +45,8 @@
     </header>
 
     <section class="section">
-        <h2>1. Traditional Signal Processing Techniques</h2>
-        <p>Early approaches in speech processing relied on signal processing methods to analyze and synthesize speech signals:</p>
+        <h2><a href="traditional_signal_processing.html">1. Traditional Signal Processing Techniques</a></h2>
+        <p>Early approaches in speech processing relied on signal processing methods to analyze and synthesize speech signals.</p>
         <ul>
             <li><strong>Linear Predictive Coding (LPC):</strong> Models the human vocal tract to compress speech data effectively.</li>
             <li><strong>Hidden Markov Models (HMMs):</strong> Used for speech recognition by modeling temporal sequences of speech features.</li>
@@ -49,8 +55,8 @@
     </section>
 
     <section class="section">
-        <h2>2. Statistical and Machine Learning Approaches</h2>
-        <p>With the advent of machine learning, statistical models have enhanced the capabilities of speech and language processing systems:</p>
+        <h2><a href="statistical_machine_learning.html">2. Statistical and Machine Learning Approaches</a></h2>
+        <p>With the advent of machine learning, statistical models have enhanced the capabilities of speech and language processing systems.</p>
         <ul>
             <li><strong>Support Vector Machines (SVMs):</strong> Utilized for tasks such as text classification and sentiment analysis.</li>
             <li><strong>Conditional Random Fields (CRFs):</strong> Applied in sequence prediction tasks like named entity recognition.</li>
@@ -59,8 +65,8 @@
     </section>
 
     <section class="section">
-        <h2>3. Deep Learning and Transformer Models</h2>
-        <p>Recent advancements have introduced deep learning architectures that significantly improve performance across tasks:</p>
+        <h2><a href="deep_learning_transformers.html">3. Deep Learning and Transformer Models</a></h2>
+        <p>Recent advancements have introduced deep learning architectures that significantly improve performance across tasks.</p>
         <ul>
             <li><strong>Convolutional Neural Networks (CNNs):</strong> Effective in feature extraction from raw speech signals.</li>
             <li><strong>Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM):</strong> Suitable for modeling sequential data in speech and text.</li>
@@ -69,8 +75,8 @@
     </section>
 
     <section class="section">
-        <h2>4. Self-Supervised Learning</h2>
-        <p>Self-supervised learning techniques have emerged as powerful methods for learning representations from unlabeled data:</p>
+        <h2><a href="self_supervised_learning.html">4. Self-Supervised Learning</a></h2>
+        <p>Self-supervised learning techniques have emerged as powerful methods for learning representations from unlabeled data.</p>
         <ul>
             <li><strong>Contrastive Learning:</strong> Models learn by distinguishing between similar and dissimilar pairs of data points.</li>
             <li><strong>Predictive Modeling:</strong> Models predict parts of the data from other parts, enabling learning from unlabeled data.</li>
@@ -78,8 +84,8 @@
     </section>
 
     <section class="section">
-        <h2>5. Multimodal and Cross-Lingual Approaches</h2>
-        <p>Integrating multiple modalities and languages enhances the robustness and applicability of models:</p>
+        <h2><a href="multimodal_cross_lingual.html">5. Multimodal and Cross-Lingual Approaches</a></h2>
+        <p>Integrating multiple modalities and languages enhances the robustness and applicability of models.</p>
         <ul>
             <li><strong>Multimodal Learning:</strong> Combines audio, visual, and textual data to improve understanding and generation capabilities.</li>
             <li><strong>Cross-Lingual Models:</strong> Models like mBERT and XLM-R are trained on multiple languages, enabling transfer learning across languages.</li>
@@ -87,8 +93,8 @@
     </section>
 
     <section class="section">
-        <h2>6. Applications in Speech and Language Processing</h2>
-        <p>These approaches have led to significant advancements in various applications:</p>
+        <h2><a href="applications_in_speech_language.html">6. Applications in Speech and Language Processing</a></h2>
+        <p>These approaches have led to significant advancements in various applications.</p>
         <ul>
             <li><strong>Speech Recognition:</strong> Converting spoken language into text, enabling voice-controlled systems.</li>
             <li><strong>Text-to-Speech (TTS) and Speech Synthesis:</strong> Generating natural-sounding speech from text inputs.</li>
@@ -108,59 +114,3 @@
     </footer>
 </body>
 </html>
-
-
-
-
-
-
-<section>
-  <h2>Highlights From Recent Neural Audio Papers</h2>
-  <ul>
-    <li>
-      <strong>
-        <a href="https://arxiv.org/abs/2210.13438" target="_blank">
-          High Fidelity Neural Audio Compression
-        </a>
-      </strong><br>
-      This paper showcases <em>EnCodec</em>, a real-time, high-fidelity neural audio codec with a streaming encoder–decoder and quantized latent space. It uses multiscale adversarial training and introduces a novel “loss balancer” mechanism to stabilize training. Additionally, lightweight Transformer models further compress representations by up to 40% while remaining faster than real-time.
-    </li>
-
-    <li>
-      <strong>
-        <a href="https://arxiv.org/abs/2005.00341" target="_blank">
-          Jukebox: A Generative Model for Music
-        </a>
-      </strong><br>
-      OpenAI’s <em>Jukebox</em> tackles the challenge of generating raw audio music (including singing) with coherent structure across multiple minutes. It leverages a multi-scale VQ‑VAE for discretizing audio and autoregressive Transformers to model long-range dependencies, enabling controllable generation (by artist, genre, lyrics).
-    </li>
-
-    <li>
-      <strong>
-        <a href="https://arxiv.org/abs/1704.01279" target="_blank">
-          Neural Audio Synthesis of Musical Notes with WaveNet Autoencoders
-        </a>
-      </strong><br>
-      This WaveNet-style autoencoder learns temporal codes from raw audio and uses them to synthesize musical notes. Coupled with the NSynth dataset, it allows timbral interpolation and morphing between instruments, demonstrating expressive and high-quality novel sound generation.
-    </li>
-
-    <li>
-      <strong>
-        <a href="https://arxiv.org/abs/2107.03312" target="_blank">
-          SoundStream: An End-to-End Neural Audio Codec
-        </a>
-      </strong><br>
-      <em>SoundStream</em> introduces an efficient end-to-end neural codec capable of compressing speech, music, and general audio across variable bitrates (3–18 kbps) with minimal quality loss. It combines a convolutional encoder–decoder with residual vector quantization and supports real-time processing and noise suppression.
-    </li>
-
-    <li>
-      <strong>
-        <a href="https://arxiv.org/abs/1609.03499" target="_blank">
-          WaveNet: A Generative Model for Raw Audio
-        </a>
-      </strong><br>
-      The seminal <em>WaveNet</em> architecture models raw audio waveforms via an autoregressive, dilated convolutional neural network. It achieves state-of-the-art speech quality in TTS and generalizes to other audio modalities, laying the foundation for later developments like NSynth and neural audio synthesis.
-    </li>
-  </ul>
-</section>
-
