@@ -1,105 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>In-Memory Computing: Bringing Memory and Processing Together</title>
     <style>
+        :root {
+            --bg: #fafafa;
+            --text: #333;
+            --heading: #1a1a1a;
+            --card: #ffffff;
+            --muted: #f0f0f0;
+            --shadow: 0 0 10px rgba(0,0,0,0.05);
+            --shadow-sm: 0 0 5px rgba(0,0,0,0.05);
+            --radius: 10px;
+        }
+        * { box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             line-height: 1.7;
             margin: 0;
             padding: 0;
-            background-color: #fafafa;
-            color: #333;
+            background-color: var(--bg);
+            color: var(--text);
         }
-
         header {
-            background: url('header-bg.jpg') no-repeat center center;
-            background-size: cover;
+            background: url('header-bg.jpg') no-repeat center center / cover;
             color: white;
             padding: 60px 20px;
             text-align: center;
             position: relative;
         }
-
-        /* Add a dark overlay for better text visibility */
         header::before {
             content: "";
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
             background: rgba(0, 0, 0, 0.5);
             z-index: 0;
         }
-
         header h1 {
             position: relative;
             z-index: 1;
-            font-size: 2.5em;
+            font-size: 2.5rem;
             margin: 0;
         }
-
         main {
             display: flex;
             max-width: 1200px;
             margin: auto;
             padding: 20px;
             gap: 20px;
+            align-items: flex-start;
         }
-
         article {
             flex: 3;
-            background: white;
+            background: var(--card);
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
-
         aside {
             flex: 1;
-            background: #f0f0f0;
+            background: var(--muted);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.05);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 20px;
         }
-
-        h1, h2, h3 {
-            color: #1a1a1a;
+        h1, h2, h3 { color: var(--heading); }
+        strong { color: #000; }
+        ul, ol { margin: 10px 0; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        hr { margin: 25px 0; border: none; border-top: 1px solid #ddd; }
+        figure { margin: 0 0 20px 0; text-align: center; }
+        figure img { max-width: 100%; border-radius: 5px; height: auto; }
+        figcaption { font-size: 0.9em; color: #555; }
+        /* Optional: local TOC for new sections */
+        .toc {
+            background: #fff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            box-shadow: var(--shadow-sm);
+            margin: 10px 0 20px 0;
         }
-
-        strong {
-            color: #000;
-        }
-
-        ul, ol {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        hr {
-            margin: 25px 0;
-            border: none;
-            border-top: 1px solid #ddd;
-        }
-
-        figure {
-            margin: 0 0 20px 0;
-            text-align: center;
-        }
-
-        figure img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-
-        figcaption {
-            font-size: 0.9em;
-            color: #555;
+        .toc a { color: #1a1a1a; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        @media (max-width: 900px) {
+            main { flex-direction: column; }
+            aside { position: static; }
         }
     </style>
 </head>
@@ -114,15 +103,27 @@
     <article>
         <h1>In-Memory Computing: Bringing Memory and Processing Together</h1>
 
-        <p>One of the biggest bottlenecks in today’s computers isn’t how fast they can calculate — it’s how often they have to <strong>move data</strong> between the processor and the memory.
-        This constant back-and-forth, known as the <strong>von Neumann bottleneck</strong>, wastes time and energy.</p>
+        <p>One of the biggest bottlenecks in today’s computers isn’t how fast they can calculate — it’s how often they have to <strong>move data</strong> between the processor and the memory. This constant back-and-forth, known as the <strong>von Neumann bottleneck</strong>, wastes time and energy.</p>
 
-        <p><strong>In-memory computing</strong> aims to solve this by doing something radically different:<br>
+        <p><strong>In-memory computing</strong> aims to solve this by doing something radically different:<br />
         💡 <strong>Perform the computation directly where the data is stored.</strong></p>
 
-        <hr>
+        <div class="toc" aria-label="On this page">
+            <strong>Jump to:</strong>
+            <ul>
+                <li><a href="#why-moving-data">Why moving data is a problem</a></li>
+                <li><a href="#how-imc-works">How in-memory computing works</a></li>
+                <li><a href="#neuromorphic">Why it matters for neuromorphic computing</a></li>
+                <li><a href="#reram-section">ReRAM-based in-memory computing</a></li>
+                <li><a href="#sram-section">SRAM-based in-memory computing</a></li>
+                <li><a href="#examples">Real-world examples</a></li>
+                <li><a href="#two-d-materials">2D materials in in-memory computing</a></li>
+            </ul>
+        </div>
 
-        <h3>Why Moving Data is a Problem</h3>
+        <hr />
+
+        <h3 id="why-moving-data">Why Moving Data is a Problem</h3>
         <p>In a traditional computer:</p>
         <ol>
             <li>Data is stored in <strong>memory</strong> (RAM, cache, or storage).</li>
@@ -132,33 +133,26 @@
         </ol>
         <p>For small tasks, this works fine. But modern AI workloads deal with billions of data points. Fetching and writing data over and over wastes huge amounts of energy.</p>
 
-        <hr>
+        <hr />
 
-        <h3>How In-Memory Computing Works</h3>
+        <h3 id="how-imc-works">How In-Memory Computing Works</h3>
         <p>Instead of separating memory and logic:</p>
         <ul>
-            <li>Memory cells (like <strong>memristors</strong>, phase-change memory, or MRAM) are designed to <strong>store data and also perform operations</strong>.</li>
+            <li>Memory cells (like <strong>memristors</strong>, phase-change memory, MRAM, or <strong>ReRAM</strong>) are designed to <strong>store data and also perform operations</strong>.</li>
             <li>Common tasks, like multiplication and addition for neural networks, can happen <strong>inside</strong> the memory array.</li>
             <li>This reduces data movement, making computation <strong>faster and far more energy-efficient</strong>.</li>
         </ul>
 
+        <figure>
+            <a href="https://www.thekurzweillibrary.com/ibm-scientists-say-radical-new-in-memory-computing-architecture-will-speed-up-computers-by-200-times" target="_blank" rel="noopener">
+                <img src="im/von-Neumann-vs-computational-memory.png" alt="Diagram comparing von Neumann architecture versus computational memory" />
+            </a>
+            <figcaption>von-Neumann-vs-computational-memory.png</figcaption>
+        </figure>
 
-    <figure>
-        <a href="https://www.thekurzweillibrary.com/ibm-scientists-say-radical-new-in-memory-computing-architecture-will-speed-up-computers-by-200-times
-" target="_blank">
-            <img src="im/von-Neumann-vs-computational-memory.png" alt="Memristor Array">
-        </a>
-        <figcaption>
-            von-Neumann-vs-computational-memory.png
-            <br>
+        <hr />
 
-        </figcaption>
-    </figure>
-
-        
-        <hr>
-
-        <h3>Why It’s Important for Neuromorphic Computing</h3>
+        <h3 id="neuromorphic">Why It’s Important for Neuromorphic Computing</h3>
         <p>Neuromorphic chips mimic the brain’s neuron–synapse structure. In biology:</p>
         <ul>
             <li><strong>Neurons</strong> process signals.</li>
@@ -171,101 +165,125 @@
             <li>Enables real-time processing in AI and edge devices.</li>
         </ul>
 
-        <hr>
+        <p><em>ReRAM offers high-density non-volatile storage and the potential for efficient in-memory computing, while ReRAM-enabled accelerators can mitigate the von Neumann bottleneck.</em></p>
 
-        <h3>Real-World Examples</h3>
+        <hr />
+
+        <!-- NEW: ReRAM-based In-Memory Computing Section -->
+        <h2 id="reram-section">ReRAM (ReRAM/Memristor)-Based In-Memory Computing</h2>
+        <p><strong>What it is:</strong> Resistive RAM (ReRAM) — often implemented with memristive devices — stores information as different resistance states. By applying voltages across <em>crossbar arrays</em>, large numbers of multiply–accumulate (MAC) operations can be performed <em>in parallel</em> using Ohm’s and Kirchhoff’s laws.</p>
+        <ul>
+            <li><strong>Strengths:</strong> Non-volatile, high density, analog MAC with massive parallelism, low data movement.</li>
+            <li><strong>Design notes:</strong> Requires ADC/DAC interfaces, write-verify for precise weights, and techniques for variability/noise compensation.</li>
+            <li><strong>Best for:</strong> Inference accelerators, edge AI with tight energy budgets, sparse/quantized models.</li>
+        </ul>
+        <figure>
+            <img src="im/I.png" alt="Memristor-based in-memory computing crossbar array" />
+            <figcaption>
+                Memristor-based in-memory computing array. <br />
+                <strong><a href="https://doi.org/10.1088/1361-6463/aae223" target="_blank" rel="noopener">Review of memristor devices in neuromorphic computing</a></strong>
+                — Li et&nbsp;al., <em>J. Phys. D</em>, 2018.
+            </figcaption>
+        </figure>
+
+        <hr />
+
+        <!-- NEW: SRAM-based In-Memory Computing Section -->
+        <h2 id="sram-section">SRAM-Based In-Memory Computing</h2>
+        <p><strong>What it is:</strong> Digital/bitline compute primitives are embedded into standard SRAM arrays (e.g., 6T/8T/10T cells) to perform operations like <em>bitline summation</em>, <em>XNOR–popcount</em>, and <em>approximate MACs</em> without moving data to external ALUs.</p>
+        <ul>
+            <li><strong>Strengths:</strong> CMOS compatibility, mature tooling, deterministic digital behavior, easier integration with existing SoCs.</li>
+            <li><strong>Design notes:</strong> Limited analog precision per cycle; often pairs well with quantization (e.g., binary/ternary networks) and controller-side accumulation.</li>
+            <li><strong>Best for:</strong> Low-latency on-chip accelerators, vision pipelines, and tightly-coupled ML kernels.</li>
+        </ul>
+        <figure>
+            <img src="im/multiple_cell_operation-768x453.png" alt="SRAM-based in-memory computing diagram with multiple-cell operation" />
+            <figcaption>
+                SRAM-based computing<br />
+                <strong>
+                    <a href="https://ieeexplore.ieee.org/abstract/document/9062985" target="_blank" rel="noopener">SRAM-based computing</a>
+                </strong>
+            </figcaption>
+        </figure>
+
+        <hr />
+
+        <!-- Optional: quick comparison table -->
+        <h3>Quick Comparison: ReRAM vs. SRAM for In-Memory Compute</h3>
+        <ul>
+            <li><strong>Volatility:</strong> ReRAM is non-volatile; SRAM is volatile.</li>
+            <li><strong>Precision:</strong> ReRAM often favors analog MAC with ADC/DAC; SRAM favors digital/bitwise ops.</li>
+            <li><strong>Density & retention:</strong> ReRAM typically higher density with retention; SRAM faster access but larger cell area.</li>
+            <li><strong>Integration:</strong> SRAM slots into standard CMOS flows; ReRAM may require BEOL integration and device calibration.</li>
+        </ul>
+
+        <hr />
+
+        <h3 id="examples">Real-World Examples</h3>
         <ul>
             <li><strong>IBM</strong> is exploring in-memory computing for AI accelerators.</li>
             <li><strong>Intel’s Loihi</strong> uses concepts similar to in-memory processing for neuromorphic tasks.</li>
             <li>Research labs are building <strong>memristor-based arrays</strong> that can perform matrix multiplication inside memory.</li>
         </ul>
 
+        <hr />
 
-
-                <hr>
-
-        <h3>2D Materials in In-Memory Computing</h3>
-        <p>
-            Recent research has explored the use of <strong>two-dimensional (2D) materials</strong>, such as graphene, transition metal dichalcogenides (TMDs), and hexagonal boron nitride, in developing next-generation in-memory computing devices.
-            These materials offer exceptional electrical, optical, and mechanical properties, enabling ultra-thin, high-density, and energy-efficient memory arrays.
-            Their atomic-scale thickness allows for precise control over charge transport, making them promising candidates for scalable neuromorphic hardware.
-        </p>
-        <p>
-            Studies have evaluated various 2D memory technologies for performance, endurance, and compatibility with in-memory processing architectures, showing strong potential for both AI acceleration and edge computing applications.
-        </p>
-
+        <h3 id="two-d-materials">2D Materials in In-Memory Computing</h3>
+        <p>Recent research has explored the use of <strong>two-dimensional (2D) materials</strong>, such as graphene, transition metal dichalcogenides (TMDs), and hexagonal boron nitride, in developing next-generation in-memory computing devices. These materials offer exceptional electrical, optical, and mechanical properties, enabling ultra-thin, high-density, and energy-efficient memory arrays. Their atomic-scale thickness allows for precise control over charge transport, making them promising candidates for scalable neuromorphic hardware.</p>
+        <p>Studies have evaluated various 2D memory technologies for performance, endurance, and compatibility with in-memory processing architectures, showing strong potential for both AI acceleration and edge computing applications.</p>
         <p><small>
-            Reference: Sun, Yibo; Wang, Shuiyuan; Zhang, Qiran; Zhou, Peng. 
-            <em>Evaluation of different 2D memory technologies for in-memory computing</em>, 
-            Device, 2(12), 2024. Elsevier.
+            Reference: Sun, Yibo; Wang, Shuiyuan; Zhang, Qiran; Zhou, Peng. <em>Evaluation of different 2D memory technologies for in-memory computing</em>, Device, 2(12), 2024. Elsevier.
         </small></p>
-
-        
     </article>
 
     <!-- Sidebar for Figures -->
     <aside>
-    <figure>
-        <a href="https://engineering.purdue.edu/ECE/News/2019/boosting-the-brains-of-computers-with-less-energy" target="_blank">
-            <img src="im/von_Neumann_bottleneck.png" alt="Von Neumann vs In-Memory Computing">
-        </a>
-        <figcaption>von Neumann bottleneck</figcaption>
-    </figure>
+        <figure>
+            <a href="https://engineering.purdue.edu/ECE/News/2019/boosting-the-brains-of-computers-with-less-energy" target="_blank" rel="noopener">
+                <img src="im/von_Neumann_bottleneck.png" alt="Illustration of the von Neumann bottleneck" />
+            </a>
+            <figcaption>von Neumann bottleneck</figcaption>
+        </figure>
 
-    <figure>
-        <a href="https://www.researchgate.net/publication/360786529_Tolerating_Noise_Effects_in_Processing-in-Memory_Systems_for_Neural_Networks_A_Hardware-Software_Codesign_Perspective/figures" target="_blank">
-            <img src="im/Comparison-between-the-von-Neumann-architecture-and-in-memory-computing-Reproduced-with_W640.jpg" alt="Von Neumann vs In-Memory Computing">
-        </a>
-        <figcaption>von Neumann vs in-memory computing</figcaption>
-    </figure>
+        <figure>
+            <a href="https://www.researchgate.net/publication/360786529_Tolerating_Noise_Effects_in_Processing-in-Memory_Systems_for_Neural_Networks_A_Hardware-Software_Codesign_Perspective/figures" target="_blank" rel="noopener">
+                <img src="im/Comparison-between-the-von-Neumann-architecture-and-in-memory-computing-Reproduced-with_W640.jpg" alt="Comparison: von Neumann vs in-memory computing" />
+            </a>
+            <figcaption>von Neumann vs in-memory computing</figcaption>
+        </figure>
 
-    <figure>
-        <a href="https://www.embedded.com/reram-gains-interest-for-in-computing-memory/" target="_blank">
-            <img src="im/IEDMroundup-image1.png" alt="Memristor Array">
-        </a>
-        <figcaption>
-            Traditional vs. in-memory architecture.  
-            <br>
-            Source: Li et al., <em>J. Phys. D: Appl. Phys.</em>, 2018.
-        </figcaption>
-    </figure>
+        <figure>
+            <a href="https://www.embedded.com/reram-gains-interest-for-in-computing-memory/" target="_blank" rel="noopener">
+                <img src="im/IEDMroundup-image1.png" alt="Traditional vs. in-memory architecture illustration" />
+            </a>
+            <figcaption>
+                Traditional vs. in-memory architecture.<br />
+                Source: Li et al., <em>J. Phys. D: Appl. Phys.</em>, 2018.
+            </figcaption>
+        </figure>
 
+        <figure>
+            <img src="im/multiple_cell_operation-768x453.png" alt="SRAM-based computing figure" />
+            <figcaption>
+                SRAM-based computing<br />
+                <strong>
+                    <a href="https://ieeexplore.ieee.org/abstract/document/9062985" target="_blank" rel="noopener">SRAM-based computing</a>
+                </strong>
+            </figcaption>
+        </figure>
 
-    <figure>
-        <img src="im/multiple_cell_operation-768x453.png" alt="SRAM-based computing">
-        <figcaption>
-             SRAM-based computing
-            <br>
-            <strong>
-                <a href="https://ieeexplore.ieee.org/abstract/document/9062985"_blank">
-                    SRAM-based computing
-                </a>
-            </strong><br>
-          
-        
-        </figcaption>
-    </figure>
-
-
-        
-    <figure>
-        <img src="im/I.png" alt="Von Neumann vs In-Memory Computing">
-        <figcaption>
-            Memristor-based in-memory computing array.  
-            <br>
-            <strong>
-                <a href="https://doi.org/10.1088/1361-6463/aae223" target="_blank">
-                    Review of memristor devices in neuromorphic computing: materials sciences and device challenges
-                </a>
-            </strong><br>
-            Li, Yibo; Wang, Zhongrui; Midya, Rivu; Xia, Qiangfei; Yang, J. Joshua. (2018).  
-            <em>Journal of Physics D: Applied Physics</em>, 51(50), 503002.
-        </figcaption>
-    </figure>
-
-        
-</aside>
-
+        <figure>
+            <img src="im/I.png" alt="Memristor-based in-memory computing array" />
+            <figcaption>
+                Memristor-based in-memory computing array.<br />
+                <strong>
+                    <a href="https://doi.org/10.1088/1361-6463/aae223" target="_blank" rel="noopener">Review of memristor devices in neuromorphic computing: materials sciences and device challenges</a>
+                </strong><br />
+                Li, Yibo; Wang, Zhongrui; Midya, Rivu; Xia, Qiangfei; Yang, J. Joshua. (2018).<br />
+                <em>Journal of Physics D: Applied Physics</em>, 51(50), 503002.
+            </figcaption>
+        </figure>
+    </aside>
 </main>
 
 </body>
