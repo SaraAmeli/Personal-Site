@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AWS Generative AI Blog • Amazon Q & Amazon Bedrock</title>
+  <meta name="description" content="A simple, single-file blog template about AWS Generative AI with sections for Amazon Q and Amazon Bedrock." />
+  <style>
+    :root{
+      --bg: #0b1020; /* dark indigo */
+      --card: #111834;
+      --text: #e9ecf1;
+      --muted: #a9b1c3;
+      --accent: #7cc4ff;
+      --accent-2:#b78bfa;
+      --border: #233055;
+      --code-bg:#0e1430;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f9fc;
+        --card:#ffffff;
+        --text:#111827;
+        --muted:#5b6478;
+        --accent:#2563eb;
+        --accent-2:#7c3aed;
+        --border:#e5e7eb;
+        --code-bg:#f3f4f6;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(124,196,255,.15), transparent 60%),
+                  radial-gradient(1000px 500px at 110% -20%, rgba(183,139,250,.15), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .container{max-width:1000px; margin:0 auto; padding:24px;}
+    header{
+      position:sticky; top:0; backdrop-filter:saturate(150%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom:1px solid var(--border);
+      z-index:20;
+    }
+    nav{display:flex; gap:12px; align-items:center; justify-content:space-between; padding:12px 24px;}
+    nav .links{display:flex; gap:8px; flex-wrap:wrap}
+    a.button{
+      text-decoration:none; color:var(--text); border:1px solid var(--border); padding:8px 12px; border-radius:999px; font-weight:600;
+    }
+    a.button:hover{border-color:var(--accent)}
+    .hero{padding:56px 24px 8px}
+    h1{font-size:clamp(28px, 4vw, 44px); line-height:1.1; margin:0}
+    .tagline{color:var(--muted)}
+    .grid{display:grid; grid-template-columns:1fr; gap:20px;}
+    @media (min-width: 840px){ .grid{grid-template-columns: 1.1fr .9fr;} }
+    section.card{background:linear-gradient(180deg, color-mix(in oklab, var(--card) 85%, transparent), var(--card)); border:1px solid var(--border); border-radius:18px; padding:24px; box-shadow: 0 10px 30px rgba(0,0,0,.15)}
+    section.card h2{margin-top:0; font-size:clamp(22px, 3vw, 32px)}
+    .list{display:grid; gap:10px; padding-left:0; list-style:none}
+    .list li{padding:10px 12px; border:1px solid var(--border); border-radius:12px; background: color-mix(in oklab, var(--card) 92%, transparent)}
+    .kicker{letter-spacing:.08em; text-transform:uppercase; font-size:12px; color:var(--muted)}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    pre{background:var(--code-bg); color:var(--text); padding:16px; border-radius:12px; overflow:auto; border:1px solid var(--border)}
+    .pill{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background: color-mix(in oklab, var(--card) 92%, transparent)}
+    .dot{width:8px; height:8px; border-radius:50%; background: var(--accent)}
+    footer{margin:48px 0 24px; text-align:center; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <div style="display:flex; align-items:center; gap:12px">
+        <span class="pill"><span class="dot"></span><span>AWS Generative AI Blog</span></span>
+      </div>
+      <div class="links">
+        <a class="button" href="#amazon-q">Amazon Q</a>
+        <a class="button" href="#amazon-bedrock">Amazon Bedrock</a>
+        <a class="button" href="#resources">Resources</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Build with AWS Generative AI</h1>
+      <p class="tagline">A concise, two‑section starter about <strong>Amazon Q</strong> and <strong>Amazon Bedrock</strong> you can extend into a full blog.</p>
+    </section>
+
+    <div class="grid">
+      <!-- Amazon Q Section -->
+      <section id="amazon-q" class="card">
+        <div class="kicker">Section One</div>
+        <h2>Amazon Q</h2>
+        <p>
+          Amazon Q is a family of generative AI assistants from AWS that help with tasks such as
+          software development (Q Developer), business insights (Q Business), and cloud operations.
+          It integrates with AWS services and your organizational data—subject to the permissions you configure.
+        </p>
+        <h3>Key Capabilities</h3>
+        <ul class="list">
+          <li><strong>Developer assistance:</strong> code generation, refactoring, unit tests, and explanations inside IDEs and code review workflows.</li>
+          <li><strong>Enterprise Q&amp;A:</strong> natural-language answers grounded in your docs, tickets, and data sources with guardrails and access controls.</li>
+          <li><strong>AWS expertise:</strong> guided help for architecture, IaC snippets, and troubleshooting across AWS services.</li>
+        </ul>
+        <h3>Typical Use Cases</h3>
+        <ul class="list">
+          <li>Speed up PR reviews and generate test suites for critical services.</li>
+          <li>Give non‑technical teams a chat interface to query business data securely.</li>
+          <li>Create runbooks and automate remediation steps for common incidents.</li>
+        </ul>
+        <h3>Getting Started</h3>
+        <ol>
+          <li>Choose the product flavor (e.g., Q Developer or Q Business) and set up access in the AWS console.</li>
+          <li>Connect approved data sources (Git, Confluence, S3, JIRA, etc.) and configure IAM/identity.</li>
+          <li>Roll out to pilot users, define guardrails, and monitor with org‑level analytics.</li>
+        </ol>
+        <h3>Sample Prompt Patterns</h3>
+        <pre><code>// Code review helper
+"Review this pull request. Flag security issues and suggest tests."
+
+// Architecture aide
+"Given our VPC layout, propose a secure way to expose the service via API Gateway + Lambda."
+</code></pre>
+      </section>
+
+      <!-- Amazon Bedrock Section -->
+      <section id="amazon-bedrock" class="card">
+        <div class="kicker">Section Two</div>
+        <h2>Amazon Bedrock</h2>
+        <p>
+          Amazon Bedrock is a fully managed service for building generative AI applications using foundation models (FMs) from AWS and third‑party providers. It offers a unified API, model evaluation, agent tooling, vector stores, and managed safeguards.
+        </p>
+        <h3>What You Can Do</h3>
+        <ul class="list">
+          <li><strong>Choose models:</strong> access multiple FMs (text, image, embeddings) via one API.</li>
+          <li><strong>Ground &amp; retrieve:</strong> use knowledge bases and RAG patterns with managed vector capabilities.</li>
+          <li><strong>Orchestrate:</strong> build agents that call tools, functions, and your APIs.</li>
+          <li><strong>Govern:</strong> apply content filters, PII redaction, and guardrails centrally.</li>
+        </ul>
+        <h3>Quick Start (Python)</h3>
+        <pre><code># pip install boto3
+import boto3
+
+bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
+
+payload = {
+    "prompt": "You are a helpful assistant. Summarize: ...",
+    "max_tokens": 300,
+}
+
+resp = bedrock.invoke_model(
+    modelId="&lt;your-model-id&gt;",
+    body=bytes(str(payload), "utf-8"),
+    contentType="application/json",
+    accept="application/json",
+)
+print(resp["body"].read().decode("utf-8"))
+</code></pre>
+        <h3>Design Tips</h3>
+        <ul class="list">
+          <li>Start with narrow, high‑ROI tasks and measurable metrics (latency, cost per request, accuracy).</li>
+          <li>Prefer retrieval over fine‑tuning when the domain shifts frequently.</li>
+          <li>Instrument prompts and responses; log failure modes for fast iteration.</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Resources Section -->
+    <section id="resources" class="card" style="margin-top:20px">
+      <div class="kicker">Extras</div>
+      <h2>Resources & Next Steps</h2>
+      <ul class="list">
+        <li>Draft editorial calendar: alternate posts between Q how‑tos and Bedrock build guides.</li>
+        <li>Add case studies: pick 2–3 internal or public examples to showcase outcomes and cost impacts.</li>
+        <li>Create a tutorials area with end‑to‑end samples, datasets, and IaC templates.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> AWS GenAI Blog. Built with ❤️ and vanilla HTML/CSS.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
