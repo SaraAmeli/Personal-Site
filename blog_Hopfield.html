@@ -1,13 +1,146 @@
-Hopfield Networks is All You Need                  https://arxiv.org/abs/2008.02217
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Revival of Hopfield Networks: From Classic Models to Modern AI</title>
+  <meta name="description" content="A concise tour of modern Hopfield-network research with short notes on six key papers." />
+  <style>
+    :root{
+      --bg:#0f1320;
+      --card:#141a2a;
+      --ink:#eaf0ff;
+      --muted:#aeb6d6;
+      --accent:#7aa2ff;
+      --rule:#223055;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif}
+    header{padding:3rem 1.25rem 1rem; text-align:center}
+    header h1{margin:0 auto 0.35rem;max-width:46rem;font-size:2rem;line-height:1.2}
+    header p{margin:0 auto;max-width:46rem;color:var(--muted)}
+    .container{max-width:48rem;margin:0 auto;padding:1rem 1.25rem 3rem}
+    nav{position:sticky;top:0;background:linear-gradient(180deg, rgba(20,26,42,.98), rgba(20,26,42,.85));backdrop-filter: blur(6px);border-bottom:1px solid var(--rule)}
+    nav .toc{max-width:48rem;margin:0 auto;padding:.5rem 1.25rem;display:flex;flex-wrap:wrap;gap:.5rem}
+    nav .toc a{color:var(--muted);text-decoration:none;padding:.35rem .55rem;border-radius:.5rem;border:1px solid transparent}
+    nav .toc a:hover{border-color:var(--rule);color:var(--ink)}
+    section{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:1.1rem 1rem;margin:1rem 0}
+    section h2{margin:.2rem 0 .25rem;font-size:1.25rem}
+    section h3{margin:.25rem 0 .35rem;font-weight:600;color:var(--accent);font-size:1.05rem}
+    p{margin:.45rem 0}
+    .meta{color:var(--muted);font-size:.95rem}
+    a{color:var(--accent)}
+    hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
+    details{background:#0e1426;border:1px solid var(--rule);border-radius:12px;padding:.5rem .75rem}
+    code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+    pre{overflow:auto; background:#0b1020; border:1px solid var(--rule); border-radius:12px; padding:1rem}
+    footer{color:var(--muted);text-align:center;margin:2rem 0 1rem}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Revival of Hopfield Networks: From Classic Models to Modern AI</h1>
+    <p class="meta">A concise tour of contemporary Hopfield-network research with quick notes on six influential papers. Updated: August 21, 2025.</p>
+  </header>
 
-@article{ramsauer2020hopfield,
+  <nav aria-label="On this page">
+    <div class="toc">
+      <a href="#ramsauer-2020">Modern Hopfield networks</a>
+      <a href="#chaudhuri-fiete-2019">Error correction</a>
+      <a href="#wu-2012">Storage capacity</a>
+      <a href="#krotov-hopfield-2016">Dense associative memory</a>
+      <a href="#krotov-2021">Hierarchical memory</a>
+      <a href="#krotov-hopfield-2020">Memory at scale</a>
+      <a href="#references">References (BibTeX)</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section id="intro">
+      <h2>Why Hopfield networks again?</h2>
+      <p>
+        Hopfield networks began as elegant models of associative memory, then re-emerged as powerful building blocks for modern machine learning.
+        The works below chart that journey—from classical capacity analyses to architectures that behave like attention and scale to large memories.
+      </p>
+    </section>
+
+    <section id="ramsauer-2020">
+      <h2>Hopfield Networks in the Modern Era</h2>
+      <h3>Hopfield Networks is All You Need — Ramsauer et&nbsp;al., 2020</h3>
+      <p>
+        This paper reframes Hopfield networks with continuous states and an energy function that enables <em>exponential</em> storage capacity and fast retrieval.
+        The resulting “modern Hopfield network” acts like a content-addressable attention mechanism, integrating cleanly into deep learning pipelines.
+      </p>
+      <p class="meta">
+        <a href="https://arxiv.org/abs/2008.02217" target="_blank" rel="noopener">Read the paper on arXiv</a>
+      </p>
+    </section>
+
+    <section id="chaudhuri-fiete-2019">
+      <h2>Associative Memory as Error Correction</h2>
+      <h3>Bipartite Expander Hopfield Networks as Self-Decoding High-Capacity Error Correcting Codes — Chaudhuri &amp; Fiete, 2019</h3>
+      <p>
+        Chaudhuri and Fiete build Hopfield networks on bipartite expander graphs, showing they can function as robust, high-capacity error-correcting codes.
+        The expander structure enables reliable self-decoding of stored patterns, tightly linking associative memory to coding-theoretic guarantees.
+      </p>
+      <p class="meta">Venue: Advances in Neural Information Processing Systems 32 (NeurIPS&nbsp;2019).</p>
+    </section>
+
+    <section id="wu-2012">
+      <h2>Expanding (and Understanding) Capacity</h2>
+      <h3>Storage Capacity of the Hopfield Network Associative Memory — Wu, Hu, Wu, Zhou &amp; Du, 2012</h3>
+      <p>
+        This study revisits the fundamental question: how many patterns can a classical Hopfield network reliably store and recall?
+        The authors analyze theoretical limits alongside simulations, highlighting how factors like correlation and sparsity impact practical capacity.
+      </p>
+      <p class="meta">Venue: IEEE ICTA 2012.</p>
+    </section>
+
+    <section id="krotov-hopfield-2016">
+      <h2>Dense Associative Memory</h2>
+      <h3>Dense Associative Memory for Pattern Recognition — Krotov &amp; Hopfield, 2016</h3>
+      <p>
+        Krotov and Hopfield generalize beyond quadratic energies with higher-order interactions, yielding <em>dense associative memory</em> (DAM).
+        DAMs improve robustness and recognition performance, offering a path beyond classical Hopfield limits toward richer, more selective attractor dynamics.
+      </p>
+      <p class="meta">Venue: Advances in Neural Information Processing Systems 29 (NIPS&nbsp;2016).</p>
+    </section>
+
+    <section id="krotov-2021">
+      <h2>Hierarchical Memory Structures</h2>
+      <h3>Hierarchical Associative Memory — Krotov, 2021</h3>
+      <p>
+        This work organizes memories across multiple levels, enabling coarse-to-fine abstraction and compositional retrieval.
+        Hierarchical structure brings associative memory closer to scalable, biologically inspired models of concept formation and generalization.
+      </p>
+      <p class="meta">
+        <a href="https://arxiv.org/abs/2107.06446" target="_blank" rel="noopener">Read the paper on arXiv</a>
+      </p>
+    </section>
+
+    <section id="krotov-hopfield-2020">
+      <h2>Memory at Scale in Biology and AI</h2>
+      <h3>The Large Associative Memory Problem in Neurobiology and Machine Learning — Krotov &amp; Hopfield, 2020</h3>
+      <p>
+        Addressing how to store and retrieve vast numbers of patterns, the authors synthesize perspectives from cortex and machine learning.
+        They argue that modern associative mechanisms can bridge biological plausibility with the engineering demands of large-scale memory.
+      </p>
+      <p class="meta">
+        <a href="https://arxiv.org/abs/2008.06996" target="_blank" rel="noopener">Read the paper on arXiv</a>
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="references" aria-labelledby="refs-title">
+      <h2 id="refs-title">References (BibTeX)</h2>
+      <details open>
+        <summary>Show/Hide BibTeX</summary>
+        <pre><code>@article{ramsauer2020hopfield,
   title={Hopfield networks is all you need},
   author={Ramsauer, Hubert and Sch{\"a}fl, Bernhard and Lehner, Johannes and Seidl, Philipp and Widrich, Michael and Adler, Thomas and Gruber, Lukas and Holzleitner, Markus and Pavlovi{\'c}, Milena and Sandve, Geir Kjetil and others},
   journal={arXiv preprint arXiv:2008.02217},
   year={2020}
 }
-
-
 
 @article{chaudhuri2019bipartite,
   title={Bipartite expander Hopfield networks as self-decoding high-capacity error correcting codes},
@@ -17,7 +150,6 @@ Hopfield Networks is All You Need                  https://arxiv.org/abs/2008.02
   year={2019}
 }
 
-
 @article{krotov2016dense,
   title={Dense associative memory for pattern recognition},
   author={Krotov, Dmitry and Hopfield, John J},
@@ -25,3 +157,35 @@ Hopfield Networks is All You Need                  https://arxiv.org/abs/2008.02
   volume={29},
   year={2016}
 }
+
+@inproceedings{wu2012storage,
+  title={Storage capacity of the Hopfield network associative memory},
+  author={Wu, Yue and Hu, Jianqing and Wu, Wei and Zhou, Yong and Du, KL},
+  booktitle={2012 Fifth International Conference on Intelligent Computation Technology and Automation},
+  pages={330--336},
+  year={2012},
+  organization={IEEE}
+}
+
+@article{krotov2021hierarchical,
+  title={Hierarchical associative memory},
+  author={Krotov, Dmitry},
+  journal={arXiv preprint arXiv:2107.06446},
+  year={2021}
+}
+
+@article{krotov2020large,
+  title={Large associative memory problem in neurobiology and machine learning},
+  author={Krotov, Dmitry and Hopfield, John},
+  journal={arXiv preprint arXiv:2008.06996},
+  year={2020}
+}</code></pre>
+      </details>
+    </section>
+
+    <footer>
+      © 2025 — Hopfield Networks mini-guide. You may reuse this HTML with attribution.
+    </footer>
+  </main>
+</body>
+</html>
