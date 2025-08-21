@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Revival of Hopfield Networks: From Classic Models to Modern AI</title>
-  <meta name="description" content="A concise tour of modern Hopfield-network research with short notes on six key papers." />
+  <meta name="description" content="A concise tour of modern Hopfield-network research with short notes on key papers." />
   <style>
     :root{
       --bg:#0f1320;
@@ -39,7 +39,7 @@
 <body>
   <header>
     <h1>The Revival of Hopfield Networks: From Classic Models to Modern AI</h1>
-    <p class="meta">A concise tour of contemporary Hopfield-network research with quick notes on six influential papers. Updated: August 21, 2025.</p>
+    <p class="meta">A concise tour of contemporary Hopfield-network research with quick notes on influential papers. Updated: August 21, 2025.</p>
   </header>
 
   <nav aria-label="On this page">
@@ -50,6 +50,8 @@
       <a href="#krotov-hopfield-2016">Dense associative memory</a>
       <a href="#krotov-2021">Hierarchical memory</a>
       <a href="#krotov-hopfield-2020">Memory at scale</a>
+      <a href="#furst-2022">Cloob: outperforming CLIP</a>
+      <a href="#differentiable-clustering">Differentiable clustering</a>
       <a href="#references">References (BibTeX)</a>
     </div>
   </nav>
@@ -82,7 +84,7 @@
         Chaudhuri and Fiete build Hopfield networks on bipartite expander graphs, showing they can function as robust, high-capacity error-correcting codes.
         The expander structure enables reliable self-decoding of stored patterns, tightly linking associative memory to coding-theoretic guarantees.
       </p>
-      <p class="meta">Venue: Advances in Neural Information Processing Systems 32 (NeurIPS&nbsp;2019).</p>
+      <p class="meta">Venue: Advances in Neural Information Processing Systems 32 (NeurIPS 2019).</p>
     </section>
 
     <section id="wu-2012">
@@ -102,7 +104,7 @@
         Krotov and Hopfield generalize beyond quadratic energies with higher-order interactions, yielding <em>dense associative memory</em> (DAM).
         DAMs improve robustness and recognition performance, offering a path beyond classical Hopfield limits toward richer, more selective attractor dynamics.
       </p>
-      <p class="meta">Venue: Advances in Neural Information Processing Systems 29 (NIPS&nbsp;2016).</p>
+      <p class="meta">Venue: Advances in Neural Information Processing Systems 29 (NIPS 2016).</p>
     </section>
 
     <section id="krotov-2021">
@@ -127,6 +129,26 @@
       <p class="meta">
         <a href="https://arxiv.org/abs/2008.06996" target="_blank" rel="noopener">Read the paper on arXiv</a>
       </p>
+    </section>
+
+    <section id="furst-2022">
+      <h2>Modern Hopfield Networks in Vision–Language</h2>
+      <h3>Cloob: Modern Hopfield Networks with InfoLOOB Outperform CLIP — Fürst et&nbsp;al., 2022</h3>
+      <p>
+        Fürst and colleagues introduced <strong>Cloob</strong>, combining modern Hopfield networks with an InfoLOOB objective to train vision–language models.
+        They show that Cloob surpasses CLIP in several benchmarks, illustrating how Hopfield-style associative memory can rival transformer-based multimodal learning.
+      </p>
+      <p class="meta">Venue: Advances in Neural Information Processing Systems 35 (NeurIPS 2022).</p>
+    </section>
+
+    <section id="differentiable-clustering">
+      <h2>Differentiable Clustering with Associative Memory</h2>
+      <h3>End-to-End Differentiable Clustering with Associative Memory</h3>
+      <p>
+        *Brief placeholder description:* A framework that integrates associative memory mechanisms with clustering objectives in a fully differentiable, end-to-end pipeline.
+        This approach potentially enables unsupervised pattern grouping while leveraging memory-based retrieval and representation capabilities.
+      </p>
+      <p class="meta"> *(Authors, venue, year, and link TBD.)*</p>
     </section>
 
     <hr />
@@ -179,6 +201,22 @@
   author={Krotov, Dmitry and Hopfield, John},
   journal={arXiv preprint arXiv:2008.06996},
   year={2020}
+}
+
+@article{furst2022cloob,
+  title={Cloob: Modern hopfield networks with infoloob outperform clip},
+  author={F{\"u}rst, Andreas and Rumetshofer, Elisabeth and Lehner, Johannes and Tran, Viet T and Tang, Fei and Ramsauer, Hubert and Kreil, David and Kopp, Michael and Klambauer, G{\"u}nter and Bitto, Angela and others},
+  journal={Advances in neural information processing systems},
+  volume={35},
+  pages={20450--20468},
+  year={2022}
+}
+
+@article{differentiable-clustering,
+  title={End to end differentiable clustering with associative memory},
+  author={TBD},
+  journal={TBD},
+  year={TBD}
 }</code></pre>
       </details>
     </section>
