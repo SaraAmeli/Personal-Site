@@ -1,8 +1,89 @@
-@article{pikovsky2001synchronization,
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes on “Synchronization” — Pikovsky, Rosenblum & Kurths (2001)</title>
+  <style>
+    :root { --fg:#111; --muted:#555; --bg:#fff; --card:#f7f7f8; }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;}
+    .wrap{max-width:900px;margin:auto;padding:2rem 1.25rem;}
+    header h1{font-size:2rem; line-height:1.2; margin:0 0 .25rem;}
+    header p{color:var(--muted); margin:.25rem 0 0;}
+    article{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:1.25rem;}
+    @media (min-width: 820px){ article{grid-template-columns:320px 1fr;} }
+    figure{background:var(--card);margin:0;border-radius:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+    figure img{display:block;width:100%;height:auto}
+    .card{background:var(--card);padding:1rem;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+    h2{font-size:1.25rem;margin:0 0 .5rem}
+    .btns{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0 0}
+    a.btn{display:inline-block;padding:.6rem .9rem;border-radius:999px;text-decoration:none;background:#111;color:#fff}
+    a.btn.secondary{background:#eaeaec;color:#111}
+    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;}
+    pre{white-space:pre-wrap;background:#fff;border:1px solid #ececf1;border-radius:12px;padding:1rem;margin:0}
+    footer{margin-top:2rem;color:var(--muted);font-size:.95rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Synchronization — Book Notes</h1>
+      <p>By Arkady Pikovsky, Michael Rosenblum, and Jürgen Kurths (Cambridge University Press, 2001)</p>
+    </header>
+
+    <article itemscope itemtype="https://schema.org/Book">
+      <figure>
+        <img src="81P-ArIdwYL._UF1000,1000_QL80_.jpg"
+             alt="Cover: Synchronization by Pikovsky, Rosenblum & Kurths"
+             loading="lazy" itemprop="image">
+      </figure>
+
+      <div>
+        <div class="card" style="margin-bottom:1rem">
+          <h2 itemprop="name">Synchronization</h2>
+          <p class="meta" style="margin:.25rem 0 0">
+            <strong>Authors:</strong>
+            <span itemprop="author">Arkady Pikovsky</span>,
+            <span itemprop="author">Michael Rosenblum</span>,
+            <span itemprop="author">Jürgen Kurths</span><br>
+            <strong>Publisher:</strong> <span itemprop="publisher">Cambridge University Press</span> —
+            <strong>Year:</strong> <span itemprop="datePublished">2001</span>
+          </p>
+          <div class="btns">
+            <!-- This link will be wired up by JS to download your exact BibTeX -->
+            <a id="download-bib" class="btn" href="#" download="pikovsky2001synchronization.bib">Download BibTeX</a>
+            <!-- Optional: jump to the BibTeX block below -->
+            <a class="btn secondary" href="#bibtex">View BibTeX</a>
+          </div>
+        </div>
+
+        <section class="card">
+          <h2 id="bibtex">Reference (BibTeX)</h2>
+          <pre><code>@article{pikovsky2001synchronization,
   title={Synchronization},
   author={Pikovsky, Arkady and Rosenblum, Michael and Kurths, J{\"u}rgen},
   journal={Cambridge university press},
   volume={12},
   year={2001},
   publisher={Cambridge university press}
-}
+}</code></pre>
+        </section>
+      </div>
+    </article>
+
+    <footer>
+      <p>Notes compiled for personal study; all rights to the book remain with the authors and publisher.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Turn the visible BibTeX above into a downloadable link (no external hosting needed).
+    (function () {
+      var bibText = document.querySelector('#bibtex + pre > code')?.innerText || '';
+      var href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(bibText);
+      var a = document.getElementById('download-bib');
+      if (a && bibText.trim().length) a.setAttribute('href', href);
+    }());
+  </script>
+</body>
+</html>
