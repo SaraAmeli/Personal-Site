@@ -20,8 +20,10 @@
     .toc { background: #fafafa; border: 1px solid #eee; padding: 1rem; border-radius: 8px; }
     .toc ul { margin: 0.25rem 0 0 1.25rem; }
     footer { margin-top: 3rem; color: var(--muted); font-size: 0.95rem; }
+    .cite { color: var(--muted); font-size: 0.9rem; margin-left: 0.25rem; }
     /* Remove if you don’t want placeholder italics */
     .placeholder { font-style: italic; color: var(--muted); }
+    pre.math { background:#fafafa; padding:0.6rem; border-radius:6px; border:1px solid #efefef; overflow:auto; }
   </style>
 </head>
 <body>
@@ -52,26 +54,46 @@
 
       <section>
         <h3>Introduction</h3>
-        <p class="placeholder">Briefly introduce the motivation behind Atlas and its relation to test-time learning and context memorization.</p>
+        <p>
+          Atlas addresses a painful practical limit of modern sequence models: handling extremely long contexts without paying quadratic cost in compute or sacrificing the fidelity of long-range information.
+          Rather than treating memory as a fixed, passively updated buffer, Atlas proposes a learned memory module that optimizes its stored representation using both past and current tokens, effectively performing a small, targeted optimization over memory at test time to keep the most useful information. :contentReference[oaicite:0]{index=0}
+        </p>
       </section>
 
       <section>
         <h3>Core Idea</h3>
-        <p class="placeholder">Explain what “learning to optimally memorize the context” means here; outline the problem setup and objective.</p>
+        <p>
+          At heart, Atlas reframes test-time memorization as an optimization problem: the memory module is parameterized and updated by an internal optimizer that can use gradients from current and past context to modify memory entries. This contrasts with strictly online updates (which only use the most recent token) or simple cache heuristics — Atlas is designed to be aware of longer horizons when deciding what to keep and what to evict. The authors further integrate Atlas into a broader family of Transformer-like models (DeepTransformers) to preserve compatibility with familiar architectures while increasing memory capacity. :contentReference[oaicite:1]{index=1}
+        </p>
       </section>
 
       <section>
         <h3>Methodology</h3>
+        <p>
+          Practically, Atlas consists of three complementary mechanisms:
+        </p>
+        <ul>
+          <li><strong>High-capacity memory representation:</strong> memory is structured as learnable key–value slots with mechanisms to map incoming tokens to the feature space used by memory.</li>
+          <li><strong>Internal optimizer / update rule:</strong> instead of simple append/overwrite, the memory receives targeted gradient-style updates computed from a loss that measures how well memory predicts or reconstructs relevant signals from context (so memory updates are informed by objective-driven gradients at test time).</li>
+          <li><strong>Memory management rules:</strong> Atlas includes policies (and learned heuristics) to decide which slots to update and when, trading off retention of rare-but-important events versus space/time constraints. These mechanisms are implemented so they can be trained end-to-end with the base model. :contentReference[oaicite:2]{index=2}</li>
+        </ul>
+        <p>
+          The result is a memory module that behaves more like an adaptive, small local optimizer operating continuously during inference, improving long-horizon retrieval and reducing reliance on very wide attention windows.
+        </p>
       </section>
 
       <section>
         <h3>Experiments &amp; Results</h3>
-        <p class="placeholder">Summarize datasets/benchmarks, metrics, baselines, and main findings.</p>
+        <p>
+          The paper evaluates Atlas on language modeling, common-sense reasoning, recall-intensive tasks, and long-context benchmarks. Across these tasks Atlas outperforms baseline Transformers and several recent linear recurrent models, and it substantially improves very-long-context performance when combined with Titans-style architectures (the paper reports large gains on the BABILong benchmark at extreme context lengths). The improvements are most pronounced on tasks that require retrieving and using information far beyond short attention windows. :contentReference[oaicite:3]{index=3}
+        </p>
       </section>
 
       <section>
         <h3>Discussion</h3>
-        <p class="placeholder">Reflect on implications, strengths, assumptions, and limitations; note any ablations or sensitivity analyses.</p>
+        <p>
+          Strengths include principled, objective-driven memory updates and a design that generalizes familiar Transformer blocks. Limitations noted by the authors (and apparent from experiments) include increased complexity in the memory update path, potential sensitivity to the internal optimizer’s hyperparameters, and engineering overhead to make memory updates efficient at production scale. The paper includes ablations that isolate the effect of the update mechanism, the memory architecture, and the memory management rules. Overall, Atlas represents a matured step toward learning richer test-time memory behaviors. :contentReference[oaicite:4]{index=4}
+        </p>
       </section>
     </article>
 
@@ -86,148 +108,41 @@
 
       <section>
         <h3>Introduction</h3>
-        <p class="placeholder">Introduce test-time memorization and how Titans frames the problem.</p>
+        <p>
+          Titans introduced a family of architectures that augment the primary model with a neural long-term memory module designed to selectively store and surface historical context during inference. Titans emphasizes a memory that is both trainable and efficient — the design aims to be parallelizable in training and fast at inference while improving the model’s ability to consult far past tokens. The paper set the groundwork for subsequent work on learned test-time memorization. :contentReference[oaicite:5]{index=5}
+        </p>
       </section>
 
       <section>
         <h3>Core Idea</h3>
-        <p class="placeholder">Outline the main framework/intuition behind Titans and its learning signal at test time.</p>
+        <p>
+          Titans frames memorization as a selective retention problem: events that are more “surprising” (i.e., less predicted by the current model) should be prioritized in memory, and memory should decay or be pruned when capacity is limited. This is implemented with a memory module that scores candidate memories and uses a decaying mechanism so the memory budget is allocated to the most informative events. The scoring and decay are learned so the system can adapt the retention policy to downstream tasks. :contentReference[oaicite:6]{index=6}
+        </p>
       </section>
 
       <section>
         <h3>Methodology</h3>
-        <p class="placeholder">Explain the model components, adaptation mechanism, and training vs. inference dynamics.</p>
-              <p class="placeholder">Describe the proposed approach, key algorithms, and how Atlas differs from previous methods.</p>
-      <math display="block">
-  <mrow>
-    <msub>
-      <mi mathvariant="bold">M</mi>
-      <mi>t</mi>
-    </msub>
-    <mo>=</mo>
-    <msub>
-      <mi mathvariant="bold">M</mi>
-      <mrow>
-        <mi>t</mi><mo>−</mo><mn>1</mn>
-      </mrow>
-    </msub>
-    <mo>+</mo>
-    <msup>
-      <msub>
-        <mi>K</mi>
-        <mi>t</mi>
-      </msub>
-      <mi>T</mi>
-    </msup>
-    <msub>
-      <mi>V</mi>
-      <mi>t</mi>
-    </msub>
-  </mrow>
-</math>
-<h2>Learning Process and Surprise Metric</h2>
-
-<!-- MathML version -->
-<math display="block">
-  <mrow>
-    <msub><mi mathvariant="script">M</mi><mi>t</mi></msub>
-    <mo>=</mo>
-    <msub><mi mathvariant="script">M</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub>
-    <mo>−</mo>
-    <msub><mi>θ</mi><mi>t</mi></msub>
-    <mo>∇</mo>
-    <mi>l</mi>
-    <mo>(</mo>
-    <msub><mi mathvariant="script">M</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub>
-    <mo>;</mo>
-    <msub><mi>x</mi><mi>t</mi></msub>
-    <mo>)</mo>
-  </mrow>
-</math>
-
-<!-- Plain HTML fallback -->
-
-<p>(1) <strong>Past surprise</strong>, which measures the surprise amount of a very recent past; and (2) <strong>Momentary surprise</strong>, which measures the surprise of incoming data:</p>
-
-<!-- MathML for the two equations -->
-<math display="block">
-  <mrow>
-    <msub><mi mathvariant="script">M</mi><mi>t</mi></msub>
-    <mo>=</mo>
-    <msub><mi mathvariant="script">M</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub>
-    <mo>+</mo>
-    <msub><mi>S</mi><mi>t</mi></msub>
-  </mrow>
-</math>
-
-<math display="block">
-  <mrow>
-    <msub><mi>S</mi><mi>t</mi></msub>
-    <mo>=</mo>
-    <msub><mi>η</mi><mi>t</mi></msub>
-    <msub><mi>S</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub>
-    <mo>−</mo>
-    <msub><mi>θ</mi><mi>t</mi></msub>
-    <mo>∇</mo>
-    <mi>l</mi>
-    <mo>(</mo>
-    <msub><mi mathvariant="script">M</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub>
-    <mo>;</mo>
-    <msub><mi>x</mi><mi>t</mi></msub>
-    <mo>)</mo>
-  </mrow>
-</math>
-
-<!-- Plain HTML fallback -->
-
+        <p>
+          Titans composes three conceptual heads in its architecture: (1) a short-term/core processing head that handles recent context (with limited-window attention), (2) a long-term memory head that stores and retrieves historical information, and (3) a memory-management head responsible for scoring, decaying, and inserting entries. Training is done end-to-end with objectives that encourage useful memories to be stored (for example by amplifying gradients for surprising events), and the inference-time behavior uses the learned scoring and retrieval routines to surface the right long-term contents quickly. The original Titans paper emphasizes lightweight, parallelizable components to retain scaling-friendly training. :contentReference[oaicite:7]{index=7}
+        </p>
 
         <p>
-  The memory module learns the associations between keys and values.
-</p>
-
-<!-- MathML version -->
-<math display="block">
-  <mrow>
-    <mi>l</mi>
-    <mo>(</mo>
-    <msub>
-      <mi mathvariant="script">M</mi>
-      <mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow>
-    </msub>
-    <mo>;</mo>
-    <msub><mi>x</mi><mi>t</mi></msub>
-    <mo>)</mo>
-    <mo>=</mo>
-    <mo>‖</mo>
-    <msub>
-      <mrow>
-        <mi mathvariant="script">M</mi>
-      </mrow>
-      <mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow>
-    </msub>
-    <mo>(</mo>
-    <msub><mi>k</mi><mi>t</mi></msub>
-    <mo>)</mo>
-    <mo>−</mo>
-    <msub><mi>v</mi><mi>t</mi></msub>
-    <mo>‖</mo>
-    <msub><mn>2</mn><mn>2</mn></msub>
-  </mrow>
-</math>
-
-<!-- Plain HTML fallback -->
-
-
+          A compact way to think about the Titans update dynamics is that memory M at time t gets updated by adding new key–value pairs (K_t, V_t) and by decaying or adjusting existing entries according to learned rules; the paper provides both algorithmic pseudocode and theoretical intuition for why surprise-weighted retention is effective.
+        </p>
       </section>
 
       <section>
         <h3>Experiments &amp; Results</h3>
-        <p class="placeholder">Summarize key experiments and comparisons against baselines; highlight notable improvements.</p>
+        <p>
+          Titans demonstrates improvements on tasks requiring long-term recall and on benchmarks built to stress long-range dependencies. Results show that a learned long-term memory can yield better retrieval and downstream task performance compared to purely short-window attention baselines and naive caching schemes. The paper also includes ablations showing the value of surprise-weighting and of learned decay schedules. :contentReference[oaicite:8]{index=8}
+        </p>
       </section>
 
       <section>
         <h3>Discussion</h3>
-        <p class="placeholder">Discuss insights, limitations, and how Titans sets the stage for Atlas.</p>
+        <p>
+          Titans’ primary advantage is simplicity and computational practicality — it introduced a clear inductive bias (surprise-based retention) that is easy to implement and scale. Its limitations are those common to many memory-augmented systems: memory noise accumulation, sensitivity to capacity decisions, and the need to tune decay/retention hyperparameters for different tasks. Titans paved the way for Atlas by showing that learned long-term memory is effective and by exposing where more expressive memory update rules could help. :contentReference[oaicite:9]{index=9}
+        </p>
       </section>
     </article>
 
@@ -236,11 +151,16 @@
       <h2>Comparative Analysis</h2>
       <section>
         <h3>What Changed from Titans → Atlas</h3>
-        <p class="placeholder">Highlight evolution in objectives, algorithms, theory, and empirical performance.</p>
+        <p>
+          Conceptually, Titans and Atlas share the goal of giving models a trainable, useful long-term memory that helps with inference. The main shifts that Atlas introduces are (1) turning memory updates into a small optimization problem (an internal optimizer) that can use gradients from current and past tokens, (2) increasing memory capacity and representation expressiveness, and (3) integrating memory into a new DeepTransformer family to better leverage both memory and attention. In short: Titans emphasized learnable retention policies; Atlas emphasizes learned, objective-driven memory updates that can more precisely reshape memory contents at test time. :contentReference[oaicite:10]{index=10}
+        </p>
       </section>
       <section>
         <h3>Where Each Shines</h3>
-        <p class="placeholder">Discuss regimes/tasks where one approach may be preferable; trade-offs and practical tips.</p>
+        <p>
+          <strong>Titans</strong> is attractive when you want a scalable, low-complexity memory augmentation that adds minimal inference overhead and yields solid gains on recall-type tasks. It's a pragmatic first step and is especially good when retraining or fine-tuning budgets are limited. <br/>
+          <strong>Atlas</strong> shines when the task requires very high-fidelity long-range retrieval and when the extra compute/engineering complexity of internal memory optimization can be justified — for instance, in extreme-context benchmarks or recall-intensive applications where small memory update decisions produce large downstream gains. Atlas tends to be stronger for extrapolating to extremely long contexts (the paper reports very large gains on extreme-length benchmarks). :contentReference[oaicite:11]{index=11}
+        </p>
       </section>
     </article>
 
@@ -249,18 +169,27 @@
       <h2>Broader Implications</h2>
       <section>
         <h3>Why Test-Time Memorization Matters</h3>
-        <p class="placeholder">Connect to adaptability, generalization, retrieval-augmented inference, and continual learning.</p>
+        <p>
+          Test-time memorization bridges a gap between static model weights and fully online learning: it allows models to adapt their internal working memory to specific sequences without changing core weights. This improves adaptability, supports retrieval-augmented inference for long documents or agent memory, and intersects with continual learning by enabling per-instance retention without catastrophic interference. For practical systems (chat assistants, retrieval systems, document understanding), learned test-time memory offers a path to keep the most salient information available without blowing up compute. :contentReference[oaicite:12]{index=12}
+        </p>
       </section>
       <section>
         <h3>Open Questions &amp; Future Work</h3>
-        <p class="placeholder">List promising directions, risks, and evaluation gaps.</p>
+        <ul>
+          <li><strong>Scalability & latency trade-offs:</strong> how to make internal memory optimization (Atlas) fast and predictable at web-scale?</li>
+          <li><strong>Robustness to poisoning/noisy inputs:</strong> how to ensure malicious or noisy events are not permanently privileged in memory?</li>
+          <li><strong>Evaluation standards:</strong> better benchmarks that measure practical retrieval/utility rather than only proxy metrics.</li>
+          <li><strong>Hybrid designs:</strong> combining surprise-weighted retention (Titans) with objective-driven updates (Atlas) may yield low-cost but high-fidelity memory.</li>
+        </ul>
       </section>
     </article>
 
     <!-- ===== Conclusion ===== -->
     <article id="conclusion">
       <h2>Conclusion</h2>
-      <p class="placeholder">Wrap up with key takeaways and how these papers advance test-time learning.</p>
+      <p>
+        Titans and Atlas form a clear lineage: Titans demonstrated that learning what to remember at test time produces real gains, and Atlas pushed the idea further by making memory updates themselves an optimization objective informed by current and past tokens. Together they move the community toward memory-augmented models that are more adaptive, capable of much longer effective context windows, and more useful on real-world recall-intensive tasks. Both papers are worth reading if you care about long-context modeling — Titans for a practical, scalable design and Atlas for advanced, high-capacity memorization strategies. :contentReference[oaicite:13]{index=13}
+      </p>
     </article>
 
     <footer>
@@ -268,6 +197,9 @@
         References:
         <a href="https://arxiv.org/abs/2505.23735" target="_blank" rel="noopener">Atlas (arXiv:2505.23735)</a> ·
         <a href="https://arxiv.org/abs/2501.00663" target="_blank" rel="noopener">Titans (arXiv:2501.00663)</a>
+      </p>
+      <p class="meta">
+        Notes: summaries above are based on the authors’ preprints and associated material on arXiv and conference mirrors. Key sources used while writing this page: Atlas (arXiv:2505.23735), Titans (arXiv:2501.00663), and related public summaries. :contentReference[oaicite:14]{index=14}
       </p>
     </footer>
   </main>
