@@ -1,1 +1,188 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>GNNs & Hardware — A Curated Paper Roundup</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      color: #111;
+      padding: 28px;
+      max-width: 900px;
+      margin: auto;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: #0b63a8;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      color: #0b63a8;
+    }
+    .paper {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #0b63a8;
+      background: #f7fbff;
+      border-radius: 6px;
+    }
+    .meta {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b63a8;
+    }
+    .desc {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+    a {
+      color: #0b63a8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin: 8px 0 12px 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>GNNs & Hardware — a compact, categorized walkthrough</h1>
+
+<p>
+  Graph Neural Networks (GNNs) are booming across domains, and efficient execution is
+  becoming as important as the algorithms themselves. Below is a categorized list of
+  notable publications — surveys, FPGA frameworks, quantization methods, and core GNN models —
+  each linked to its official source.
+</p>
+
+<hr/>
+
+<h2>Surveys & Reviews</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://dl.acm.org/doi/abs/10.1145/3686490.3686539">A Review of FPGA-based Graph Neural Network Accelerator Architectures</a> — ACM</div>
+  <div class="desc">Focused on FPGA-targeted GNN accelerators; provides taxonomy and representative architectures.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2306.14052">A Survey on Graph Neural Network Acceleration: Algorithms, Systems, and Customized Hardware</a> — arXiv</div>
+  <div class="desc">Comprehensive survey covering algorithmic optimizations, system-level strategies, and custom hardware for GNN acceleration.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://ieeexplore.ieee.org/abstract/document/10543244">A Survey on Graph Neural Network Acceleration: A Hardware Perspective</a> — IEEE</div>
+  <div class="desc">Focuses on hardware-level techniques and trade-offs when accelerating GNNs.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://www.mdpi.com/2078-2489/15/7/377">A Survey of Computationally Efficient Graph Neural Networks for Reconfigurable Systems</a> — MDPI</div>
+  <div class="desc">Explores algorithmic strategies that make GNNs efficient on reconfigurable platforms such as FPGAs.</div>
+</div>
+
+<hr/>
+
+<h2>FPGA Frameworks & Accelerators</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2201.08475">GenGNN: A Generic FPGA Framework for Graph Neural Network Acceleration</a> — arXiv</div>
+  <div class="desc">A modular, high-level synthesis (HLS) framework for accelerating multiple GNN models on FPGAs.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://ieeexplore.ieee.org/abstract/document/10171566?casa_token=tvfJoyZSiYEAAAAA:Fkvr3zDBIdRgkGgVJMNuUCnApQ6VDCiKj3ExH6uBc_dL2pDSU8i9Q-Vk2Z8jJz4UalGXtd2XCg">DGNN-Booster: A Generic FPGA Accelerator Framework For Dynamic Graph Neural Network Inference</a> — IEEE</div>
+  <div class="desc">Targets dynamic graphs with changing topology; optimizes inference for time-varying data structures.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://ieeexplore.ieee.org/abstract/document/9218751?casa_token=X1wTAbTZEdUAAAAA:VSVBlI_i19MM3IatbOl53t7i8gM8Y3lZ2qPdYOP7rEjBktx2z2yHN6WJSIx22KzwN9uQkBBObw">Hardware Acceleration of Graph Neural Networks</a> — IEEE</div>
+  <div class="desc">Explores various hardware optimization strategies to improve the performance of GNN computation.</div>
+</div>
+
+<hr/>
+
+<h2>Quantization & Hardware-Aware Training</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://ieeexplore.ieee.org/abstract/document/10335640?casa_token=QP3GlEYL-48AAAAA:HDxi0kwJh_YE3qODZbDrDJ33Qee19zfbWjNh6AAH4Bm1xSJ6QNEmAyJInm7_6i4CDf2Rjqmm5g">Approximation- and Quantization-Aware Training for Graph Neural Networks</a> — IEEE</div>
+  <div class="desc">Introduces training-time approximations to maintain performance when deploying low-precision GNNs.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://link.springer.com/chapter/10.1007/978-3-031-55673-9_3">Deep Quantization of Graph Neural Networks with Run-Time Hardware-Aware Training</a> — Springer</div>
+  <div class="desc">Explores deep quantization and training methods that adapt to runtime hardware constraints.</div>
+</div>
+
+<hr/>
+
+<h2>GNN Architectures & Theory</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1710.10903">Graph Attention Networks (GAT)</a> — arXiv</div>
+  <div class="desc">Introduced attention mechanisms to GNNs, allowing learnable weighting of neighboring nodes.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://dl.acm.org/doi/abs/10.1145/3308558.3313562">Heterogeneous Graph Attention Network</a> — ACM</div>
+  <div class="desc">Extends GAT to heterogeneous graphs with multiple node and edge types.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://link.springer.com/chapter/10.1007/978-3-030-86362-3_21">EGAT: Edge-Featured Graph Attention Network</a> — Springer</div>
+  <div class="desc">Incorporates edge features directly into the attention mechanism for richer representations.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2506.22084">Transformers are Graph Neural Networks</a> — arXiv (2025)</div>
+  <div class="desc">Highlights the structural equivalence between Transformers and GNNs, unifying both under a message-passing view.</div>
+</div>
+
+<hr/>
+
+<h2>Applications & Learning Paradigms</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://openreview.net/forum?id=BJj6qGbRW&FORM=UCIAST&pname=shenma">Few-Shot Learning with Graph Neural Networks</a> — OpenReview</div>
+  <div class="desc">Demonstrates how GNNs can perform few-shot learning by representing examples as a graph and propagating relational information.</div>
+</div>
+
+<hr/>
+
+<h2>Quick Takeaways</h2>
+<ul>
+  <li><strong>Surveys first:</strong> Start with the 2023 arXiv and MDPI surveys for an overview of GNN acceleration trends.</li>
+  <li><strong>Frameworks:</strong> GenGNN and DGNN-Booster provide flexible FPGA infrastructures for static and dynamic graphs.</li>
+  <li><strong>Attention bottlenecks:</strong> GAT and its variants remain core compute hot spots for accelerators.</li>
+  <li><strong>Quantization:</strong> Hardware-aware training is key for deploying efficient, accurate models.</li>
+  <li><strong>Transformers & GNNs:</strong> Increasing convergence means hardware insights can transfer across domains.</li>
+</ul>
+
+<footer>
+  <p>Created for academic reference and hardware research purposes.  
+  You can freely host or modify this file on GitHub Pages.</p>
+</footer>
+
+</body>
+</html>
