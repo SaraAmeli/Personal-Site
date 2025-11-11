@@ -1,53 +1,179 @@
-<h2>References</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>State Space Models & Mamba — A Curated Paper Roundup</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      color: #111;
+      padding: 28px;
+      max-width: 900px;
+      margin: auto;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: #0b63a8;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      color: #0b63a8;
+    }
+    .paper {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #0b63a8;
+      background: #f7fbff;
+      border-radius: 6px;
+    }
+    .meta {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b63a8;
+    }
+    .desc {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+    a {
+      color: #0b63a8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin: 8px 0 12px 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>State Space Models & Mamba — a compact, categorized walkthrough</h1>
+
+<p>
+  Structured State Space (SSM) models and the recent family of <em>Mamba</em> variants have accelerated research into long-range sequence modeling, efficient visual and multimodal representation, and alternatives to transformers. Below is a curated list of notable publications you provided, organized by topic with direct links to each source.
+</p>
+
+<hr/>
+
+<h2>Core SSM theory & foundations</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2008.07669">HiPPO: Recurrent Memory with Optimal Polynomial Projections</a> — arXiv</div>
+  <div class="desc">Introduces the HiPPO framework for principled recurrent memory: projection operators that preserve function approximation under online updates. HiPPO underpins many later SSM developments.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2111.00396">Efficiently Modeling Long Sequences with Structured State Spaces</a> — arXiv</div>
+  <div class="desc">The S4 family: shows how structured state space layers can be implemented to model very long-range dependencies efficiently, with strong empirical results on sequence tasks.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2208.04933">Simplified state space layers for sequence modeling</a> — Smith, Warrington & Linderman (2022) — arXiv</div>
+  <div class="desc">Proposes simplifications to SSM-layer implementations to reduce complexity while retaining modeling power — practical guidance for lighter-weight SSMs.</div>
+</div>
+
+<hr/>
+
+<h2>Mamba family — linear-time and selective state spaces</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2312.00752">Mamba: Linear-Time Sequence Modeling with Selective State Spaces</a> — arXiv</div>
+  <div class="desc">Presents Mamba, a selective-state-space design that attains linear-time complexity while preserving the SSM inductive biases; focuses on efficiency and scalability for long sequences.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2212.14052">Hungry hungry hippos: Towards language modeling with state space models</a> — arXiv</div>
+  <div class="desc">Explores applying SSMs to large-scale language modeling, detailing practical training recipes, scaling behavior, and challenges for language tasks.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2403.01590">The hidden attention of Mamba models</a> — Ali, Zimerman & Wolf (2024) — arXiv</div>
+  <div class="desc">Analyzes how attention-like computations emerge in Mamba architectures and examines interpretability/behavioral parallels with attention-based models.</div>
+</div>
+
+<hr/>
+
+<h2>Vision & multimodal SSM adaptations</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2401.09417">Vision mamba: Efficient visual representation learning with bidirectional state space model</a> — arXiv</div>
+  <div class="desc">Adapts bidirectional SSM layers for visual representation learning, trading off compute for larger receptive fields in images and vision tokens.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/baa2da9ae4bfed26520bb61d259a3653-Abstract-Conference.html">Vmamba: Visual state space model</a> — NeurIPS 2024</div>
+  <div class="desc">NeurIPS presentation of a visual SSM variant; emphasizes architectural choices that make SSMs effective on image and patch-based inputs.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2403.13600">Vl-mamba: Exploring state space models for multimodal learning</a> — arXiv</div>
+  <div class="desc">Examines extensions of Mamba-style SSMs to multimodal inputs (vision + language), discussing fusion strategies and scaling considerations.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://link.springer.com/chapter/10.1007/978-3-031-91979-4_2">Localmamba: Visual state space model with windowed selective scan</a> — Springer</div>
+  <div class="desc">Presents a windowed selective-scan variant tailored for visual data — balancing local processing with selective long-range aggregation.</div>
+</div>
+
+<hr/>
+
+<h2>Applications & domain-specific SSMs</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://ieeexplore.ieee.org/abstract/document/10542538/?casa_token=i0DY8ke9Um4AAAAA:GzxSWLtT3l9P8Zdq2cHQOa8d5lWj0fznDZhxhmMPbn8gIyQ1nhCrF4BRLtGu0JOTLn_uNp0qFg">Rsmamba: Remote sensing image classification with state space model</a> — IEEE</div>
+  <div class="desc">Applies an SSM/Mamba-inspired architecture to remote sensing imagery classification, highlighting robustness to multi-scale patterns in aerial data.</div>
+</div>
+
+<hr/>
+
+<h2>Broader surveys & theoretical connections</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2404.09516">State space model for new-generation network alternative to transformers: A survey</a> — arXiv</div>
+  <div class="desc">Survey covering SSMs as a class of transformer alternatives — architectures, algorithms, empirical comparisons, and open problems.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2405.21060">Transformers are ssms: Generalized models and efficient algorithms through structured state space duality</a> — arXiv</div>
+  <div class="desc">Explores a formal duality between transformers and SSMs, deriving generalized models and algorithmic implications for efficient implementations.</div>
+</div>
+
+<hr/>
+
+<h2>Quick takeaways</h2>
 <ul>
-  <li>
-    <strong>
-      <a href="https://arxiv.org/abs/2312.00752" target="_blank">
-        Mamba: Linear-time sequence modeling with selective state spaces
-      </a>
-    </strong><br>
-    Gu, Albert; Dao, Tri. (2023).  
-    <em>arXiv preprint arXiv:2312.00752</em>.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://arxiv.org/abs/2208.04933" target="_blank">
-        Simplified state space layers for sequence modeling
-      </a>
-    </strong><br>
-    Smith, Jimmy T.H.; Warrington, Andrew; Linderman, Scott W. (2022).  
-    <em>arXiv preprint arXiv:2208.04933</em>.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://arxiv.org/abs/2401.10166" target="_blank">
-        vMamba: Visual state space model
-      </a>
-    </strong><br>
-    Liu, Yue; Tian, Yunjie; Zhao, Yuzhong; Yu, Hongtian; Xie, Lingxi; Wang, Yaowei; Ye, Qixiang; Jiao, Jianbin; Liu, Yunfan. (2024).  
-    <em>arXiv preprint arXiv:2401.10166</em>.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://arxiv.org/abs/2111.00396" target="_blank">
-        Efficiently modeling long sequences with structured state spaces
-      </a>
-    </strong><br>
-    Gu, Albert; Goel, Karan; Ré, Christopher. (2021).  
-    <em>arXiv preprint arXiv:2111.00396</em>.
-  </li>
-
-  <li>
-    <strong>
-      <a href="https://arxiv.org/abs/2403.01590" target="_blank">
-        The hidden attention of Mamba models
-      </a>
-    </strong><br>
-    Ali, Ameen; Zimerman, Itamar; Wolf, Lior. (2024).  
-    <em>arXiv preprint arXiv:2403.01590</em>.
-  </li>
-
+  <li><strong>HiPPO is foundational:</strong> many SSM designs (including S4 and Mamba) build on the HiPPO projection framework.</li>
+  <li><strong>S4 → Mamba progression:</strong> S4 showed that structured state spaces can handle very long contexts; Mamba and variants push further on efficiency and selective computation.</li>
+  <li><strong>Vision & multimodal:</strong> multiple papers adapt SSMs to images and multimodal inputs (Vision Mamba, Vmamba, Vl-mamba) — promising alternatives to some transformer-heavy pipelines.</li>
+  <li><strong>Surveys & theory:</strong> recent surveys and the "Transformers are SSMs" paper highlight deep connections and point to algorithmic cross-fertilization.</li>
+  <li><strong>Applied variants:</strong> work like Rsmamba shows domain-specific adaptations (remote sensing) are already emerging.</li>
 </ul>
+
+<footer>
+  <p>Created as a compact HTML roundup of the supplied references.  
+  You can freely host or modify this file on GitHub Pages or use it as a starting point for a curated reading list.</p>
+</footer>
+
+</body>
+</html>
