@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>On-Chip Learning of Memristor-Based Hardware</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      color: #111;
+      padding: 28px;
+      max-width: 900px;
+      margin: auto;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: #0b63a8;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      color: #0b63a8;
+    }
+    .paper {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #0b63a8;
+      background: #f7fbff;
+      border-radius: 6px;
+    }
+    .meta {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b63a8;
+    }
+    .desc {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+    a {
+      color: #0b63a8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin: 8px 0 12px 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>On-Chip Learning of Memristor-Based Hardware</h1>
+
+<p>
+  This page summarises key themes and recent works on training and learning directly on hardware platforms employing memristor-based (or resistive memory) arrays, focusing on on-chip weight updates, continual/meta learning, equilibrium propagation, and quantization-aware training.
+</p>
+
+<hr/>
+
+<h2>1. On-chip Learning & Weight Updating (including continual learning + meta-learning)</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2408.14680">“On-Chip Learning with Memristor-Based Neural Networks: Assessing Accuracy and Efficiency Under Device Variations, Conductance Errors, and Input Noise”</a> — Eslami et al., 2024</div>
+  <div class="desc">
+    Demonstrates an actual memristor-based compute-in-memory accelerator performing on-chip training (weight updates) for a simple neural network; the authors show robustness to device variability and input noise.  
+  </div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2403.06712">“The Ouroboros of Memristors: Neural Networks Facilitating Memristor Programming”</a> — Yu et al., 2024</div>
+  <div class="desc">
+    Explores how neural-network based mapping can be used to program memristor conductances efficiently (reducing delays, compensating device non-idealities) — relevant for weight updates and meta-learning on-chip.  
+  </div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2112.06887">“Nonideality-Aware Training for Accurate and Robust Low-Power Memristive Neural Networks”</a> — Joksas et al., 2021</div>
+  <div class="desc">
+    Focuses on training methods that explicitly account for device/circuit non-idealities in memristor networks (variation, nonlinearity) — critical for on-chip learning and continual adaptation.  
+  </div>
+</div>
+
+<p><strong>Key concepts:</strong></p>
+<ul>
+  <li><strong>On-chip weight updating:</strong> Instead of training offline then deploying, the hardware (e.g., a memristor crossbar) supports updating weights (conductances) in situ — reducing memory-to-processor bottlenecks and enabling adaptation.  
+    For example, the work above implements on-chip training in a memristor‐based network.  
+  </li>
+  <li><strong>Continual learning:</strong> On device, the system continuously adapts to new data/tasks, ideally without catastrophic forgetting. In memristor hardware this means the crossbar must support incremental updates, perhaps sparse rewrites, and handle device drift/variation.  
+  </li>
+  <li><strong>Meta-learning:</strong> The hardware or algorithm is structured so that it learns how to learn — e.g., by optimising update rules, or embedding fast adaptation layers into the memristor network. While fewer works yet in memristor hardware specifically, the mapping paper above suggests meta-type programming of memristor weights.  
+  </li>
+  <li><strong>Challenges:</strong> Device variation, stuck-at faults, conductance drift, limited precision, cross-bar parasitic effects, peripheral circuit overhead, thermal/ageing effects. These issues force training algorithms to be hardware-aware (see non-ideality aware paper).  
+  </li>
+  <li><strong>Hardware/software co-design:</strong> To enable effective on‐chip learning, the algorithm, circuit, device physics, and system architecture must co-adapt; many works emphasise this.  
+  </li>
+</ul>
+
+<hr/>
+
+<h2>2. Equilibrium Propagation</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2020.00240/full">“Equilibrium Propagation for Memristor-Based Recurrent Neural Networks”</a> — Zoppo et al., 2020</div>
+  <div class="desc">
+    Proposes and simulates how a memristor-based analog recurrent network can implement the learning rule called equilibrium propagation (EP): the network relaxes to a steady state (free phase) then is nudged (perturbed) and relaxes to a new state (nudged phase), and weight updates follow from the difference. The authors argue this is well suited for VLSI/analog memristor hardware.  
+  </div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12271321/">“Quantum Equilibrium Propagation for Efficient Training of …”</a> — Wanjura et al., 2025</div>
+  <div class="desc">
+    Although not memristor-specific, this work extends equilibrium propagation to electronic systems and memristor crossbar arrays — showing broader interest in EP for hardware training.  
+  </div>
+</div>
+
+<p><strong>Key points:</strong></p>
+<ul>
+  <li><strong>Equilibrium propagation (EP):</strong> A biologically inspired learning rule for energy-based networks. In short: input is fed → network relaxes to equilibrium → small error/target term is applied → network relaxes to a new equilibrium → weights updated by local differences between phases.  
+  </li>
+  <li><strong>Why it fits memristor hardware:</strong> Because memristor crossbars support analog vector-matrix multiplication and continuous dynamics, EP requires less explicit back-propagation of error signals and leverages the physical relaxation dynamics — making it attractive for in-memory/analog hardware.  
+  </li>
+  <li><strong>Trade-offs / challenges:</strong> Ensuring stability of the equilibrium, mapping weights/updates to memristor conductance changes (which are quantized/variable), peripheral circuitry to implement the “nudging” and read-out, handling device non-idealities, and scalability.  
+  </li>
+  <li><strong>Future direction:</strong> Extending EP to deeper networks, more layers, more complex tasks (beyond small datasets like MNIST), and integrating with memristor device variations and on-chip learning updates.  
+  </li>
+</ul>
+
+<hr/>
+
+<h2>3. Quantization-Aware Training</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://research.tudelft.nl/files/242008320/3676536.3698023.pdf">“Hardware-Aware Quantization for Accurate Memristor-Based Neural Networks”</a> — Diware et al., 2024</div>
+  <div class="desc">
+    Illustrates how quantization-aware training (QAT) can be tailored for memristor hardware: incorporating conductance variance models, computational noise injection, and quantization during training to match device limitations.  
+  </div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://www.researchgate.net/publication/390637573_Hardware-Aware_Quantization_for_Accurate_Memristor-Based_Neural_Networks">“Mapping-aware Biased Training for Accurate Memristor-Based Neural Networks”</a> — (extended version) 2024</div>
+  <div class="desc">
+    Proposes training strategies that compensate for mapping biases when deploying quantised weights onto memristor conductances.  
+  </div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.202305465">“Bulk-Switching Memristor-Based Compute-In-Memory …”</a> — Wu et ., 2023</div>
+  <div class as .desc>
+    Demonstrates a memristor compute-in-memory array with quantization-aware support, including fake-quantization functions integrated into the training flow.  
+  </div>
+</div>
+
+<p><strong>Highlights:</strong></p>
+<ul>
+  <li><strong>Quantization-aware training (QAT):</strong> During training, weight and activation precision is constrained (e.g., 4-8 bits or device specific levels), and noise/variation is modelled so that the final trained model will map well to low-precision hardware (here memristor arrays).  
+  </li>
+  <li><strong>Why important for memristor hardware:</strong> Memristors have conductance limits, non-ideal switching (non-linear SET/RESET), device-to-device variation, limited number of quantised states, and peripheral circuitry constraints (DAC/ADC). QAT helps ensure the model tolerates these.  
+  </li>
+  <li><strong>Important elements in QAT for memristor systems:</strong>
+    <ul>
+      <li>Modeling conductance variation and fault/stuck-at behaviour.  
+      <li>Using fake-quantization (simulate quantised weight states) during training.  
+      <li>Injecting device noise/uncertainty during training (non-ideality aware).  
+      <li>Matching dynamic range/clamp of analog signals in crossbar (e.g., limited amplifier/DAC swing).  
+    </ul>
+  </li>
+  <li><strong>Outcome:</strong> Better mapping of trained weights to physical devices, improved robustness and accuracy when deployed on memristor arrays.  
+  </li>
+</ul>
+
+<hr/>
+
+<h2>Quick Takeaways</h2>
+<ul>
+  <li><strong>On-chip learning + weight updating:</strong> Enables hardware adaptability and edge intelligence, but needs to deal with the full stack: device physics → circuit design → algorithm.  
+  </li>
+  <li><strong>Equilibrium propagation:</strong> Offers a hardware-friendly learning rule (especially for analog/neuromorphic platforms) which fits memristor dynamics well.  
+  </li>
+  <li><strong>Quantization-aware training:</strong> Critical for bridging the gap between software neural networks and hardware realisations, especially when deploying on memristor crossbars with limited precision and variability.  
+  </li>
+  <li><strong>Integration is key:</strong> The most successful systems will co-design device, circuit, algorithm, and training methodology together rather than treat hardware as an afterthought.  
+  </li>
+  <li><strong>Open challenges remain:</strong> Scaling to larger networks, deeper layers, more complex tasks; handling drift/aging; device variation; programming overhead; peripheral circuits; energy and latency trade-offs.  
+  </li>
+</ul>
+
+<footer>
+  <p>Created for research reference purposes. Feel free to host or modify this content as needed.</p>
+</footer>
+
+</body>
+</html>
