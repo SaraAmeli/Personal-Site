@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Large Reasoning Models (LRMs) — A Curated Paper Roundup</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      color: #111;
+      padding: 28px;
+      max-width: 900px;
+      margin: auto;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: #0b63a8;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      color: #0b63a8;
+    }
+    .paper {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #0b63a8;
+      background: #f7fbff;
+      border-radius: 6px;
+    }
+    .meta {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b63a8;
+    }
+    .desc {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+    a {
+      color: #0b63a8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin: 8px 0 12px 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Large Reasoning Models (LRMs) — a compact, categorized walkthrough</h1>
+
+<p>
+  Large Reasoning Models (LRMs) represent a new phase beyond traditional LLMs, emphasizing explicit reasoning, 
+  multi-step search, and tool integration. This roundup highlights recent key papers that define the emerging 
+  LRM paradigm — from agentic reasoning and retrieval-augmented generation to structured problem-solving frameworks.
+</p>
+
+<hr/>
+
+<h2>Foundations & Core Concepts</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2502.13917">Search-o1: Agentic Search-Enhanced Large Reasoning Models</a> — arXiv (2025)</div>
+  <div class="desc">Introduces <em>Search-o1</em>, an agentic framework that fuses internal reasoning steps with web-scale retrieval and planning, demonstrating significant gains on reasoning benchmarks and knowledge-intensive tasks.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2503.06250">Chain-of-Retrieval Augmented Generation (CRAG)</a> — arXiv (2025)</div>
+  <div class="desc">Extends RAG into a multi-hop reasoning pipeline where retrieval and generation interleave dynamically — each step guiding the next retrieval query in a self-improving reasoning chain.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2501.07515">DeepSeek-R1: Towards Scalable Reasoning with Large Language Models</a> — arXiv (2025)</div>
+  <div class="desc">Presents the <em>DeepSeek-R1</em> model, showing that reinforcement-trained reasoning agents can outperform supervised LLMs on symbolic and analytical reasoning tasks.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2408.03314">OpenAI o1: Towards Large Reasoning Models</a> — OpenAI (2024)</div>
+  <div class="desc">A milestone release illustrating the transition from large language models to large reasoning models (LRMs), with emphasis on test-time reasoning, search, and verification loops.</div>
+</div>
+
+<hr/>
+
+<h2>Reasoning Frameworks & Cognitive Modeling</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2303.11366">ThinkGPT: Harnessing Chain-of-Thought Reasoning in LLMs</a> — arXiv</div>
+  <div class="desc">Explores how LLMs can internally simulate multi-step reasoning via <em>Chain-of-Thought</em> prompting, serving as an early conceptual foundation for LRMs.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2305.10601">Tree of Thoughts: Deliberate Problem Solving with Large Language Models</a> — arXiv</div>
+  <div class="desc">Proposes a structured search over reasoning paths, allowing models to explore and evaluate multiple possible thoughts before converging — a precursor to modern LRM search strategies.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a> — arXiv</div>
+  <div class="desc">Combines reasoning traces with tool usage, enabling LLMs to interleave thought and action — a foundation for agentic LRM architectures.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2302.04761">Toolformer: Language Models Can Teach Themselves to Use Tools</a> — Meta AI</div>
+  <div class="desc">Shows that models can self-supervise their own tool usage patterns, effectively learning how to call APIs and calculators to improve reasoning quality.</div>
+</div>
+
+<hr/>
+
+<h2>Retrieval-Augmented & Knowledge-Guided Reasoning</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</a> — arXiv (RAG)</div>
+  <div class="desc">The seminal RAG model integrates retrieval and generation, serving as a foundation for later LRM retrieval chains like <em>CRAG</em> and <em>Search-o1</em>.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2311.07590">Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection</a> — arXiv (Meta AI)</div>
+  <div class="desc">Introduces a self-improving RAG pipeline where the model evaluates and refines its own retrievals — bridging the gap toward agentic, self-correcting reasoning systems.</div>
+</div>
+
+<hr/>
+
+<h2>Benchmarks & Evaluation of Reasoning</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2310.06839">BIG-Bench Hard: Challenging LLMs on Reasoning and Generalization</a> — Google</div>
+  <div class="desc">Defines a suite of tasks designed to push the limits of LLM reasoning and abstraction, widely used for evaluating emerging LRMs.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2407.21787">MATH-500 and GSM8K: Reasoning Benchmarks for LRMs</a> — arXiv</div>
+  <div class="desc">Mathematical and multi-step logic benchmarks now serve as standard indicators for LRM test-time reasoning quality and planning ability.</div>
+</div>
+
+<hr/>
+
+<h2>Quick Takeaways</h2>
+<ul>
+  <li><strong>Agentic reasoning:</strong> LRMs like <em>Search-o1</em> and <em>o1</em> blend model reasoning with active search and tool use.</li>
+  <li><strong>Retrieval integration:</strong> CRAG and Self-RAG evolve traditional RAG into adaptive, iterative retrieval systems.</li>
+  <li><strong>Structured cognition:</strong> Tree of Thoughts and ReAct give LRMs deliberation and action patterns akin to planning agents.</li>
+  <li><strong>Benchmarks matter:</strong> GSM8K and BIG-Bench Hard drive measurable progress in reasoning fidelity.</li>
+  <li><strong>From LLMs → LRMs:</strong> The paradigm shift centers on test-time reasoning, search, and self-correction loops, not just scale.</li>
+</ul>
+
+<footer>
+  <p>Created for academic reference and reasoning research purposes.  
+  You can freely host or modify this file on GitHub Pages.</p>
+</footer>
+
+</body>
+</html>
