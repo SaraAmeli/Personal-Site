@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Edge AI — Memristor Edge Learning & Energy-Efficient Attention — Curated Roundup</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      color: #111;
+      padding: 28px;
+      max-width: 900px;
+      margin: auto;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: #0b63a8;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      color: #0b63a8;
+    }
+    .paper {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #0b63a8;
+      background: #f7fbff;
+      border-radius: 6px;
+    }
+    .meta {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b63a8;
+    }
+    .desc {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+    a {
+      color: #0b63a8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin: 8px 0 12px 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Edge AI — memristor edge learning & energy-efficient attention — a compact curated roundup</h1>
+
+<p>
+  This page brings together short, linked summaries and practical takeaways for three connected themes in Edge AI:
+  <strong>Edge Computing</strong>, <strong>Edge learning using a fully integrated neuro-inspired memristor chip</strong>, and
+  <strong>Energy-Efficient Attention for Edge AI</strong>. Each section lists notable papers and resources with concise descriptions
+  to help you skim current approaches, hardware-software co-design patterns, and promising directions for low-power on-device learning.
+</p>
+
+<hr/>
+
+<h2>Edge computing & edge AI — high-level surveys and foundational reading</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2403.02619">Training Machine Learning Models at the Edge: A Survey</a> — arXiv</div>
+  <div class="desc">Survey focused on the challenges and approaches for performing not just inference but model training and continual learning at the network edge. Covers system stacks, optimization techniques, communication-cost tradeoffs and on-device learning algorithms. :contentReference[oaicite:0]{index=0}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8780479/">Federated Learning in Edge Computing: A Systematic Survey</a> — PMC / Sensors</div>
+  <div class="desc">Comprehensive review of federated learning protocols, privacy/communication constraints, and system-level considerations that matter when coordinating learning across many constrained edge devices. Useful background for distributed edge learning designs. :contentReference[oaicite:1]{index=1}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/html/2510.01439v1">Edge Artificial Intelligence: A Systematic Review (long-form)</a> — arXiv (selected taxonomy & trends)</div>
+  <div class="desc">Recent (multi-dimensional) taxonomy of Edge AI design space: deployment locations, hardware classes (MCUs, NPUs, in-memory compute), application families (vision, audio, sensing), and research directions such as TinyML, on-device adaptation and privacy-preserving edge stacks. Good for mapping where memristive and attention-savings solutions fit in the ecosystem. :contentReference[oaicite:2]{index=2}</div>
+</div>
+
+<hr/>
+
+<h2>Edge learning — fully integrated neuro-inspired memristor chips (computing-in-memory)</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://www.science.org/doi/10.1126/science.ade3483">Edge learning using a fully integrated neuro-inspired memristor chip</a> — Science</div>
+  <div class="desc">Demonstrates a fully integrated memristor-based chip that implements key neural primitives (synaptic arrays, local dendrite-like processing, on-chip learning loops) and shows energy-efficient, on-device learning capabilities for tasks such as visual recognition. This work is widely cited as a flagship demonstration of practical on-chip learning with non-volatile memristive devices. :contentReference[oaicite:3]{index=3}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://link.springer.com/article/10.1007/s40820-024-01368-7">A Fully-Integrated Memristor Chip for Edge Learning</a> — Springer / Materials & Devices summary</div>
+  <div class="desc">A more engineering-focused article describing full chip integration, the crossbar arrays used for vector-matrix multiply, and a sign/threshold learning algorithm tailored to memristor device non-idealities — practical reading for hardware-aware algorithm designers. :contentReference[oaicite:4]{index=4}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/pdf/2408.14680.pdf">On-Chip Learning with Memristor-Based Neural Networks</a> — arXiv</div>
+  <div class="desc">Explores circuit-level design choices and simulations demonstrating how to tolerate device variability, reduce write energy, and schedule training so that on-chip learning remains robust in the presence of noise and conductance drift. Helpful for spotting algorithm↔device co-design patterns. :contentReference[oaicite:5]{index=5}</div>
+</div>
+
+<hr/>
+
+<h2>Energy-Efficient Attention & transformer-style modules for Edge AI</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2209.09004">EcoFormer — Energy-Saving Attention with Linear Complexity</a> — NeurIPS / arXiv</div>
+  <div class="desc">EcoFormer is an attention variant that uses kernelized hashing and compact binary codes to approximate softmax attention with linear complexity, replacing many multiply–accumulate operations with simpler accumulations. Demonstrated large on-chip energy reductions (reported up to ~73% in certain vision setups) with minimal accuracy loss — highly relevant for attention on resource-constrained hardware. :contentReference[oaicite:6]{index=6}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2307.03493">ITA: An Energy-Efficient Attention and Softmax Accelerator (integer streaming softmax)</a> — arXiv</div>
+  <div class="desc">Proposes a hardware accelerator design that computes softmax and attention on integer data paths in a streaming fashion to minimize intermediate storage and memory transfers — concrete microarchitectural ideas for edge inference accelerators. :contentReference[oaicite:7]{index=7}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://juser.fz-juelich.de/record/1038046/files/2409.19315v2.pdf">Analog in-Memory Attention Architectures (IMC) for Low-Latency Low-Energy Attention</a> — preprint / demonstrator</div>
+  <div class="desc">Describes analog in-memory compute layouts that perform large parts of attention computation inside resistive tiles, trading precision for energy and communication reductions — a strong candidate path when combining memristive hardware with attention mechanisms. :contentReference[oaicite:8]{index=8}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://dl.acm.org/doi/fullHtml/10.1145/3530811">Efficient Transformers: A Survey</a> — ACM (Survey)</div>
+  <div class="desc">A taxonomy of efficient attention and transformer variants (sparse attention, low-rank / kernel approximations, hashing, recurrence, and local windows) — essential reading to understand the algorithmic toolbox for building energy-aware attention blocks on edge hardware. :contentReference[oaicite:9]{index=9}</div>
+</div>
+
+<hr/>
+
+<h2>Practical hybrid readings (system → algorithm → device)</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://www.researchgate.net/publication/382679690_Energy-Efficient_AI_on_the_Edge">Energy-Efficient AI on the Edge</a> — book chapter / Springer (practical methods)</div>
+  <div class="desc">A practitioner's chapter covering AutoML for energy-aware model search, compression (quantization & pruning), and runtime strategies for embedded MCUs and NPUs — useful when evaluating tradeoffs between architecture changes (efficient attention) and model compression. :contentReference[oaicite:10]{index=10}</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://dl.acm.org/doi/full/10.1145/3589766">Energy-Efficient Approximate Edge Inference Systems</a> — ACM (approximate computing)</div>
+  <div class="desc">Discusses approaches for joint model/hardware approximations and latency/energy scheduling — good companion reading when planning to place memristive in-memory blocks and energy-saving attention modules within an edge inference pipeline. :contentReference[oaicite:11]{index=11}</div>
+</div>
+
+<hr/>
+
+<h2>Quick takeaways</h2>
+<ul>
+  <li><strong>Edge AI is multi-layered:</strong> solutions span system orchestration (federated/continual learning), model methods (quantization, efficient attention), and device innovations (memristors, IMC). :contentReference[oaicite:12]{index=12}</li>
+  <li><strong>Memristive on-chip learning is now demonstrable:</strong> fully integrated neuromorphic memristor chips have shown end-to-end, on-device learning and substantial energy savings for selected tasks — but device variability and write energy remain practical challenges. :contentReference[oaicite:13]{index=13}</li>
+  <li><strong>Energy-saving attention is practical:</strong> algorithmic approaches (EcoFormer, hashing/linearization, low-rank approximations) together with accelerator tricks (integer/streaming softmax, IMC) substantially reduce the energy footprint of attention on edge hardware. :contentReference[oaicite:14]{index=14}</li>
+  <li><strong>Co-design matters:</strong> biggest wins come when algorithm choices (sparse/linear attention, quantization) are co-designed with hardware (memristive arrays, integer accelerators) to minimize data movement and writes. :contentReference[oaicite:15]{index=15}</li>
+  <li><strong>Expect a mixed future:</strong> digital accelerators will coexist with analog/IMC and memristive solutions — choose the right tradeoffs for your use case (latency, accuracy, lifetime, fabrication/availability). :contentReference[oaicite:16]{index=16}</li>
+</ul>
+
+<footer>
+  <p>Created as a compact HTML roundup of selected references across Edge Computing, memristive on-chip learning, and energy-efficient attention.
+  Use this file as a starting point for a reading list or share it as a lightweight guide for hardware/software co-design in Edge AI.</p>
+  <p style="font-size:0.85rem;color:#666;">Key sources cited in this page: Edge training & surveys (arXiv), Science / PubMed memristor chip reports, EcoFormer (NeurIPS / arXiv), and recent hardware accelerator preprints.</p>
+</footer>
+
+</body>
+</html>
