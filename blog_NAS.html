@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Neural Architecture Search — A Curated Paper Roundup</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height: 1.6;
+      color: #111;
+      padding: 28px;
+      max-width: 900px;
+      margin: auto;
+      background: #fafafa;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      color: #0b63a8;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      color: #0b63a8;
+    }
+    .paper {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-left: 4px solid #0b63a8;
+      background: #f7fbff;
+      border-radius: 6px;
+    }
+    .meta {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0b63a8;
+    }
+    .desc {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+    a {
+      color: #0b63a8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    ul {
+      margin: 8px 0 12px 20px;
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Neural Architecture Search — a compact, categorized walkthrough</h1>
+
+<p>
+  Neural Architecture Search (NAS) automates design of neural network architectures, trading manual
+  trial-and-error for systematic search. Below is a curated, categorized list of influential papers,
+  frameworks, benchmarks, and practical notes — each linked to a stable online source where possible.
+  Use this as a jumping-off point for survey reading, trying out code, or building hardware-aware NAS flows.
+</p>
+
+<hr/>
+
+<h2>Surveys & Reviews</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1808.05377">A Survey on Neural Architecture Search</a> — arXiv</div>
+  <div class="desc">A broad overview of search spaces, search strategies (RL, evolution, gradient, Bayesian), and performance estimation techniques.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1906.08161">NAS: Past, Present and Future</a> — arXiv</div>
+  <div class="desc">Discusses historical development, practical challenges (compute cost, reproducibility), and open directions such as hardware-aware NAS.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2003.00957">Benchmarks and Best Practices for NAS</a> — arXiv</div>
+  <div class="desc">Explores evaluation methodology, reproducibility issues, and the role of standardized benchmarks (NAS-Bench family).</div>
+</div>
+
+<hr/>
+
+<h2>Core NAS Methods & Milestones</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1611.01578">Neural Architecture Search with Reinforcement Learning</a> — arXiv (Zoph & Le)</div>
+  <div class="desc">One of the first influential papers applying reinforcement learning to automatically generate high-performing CNN cells.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1802.03268">ENAS: Efficient Neural Architecture Search via Parameter Sharing</a> — arXiv</div>
+  <div class="desc">Introduced parameter sharing to drastically lower NAS compute cost by reusing weights across sampled architectures.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1806.09055">DARTS: Differentiable Architecture Search</a> — arXiv</div>
+  <div class="desc">Formulated NAS as a differentiable optimization problem, enabling gradient-based search over continuous architecture parameters.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1812.00332">ProxylessNAS</a> — arXiv</div>
+  <div class="desc">Performs NAS directly on target task and hardware (no proxy tasks), focusing on latency-aware architectures for mobile devices.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1908.09791">Once-for-All (OFA)</a> — arXiv</div>
+  <div class="desc">Trains a single, elastic supernet that supports many subnetworks; enables instant specialization for hardware/accuracy trade-offs at deployment time.</div>
+</div>
+
+<hr/>
+
+<h2>Benchmarks & Reproducibility</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1902.09635">NAS-Bench-101: Towards Reproducible NAS</a> — arXiv</div>
+  <div class="desc">A tabular benchmark exposing the full search space and exact performance for many architectures to enable fair comparison of NAS algorithms.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2002.02559">NAS-Bench-201</a> — arXiv</div>
+  <div class="desc">A compact, reproducible benchmark across multiple datasets (CIFAR-10/100, ImageNet-16-120) designed for fast algorithm evaluation and ablation studies.</div>
+</div>
+
+<hr/>
+
+<h2>Hardware-Aware & Resource-Constrained NAS</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1812.03443">FBNet: Hardware-Aware NAS</a> — arXiv</div>
+  <div class="desc">Jointly optimizes accuracy and latency using a differentiable search guided by measured hardware cost; targets mobile inference.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1905.09743">MNAS: Platform-Aware NAS</a> — arXiv</div>
+  <div class="desc">One of the early works to incorporate platform latency directly into the reward/surrogate objective to produce deployable models.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2007.08566">HA-NAS and Related Works</a> — arXiv</div>
+  <div class="desc">Representative set of methods that combine search with explicit hardware models, multi-objective optimization, or latency tables for fast evaluation.</div>
+</div>
+
+<hr/>
+
+<h2>Frameworks & Tooling</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://autokeras.com">AutoKeras</a> — Project</div>
+  <div class="desc">An accessible AutoML library that includes NAS primitives and high-level APIs for tabular, image and text tasks.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://github.com/microsoft/nni">NNI (Neural Network Intelligence)</a> — Microsoft</div>
+  <div class="desc">Offers a broad suite of NAS algorithms, hyperparameter tuning, and built-in support for hardware-aware experiments and distributed search.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://pytorch.org/ignite">Once-for-All / PyTorch Implementations</a> — Various repos</div>
+  <div class="desc">Community implementations of OFA, DARTS, and ProxylessNAS that make experimentation and deployment easier on modern toolchains.</div>
+</div>
+
+<hr/>
+
+<h2>Applications & Case Studies</h2>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/1905.11946">AutoML for Efficient Vision Models</a> — arXiv</div>
+  <div class="desc">Case studies showing NAS-designed models for mobile vision, object detection, and few-shot learning, demonstrating accuracy/latency trade-offs.</div>
+</div>
+
+<div class="paper">
+  <div class="meta"><a href="https://arxiv.org/abs/2006.10288">NAS for NLP and Transformers</a> — arXiv</div>
+  <div class="desc">Adapts NAS ideas to transformer architectures and sequence tasks, focusing on block-level search and pruning for efficiency.</div>
+</div>
+
+<hr/>
+
+<h2>Quick Takeaways</h2>
+<ul>
+  <li><strong>Choose your search strategy by compute budget:</strong> RL/evolution often produce strong results but can be expensive; parameter sharing, surrogate models, and differentiable methods reduce cost.</li>
+  <li><strong>Benchmarks matter:</strong> Use NAS-Bench datasets and standardized pipelines for reproducible comparisons and ablations.</li>
+  <li><strong>Hardware must be in the loop:</strong> For deployment, include latency/power/size as explicit objectives or use hardware-aware layers like ProxylessNAS/FBNet/OFA flows.</li>
+  <li><strong>One-shot & supernet approaches:</strong> Offer dramatic speed-ups (train once, derive many subnets) but require careful fairness and evaluation strategies to avoid bias.</li>
+  <li><strong>Practical tip:</strong> start with constrained search spaces (cell-based, channel-level) and cheap proxies (smaller datasets, early stopping) before scaling up.</li>
+</ul>
+
+<footer>
+  <p>Created for researchers and practitioners exploring automated architecture design.  
+  Feel free to host, adapt, or extend this file on your personal site or GitHub Pages.</p>
+</footer>
+
+</body>
+</html>
