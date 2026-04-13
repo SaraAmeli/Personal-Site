@@ -51,7 +51,7 @@ header {
     padding: 20px;
 }
 
-/* CARD BASE */
+/* CARD */
 .card {
     display: block;
     text-decoration: none;
@@ -60,6 +60,7 @@ header {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     transition: 0.25s;
+    position: relative;
 }
 
 .card:hover {
@@ -74,14 +75,12 @@ header {
     border-radius: 10px;
 }
 
-/* TEXT */
-.card h3 {
-    margin: 12px 0 5px;
-}
-
-.card p {
-    color: #555;
-    font-size: 14px;
+/* ICON */
+.icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
 }
 
 /* CATEGORY COLORS */
@@ -114,6 +113,31 @@ header {
 }
 .card.systems h3 { color: #e67e22; }
 
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background: white;
+    margin: 10% auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.close {
+    float: right;
+    font-size: 22px;
+    cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -124,7 +148,6 @@ header {
     <p>AI Research | Cloud | Complex Systems</p>
 </header>
 
-<!-- FILTER BUTTONS -->
 <div class="filters">
     <button class="active" onclick="filterProjects('all')">All</button>
     <button onclick="filterProjects('AI')">AI</button>
@@ -133,77 +156,61 @@ header {
     <button onclick="filterProjects('Systems')">Systems</button>
 </div>
 
-<!-- GRID -->
 <div class="grid">
 
 <!-- AI -->
-<a href="blog_Transformer.html" class="card ai" data-category="AI">
-    <img src="im/transformer.png">
-    <h3>Transformers & Conformers</h3>
-    <p>Sequence modeling for NLP and speech tasks.</p>
-</a>
-
-<a href="blog_LRM.html" class="card ai" data-category="AI">
-    <img src="im/Audio.png">
-    <h3>Large Reasoning Models</h3>
-    <p>Chain-of-thought reasoning and structured inference.</p>
-</a>
-
-<a href="blog_GNN.html" class="card ai" data-category="AI">
-    <img src="im/Audio.png">
-    <h3>Graph Neural Networks</h3>
-    <p>Learning from graph-structured data.</p>
-</a>
-
-<a href="blog_3DPointCloud.html" class="card ai" data-category="AI">
+<div class="card ai" data-category="AI" onclick="openModal('Human Tracking', '3D tracking using point clouds.', 'https://example.com')">
+    <span class="icon">🧠</span>
     <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
     <h3>Human Tracking</h3>
     <p>3D point cloud detection and motion estimation.</p>
-</a>
+</div>
+
+<div class="card ai" data-category="AI" onclick="openModal('Transformers', 'Sequence modeling for NLP.', 'blog_Transformer.html')">
+    <span class="icon">🧠</span>
+    <img src="im/transformer.png">
+    <h3>Transformers & Conformers</h3>
+    <p>Sequence modeling for NLP and speech tasks.</p>
+</div>
 
 <!-- CLOUD -->
-<a href="blog-IOTinCloud.html" class="card cloud" data-category="Cloud">
+<div class="card cloud" data-category="Cloud" onclick="openModal('IoT Cloud', 'Multimodal IoT systems.', 'blog-IOTinCloud.html')">
+    <span class="icon">☁️</span>
     <img src="images/associative_computing.jpg">
-    <h3>Multimodal IoT in Cloud</h3>
-    <p>Visual data processing and IoT systems.</p>
-</a>
-
-<a href="blog_AWSGenerativeAI.html" class="card cloud" data-category="Cloud">
-    <img src="im/Audio.png">
-    <h3>AWS Generative AI</h3>
-    <p>LLMs and Bedrock in cloud environments.</p>
-</a>
+    <h3>Multimodal IoT</h3>
+    <p>Visual data processing in cloud systems.</p>
+</div>
 
 <!-- THEORY -->
-<a href="blog_sync.html" class="card theory" data-category="Theory">
+<div class="card theory" data-category="Theory" onclick="openModal('Control Theory', 'Nonlinear dynamics.', 'blog_sync.html')">
+    <span class="icon">📈</span>
     <img src="im/theory.png">
     <h3>Control Theory</h3>
     <p>Nonlinear dynamics and synchronization.</p>
-</a>
-
-<a href="blog_Hopfield.html" class="card theory" data-category="Theory">
-    <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
-    <h3>Hopfield Networks</h3>
-    <p>Associative memory models and modern extensions.</p>
-</a>
+</div>
 
 <!-- SYSTEMS -->
-<a href="https://github.com/SaraAmeli/terraform-wordpress-multiple-AZ"
-   class="card systems" data-category="Systems">
+<div class="card systems" data-category="Systems" onclick="openModal('AWS Infra', 'Cloud infrastructure.', 'https://github.com')">
+    <span class="icon">⚙️</span>
     <img src="im/Untitled-2025-04-28-1344(3).svg">
     <h3>AWS Infrastructure</h3>
-    <p>Highly available multi-AZ architecture.</p>
-</a>
-
-<a href="#" class="card systems" data-category="Systems">
-    <img src="im/42F20.png">
-    <h3>Image & Video Processing</h3>
-    <p>Segmentation and visual analysis systems.</p>
-</a>
+    <p>Highly available systems.</p>
+</div>
 
 </div>
 
+<!-- MODAL -->
+<div id="popup" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-desc"></p>
+    <a id="modal-link" href="#" target="_blank">🔗 View Publication / Blog</a>
+  </div>
+</div>
+
 <script>
+
 function filterProjects(category) {
     let cards = document.querySelectorAll(".card");
     let buttons = document.querySelectorAll(".filters button");
@@ -219,6 +226,26 @@ function filterProjects(category) {
         }
     });
 }
+
+/* MODAL */
+function openModal(title, desc, link) {
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("modal-title").innerText = title;
+    document.getElementById("modal-desc").innerText = desc;
+    document.getElementById("modal-link").href = link;
+}
+
+function closeModal() {
+    document.getElementById("popup").style.display = "none";
+}
+
+window.onclick = function(event) {
+    let modal = document.getElementById("popup");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 </script>
 
 </body>
