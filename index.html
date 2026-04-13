@@ -17,24 +17,25 @@ header {
     background: black;
     color: white;
     text-align: center;
-    padding: 40px;
+    padding: 50px 20px;
 }
 
-/* FILTER BUTTONS */
+/* FILTERS */
 .filters {
     text-align: center;
     margin: 20px;
 }
 
 .filters button {
-    padding: 10px 15px;
-    margin: 5px;
+    padding: 10px 18px;
+    margin: 6px;
     border: none;
-    cursor: pointer;
     border-radius: 20px;
+    cursor: pointer;
+    background: #eee;
 }
 
-.active {
+.filters button.active {
     background: #007acc;
     color: white;
 }
@@ -43,7 +44,7 @@ header {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    max-width: 1000px;
+    max-width: 1100px;
     margin: auto;
     gap: 20px;
     padding: 20px;
@@ -53,24 +54,41 @@ header {
 .card {
     background: white;
     padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card img {
     width: 100%;
-    border-radius: 8px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .card h3 {
-    margin: 10px 0;
+    margin: 12px 0 5px;
 }
 
-.card a {
-    color: #007acc;
+.card p {
+    color: #555;
+    font-size: 14px;
+}
+
+.links {
+    margin-top: 10px;
+}
+
+.links a {
+    margin-right: 10px;
     text-decoration: none;
+    color: #007acc;
+    font-size: 14px;
 }
-
 </style>
 </head>
 
@@ -78,47 +96,113 @@ header {
 
 <header>
     <h1>Sara Ameli</h1>
-     <h2>In this page, you find out about my published and ongoing research</h2>
-    <p>I'm interested in AI | Cloud | Complex Systems</p>
+    <p>AI Research | Cloud | Complex Systems</p>
 </header>
 
 <div class="filters">
-    <button onclick="filterProjects('all')" class="active">All</button>
+    <button class="active" onclick="filterProjects('all')">All</button>
     <button onclick="filterProjects('AI')">AI</button>
-     <button onclick="filterProjects('AI')">Neuromorphic Computing</button>
     <button onclick="filterProjects('Cloud')">Cloud</button>
-    <button onclick="filterProjects('Theory')">Nonlinear Dynamics</button>
+    <button onclick="filterProjects('Theory')">Theory</button>
+    <button onclick="filterProjects('Systems')">Systems</button>
 </div>
 
 <div class="grid">
 
-    <div class="card" data-category="AI">
-        <img src="im/transformer.png">
-        <h3>Transformers</h3>
-        <p>Sequence modeling for NLP and speech.</p>
-        <a href="#">📝 Blog</a>
+<!-- AI -->
+<div class="card" data-category="AI">
+    <img src="im/transformer.png">
+    <h3>Transformers & Conformers</h3>
+    <p>Sequence modeling for NLP and speech tasks.</p>
+    <div class="links">
+        <a href="blog_Transformer.html">📝 Blog</a>
     </div>
+</div>
 
-    <div class="card" data-category="AI">
-        <img src="im/Audio.png">
-        <h3>Large Reasoning Models</h3>
-        <p>Chain-of-thought reasoning systems.</p>
-        <a href="#">📝 Blog</a>
+<div class="card" data-category="AI">
+    <img src="im/Audio.png">
+    <h3>Large Reasoning Models</h3>
+    <p>Chain-of-thought reasoning and structured AI inference.</p>
+    <div class="links">
+        <a href="blog_LRM.html">📝 Blog</a>
     </div>
+</div>
 
-    <div class="card" data-category="Cloud">
-        <img src="images/associative_computing.jpg">
-        <h3>Multimodal IoT</h3>
-        <p>Cloud-based visual data systems.</p>
-        <a href="#">📝 Blog</a>
+<div class="card" data-category="AI">
+    <img src="im/Audio.png">
+    <h3>Graph Neural Networks</h3>
+    <p>Learning from graph-structured data.</p>
+    <div class="links">
+        <a href="blog_GNN.html">📝 Blog</a>
     </div>
+</div>
 
-    <div class="card" data-category="Theory">
-        <img src="im/theory.png">
-        <h3>Control Theory</h3>
-        <p>Nonlinear dynamics and synchronization.</p>
+<div class="card" data-category="AI">
+    <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
+    <h3>Human Tracking</h3>
+    <p>3D point cloud detection and motion estimation.</p>
+    <div class="links">
+        <a href="blog_3DPointCloud.html">📝 Blog</a>
+    </div>
+</div>
+
+<!-- CLOUD -->
+<div class="card" data-category="Cloud">
+    <img src="images/associative_computing.jpg">
+    <h3>Multimodal IoT in Cloud</h3>
+    <p>Visual data processing and IoT systems.</p>
+    <div class="links">
+        <a href="blog-IOTinCloud.html">📝 Blog</a>
+        <a href="https://github.com/SaraAmeli/Multimodal-IOT-in-cloud">💻 Code</a>
+    </div>
+</div>
+
+<div class="card" data-category="Cloud">
+    <img src="im/Audio.png">
+    <h3>AWS Generative AI</h3>
+    <p>LLMs and Bedrock in cloud environments.</p>
+    <div class="links">
+        <a href="blog_AWSGenerativeAI.html">📝 Blog</a>
+    </div>
+</div>
+
+<!-- THEORY -->
+<div class="card" data-category="Theory">
+    <img src="im/theory.png">
+    <h3>Control Theory</h3>
+    <p>Nonlinear dynamics and synchronization.</p>
+    <div class="links">
+        <a href="blog_sync.html">📝 Blog</a>
+    </div>
+</div>
+
+<div class="card" data-category="Theory">
+    <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
+    <h3>Hopfield Networks</h3>
+    <p>Classic and modern associative memory models.</p>
+    <div class="links">
+        <a href="blog_Hopfield.html">📝 Blog</a>
+    </div>
+</div>
+
+<!-- SYSTEMS -->
+<div class="card" data-category="Systems">
+    <img src="im/Untitled-2025-04-28-1344(3).svg">
+    <h3>AWS Infrastructure</h3>
+    <p>Highly available multi-AZ cloud architecture.</p>
+    <div class="links">
+        <a href="https://github.com/SaraAmeli/terraform-wordpress-multiple-AZ">💻 Code</a>
+    </div>
+</div>
+
+<div class="card" data-category="Systems">
+    <img src="im/42F20.png">
+    <h3>Image & Video Processing</h3>
+    <p>Segmentation and visual analysis systems.</p>
+    <div class="links">
         <a href="#">📝 Blog</a>
     </div>
+</div>
 
 </div>
 
