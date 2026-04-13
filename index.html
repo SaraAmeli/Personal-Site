@@ -1,113 +1,142 @@
-import { useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara Ameli</title>
 
-const projects = [
-  {
-    title: "Human Tracking",
-    category: "AI",
-    desc: "Detection and motion estimation in 3D point cloud sequences.",
-    blog: "#",
-    img: "Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg",
-  },
-  {
-    title: "Large Reasoning Models",
-    category: "AI",
-    desc: "Chain-of-thought reasoning systems for complex problem solving.",
-    blog: "#",
-    img: "im/Audio.png",
-  },
-  {
-    title: "AWS Generative AI",
-    category: "Cloud",
-    desc: "Using Bedrock and LLMs in cloud environments.",
-    blog: "#",
-    img: "im/Audio.png",
-  },
-  {
-    title: "Multimodal IoT",
-    category: "Cloud",
-    desc: "Visual data processing and IoT systems in cloud.",
-    blog: "#",
-    img: "images/associative_computing.jpg",
-  },
-  {
-    title: "Transformers",
-    category: "AI",
-    desc: "Sequence modeling for NLP and speech.",
-    blog: "#",
-    img: "im/transformer.png",
-  },
-  {
-    title: "Control Theory",
-    category: "Theory",
-    desc: "Nonlinear dynamics and synchronization in networks.",
-    blog: "#",
-    img: "im/theory.png",
-  },
-];
-
-export default function Portfolio() {
-  const [filter, setFilter] = useState("All");
-
-  const categories = ["All", "AI", "Cloud", "Theory"];
-
-  const filteredProjects =
-    filter === "All"
-      ? projects
-      : projects.filter((p) => p.category === filter);
-
-  return (
-    <div className="min-h-screen bg-gray-100">
-      {/* HEADER */}
-      <div className="bg-black text-white text-center py-10">
-        <h1 className="text-3xl font-bold">Sara Ameli</h1>
-        <p className="text-gray-300 mt-2">AI Research | Cloud | Complex Systems</p>
-      </div>
-
-      {/* FILTER TABS */}
-      <div className="flex justify-center gap-4 py-6">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setFilter(cat)}
-            className={`px-4 py-2 rounded-full border ${
-              filter === cat
-                ? "bg-blue-500 text-white"
-                : "bg-white"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* PROJECT GRID */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 p-4">
-        {filteredProjects.map((p, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition"
-          >
-            <img
-              src={p.img}
-              alt=""
-              className="w-full h-48 object-cover rounded-xl"
-            />
-
-            <h3 className="text-xl font-semibold mt-3">{p.title}</h3>
-
-            <p className="text-gray-600 mt-2">{p.desc}</p>
-
-            <div className="mt-3">
-              <a
-                href={p.blog}
-                className="text-blue-500 hover:underline"
-              >
-                📝 Blog
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f5f7fa;
 }
+
+/* HEADER */
+header {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+/* FILTER BUTTONS */
+.filters {
+    text-align: center;
+    margin: 20px;
+}
+
+.filters button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.active {
+    background: #007acc;
+    color: white;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 1000px;
+    margin: auto;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.card h3 {
+    margin: 10px 0;
+}
+
+.card a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Sara Ameli</h1>
+    <p>AI | Cloud | Complex Systems</p>
+</header>
+
+<div class="filters">
+    <button onclick="filterProjects('all')" class="active">All</button>
+    <button onclick="filterProjects('AI')">AI</button>
+    <button onclick="filterProjects('Cloud')">Cloud</button>
+    <button onclick="filterProjects('Theory')">Theory</button>
+</div>
+
+<div class="grid">
+
+    <div class="card" data-category="AI">
+        <img src="im/transformer.png">
+        <h3>Transformers</h3>
+        <p>Sequence modeling for NLP and speech.</p>
+        <a href="#">📝 Blog</a>
+    </div>
+
+    <div class="card" data-category="AI">
+        <img src="im/Audio.png">
+        <h3>Large Reasoning Models</h3>
+        <p>Chain-of-thought reasoning systems.</p>
+        <a href="#">📝 Blog</a>
+    </div>
+
+    <div class="card" data-category="Cloud">
+        <img src="images/associative_computing.jpg">
+        <h3>Multimodal IoT</h3>
+        <p>Cloud-based visual data systems.</p>
+        <a href="#">📝 Blog</a>
+    </div>
+
+    <div class="card" data-category="Theory">
+        <img src="im/theory.png">
+        <h3>Control Theory</h3>
+        <p>Nonlinear dynamics and synchronization.</p>
+        <a href="#">📝 Blog</a>
+    </div>
+
+</div>
+
+<script>
+function filterProjects(category) {
+    let cards = document.querySelectorAll(".card");
+    let buttons = document.querySelectorAll(".filters button");
+
+    buttons.forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+
+    cards.forEach(card => {
+        if (category === "all" || card.dataset.category === category) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
