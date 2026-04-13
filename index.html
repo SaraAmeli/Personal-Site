@@ -33,6 +33,7 @@ header {
     border-radius: 20px;
     cursor: pointer;
     background: #eee;
+    font-weight: bold;
 }
 
 .filters button.active {
@@ -50,19 +51,22 @@ header {
     padding: 20px;
 }
 
-/* CARD */
+/* CARD BASE */
 .card {
-    background: white;
+    display: block;
+    text-decoration: none;
+    color: inherit;
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: 0.2s;
+    transition: 0.25s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 }
 
+/* IMAGE */
 .card img {
     width: 100%;
     height: 180px;
@@ -70,6 +74,7 @@ header {
     border-radius: 10px;
 }
 
+/* TEXT */
 .card h3 {
     margin: 12px 0 5px;
 }
@@ -79,16 +84,36 @@ header {
     font-size: 14px;
 }
 
-.links {
-    margin-top: 10px;
-}
+/* CATEGORY COLORS */
 
-.links a {
-    margin-right: 10px;
-    text-decoration: none;
-    color: #007acc;
-    font-size: 14px;
+/* AI */
+.card.ai {
+    border-left: 6px solid #007acc;
+    background: linear-gradient(to right, #f0f8ff, white);
 }
+.card.ai h3 { color: #007acc; }
+
+/* CLOUD */
+.card.cloud {
+    border-left: 6px solid #2ecc71;
+    background: linear-gradient(to right, #f0fff5, white);
+}
+.card.cloud h3 { color: #2ecc71; }
+
+/* THEORY */
+.card.theory {
+    border-left: 6px solid #9b59b6;
+    background: linear-gradient(to right, #faf5ff, white);
+}
+.card.theory h3 { color: #9b59b6; }
+
+/* SYSTEMS */
+.card.systems {
+    border-left: 6px solid #e67e22;
+    background: linear-gradient(to right, #fff7f0, white);
+}
+.card.systems h3 { color: #e67e22; }
+
 </style>
 </head>
 
@@ -99,114 +124,82 @@ header {
     <p>AI Research | Cloud | Complex Systems</p>
 </header>
 
+<!-- FILTER BUTTONS -->
 <div class="filters">
     <button class="active" onclick="filterProjects('all')">All</button>
     <button onclick="filterProjects('AI')">AI</button>
-    <button onclick="filterProjects('Theory')">Neuromorphic Computing</button>
     <button onclick="filterProjects('Cloud')">Cloud</button>
-    <button onclick="filterProjects('Theory')">Nonlinear Dynamics</button>
-
+    <button onclick="filterProjects('Theory')">Theory</button>
+    <button onclick="filterProjects('Systems')">Systems</button>
 </div>
 
+<!-- GRID -->
 <div class="grid">
 
 <!-- AI -->
-<a href="blog_Transformer.html" class="card" data-category="AI">
+<a href="blog_Transformer.html" class="card ai" data-category="AI">
     <img src="im/transformer.png">
-
     <h3>Transformers & Conformers</h3>
     <p>Sequence modeling for NLP and speech tasks.</p>
-
-    <div class="links">
-        <span>📝 Blog</span>
-    </div>
 </a>
-    
 
-<div class="card" data-category="AI">
+<a href="blog_LRM.html" class="card ai" data-category="AI">
     <img src="im/Audio.png">
     <h3>Large Reasoning Models</h3>
-    <p>Chain-of-thought reasoning and structured AI inference.</p>
-    <div class="links">
-        <a href="blog_LRM.html">📝 Blog</a>
-    </div>
-</div>
+    <p>Chain-of-thought reasoning and structured inference.</p>
+</a>
 
-<div class="card" data-category="AI">
+<a href="blog_GNN.html" class="card ai" data-category="AI">
     <img src="im/Audio.png">
     <h3>Graph Neural Networks</h3>
     <p>Learning from graph-structured data.</p>
-    <div class="links">
-        <a href="blog_GNN.html">📝 Blog</a>
-    </div>
-</div>
+</a>
 
-<div class="card" data-category="AI">
+<a href="blog_3DPointCloud.html" class="card ai" data-category="AI">
     <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
     <h3>Human Tracking</h3>
     <p>3D point cloud detection and motion estimation.</p>
-    <div class="links">
-        <a href="blog_3DPointCloud.html">📝 Blog</a>
-    </div>
-</div>
+</a>
 
 <!-- CLOUD -->
-<div class="card" data-category="Cloud">
+<a href="blog-IOTinCloud.html" class="card cloud" data-category="Cloud">
     <img src="images/associative_computing.jpg">
     <h3>Multimodal IoT in Cloud</h3>
     <p>Visual data processing and IoT systems.</p>
-    <div class="links">
-        <a href="blog-IOTinCloud.html">📝 Blog</a>
-        <a href="https://github.com/SaraAmeli/Multimodal-IOT-in-cloud">💻 Code</a>
-    </div>
-</div>
+</a>
 
-<div class="card" data-category="Cloud">
+<a href="blog_AWSGenerativeAI.html" class="card cloud" data-category="Cloud">
     <img src="im/Audio.png">
     <h3>AWS Generative AI</h3>
     <p>LLMs and Bedrock in cloud environments.</p>
-    <div class="links">
-        <a href="blog_AWSGenerativeAI.html">📝 Blog</a>
-    </div>
-</div>
+</a>
 
 <!-- THEORY -->
-<div class="card" data-category="Theory">
+<a href="blog_sync.html" class="card theory" data-category="Theory">
     <img src="im/theory.png">
     <h3>Control Theory</h3>
     <p>Nonlinear dynamics and synchronization.</p>
-    <div class="links">
-        <a href="blog_sync.html">📝 Blog</a>
-    </div>
-</div>
+</a>
 
-<div class="card" data-category="Theory">
+<a href="blog_Hopfield.html" class="card theory" data-category="Theory">
     <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
     <h3>Hopfield Networks</h3>
-    <p>Classic and modern associative memory models.</p>
-    <div class="links">
-        <a href="blog_Hopfield.html">📝 Blog</a>
-    </div>
-</div>
+    <p>Associative memory models and modern extensions.</p>
+</a>
 
 <!-- SYSTEMS -->
-<div class="card" data-category="Systems">
+<a href="https://github.com/SaraAmeli/terraform-wordpress-multiple-AZ"
+   class="card systems" data-category="Systems">
     <img src="im/Untitled-2025-04-28-1344(3).svg">
     <h3>AWS Infrastructure</h3>
-    <p>Highly available multi-AZ cloud architecture.</p>
-    <div class="links">
-        <a href="https://github.com/SaraAmeli/terraform-wordpress-multiple-AZ">💻 Code</a>
-    </div>
-</div>
+    <p>Highly available multi-AZ architecture.</p>
+</a>
 
-<div class="card" data-category="Systems">
+<a href="#" class="card systems" data-category="Systems">
     <img src="im/42F20.png">
     <h3>Image & Video Processing</h3>
     <p>Segmentation and visual analysis systems.</p>
-    <div class="links">
-        <a href="#">📝 Blog</a>
-    </div>
-</div>
+</a>
 
 </div>
 
