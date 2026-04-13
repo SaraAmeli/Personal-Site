@@ -1,316 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sara Ameli</title>
+import { useState } from "react";
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+const projects = [
+  {
+    title: "Human Tracking",
+    category: "AI",
+    desc: "Detection and motion estimation in 3D point cloud sequences.",
+    blog: "#",
+    img: "Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg",
+  },
+  {
+    title: "Large Reasoning Models",
+    category: "AI",
+    desc: "Chain-of-thought reasoning systems for complex problem solving.",
+    blog: "#",
+    img: "im/Audio.png",
+  },
+  {
+    title: "AWS Generative AI",
+    category: "Cloud",
+    desc: "Using Bedrock and LLMs in cloud environments.",
+    blog: "#",
+    img: "im/Audio.png",
+  },
+  {
+    title: "Multimodal IoT",
+    category: "Cloud",
+    desc: "Visual data processing and IoT systems in cloud.",
+    blog: "#",
+    img: "images/associative_computing.jpg",
+  },
+  {
+    title: "Transformers",
+    category: "AI",
+    desc: "Sequence modeling for NLP and speech.",
+    blog: "#",
+    img: "im/transformer.png",
+  },
+  {
+    title: "Control Theory",
+    category: "Theory",
+    desc: "Nonlinear dynamics and synchronization in networks.",
+    blog: "#",
+    img: "im/theory.png",
+  },
+];
 
-<style>
+export default function Portfolio() {
+  const [filter, setFilter] = useState("All");
 
-/* GENERAL */
+  const categories = ["All", "AI", "Cloud", "Theory"];
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f5f7fa;
-    line-height: 1.6;
-}
+  const filteredProjects =
+    filter === "All"
+      ? projects
+      : projects.filter((p) => p.category === filter);
 
-section {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-}
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* HEADER */}
+      <div className="bg-black text-white text-center py-10">
+        <h1 className="text-3xl font-bold">Sara Ameli</h1>
+        <p className="text-gray-300 mt-2">AI Research | Cloud | Complex Systems</p>
+      </div>
 
-h2 {
-    border-bottom: 2px solid #007acc;
-    padding-bottom: 5px;
-}
+      {/* FILTER TABS */}
+      <div className="flex justify-center gap-4 py-6">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilter(cat)}
+            className={`px-4 py-2 rounded-full border ${
+              filter === cat
+                ? "bg-blue-500 text-white"
+                : "bg-white"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
-/* HEADER */
+      {/* PROJECT GRID */}
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 p-4">
+        {filteredProjects.map((p, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-2xl shadow p-4 hover:shadow-lg transition"
+          >
+            <img
+              src={p.img}
+              alt=""
+              className="w-full h-48 object-cover rounded-xl"
+            />
 
-header {
-    background: #222;
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-}
+            <h3 className="text-xl font-semibold mt-3">{p.title}</h3>
 
-/* NAVBAR */
+            <p className="text-gray-600 mt-2">{p.desc}</p>
 
-.navbar {
-    background: #111;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 12px;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.navbar a:hover {
-    color: #007acc;
-}
-
-/* ABOUT */
-
-.about {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-/* PROJECTS */
-
-.project {
-    display: flex;
-    gap: 20px;
-    background: white;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-}
-
-.project-text {
-    flex: 2;
-}
-
-.project-desc {
-    margin: 10px 0;
-    color: #555;
-}
-
-/* LINKS */
-
-.project-links {
-    margin: 10px 0;
-}
-
-.project-links a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #007acc;
-    font-weight: 500;
-}
-
-.project-links a:hover {
-    text-decoration: underline;
-}
-
-/* PUBLICATIONS */
-
-.pub-list {
-    padding-left: 20px;
-}
-
-.pub-list li {
-    margin-bottom: 6px;
-}
-
-/* IMAGES */
-
-.project-images {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.project-images img {
-    width: 100%;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-/* MOBILE */
-
-@media (max-width: 768px) {
-    .project {
-        flex-direction: column;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>Hi, I'm Sara Ameli</h1>
-    <p>AI Researcher | Machine Learning | Complex Systems</p>
-</header>
-
-<nav class="navbar">
-    <a href="#">Home</a>
-    <a href="#">Education</a>
-    <a href="#">Work Experience</a>
-    <a href="#">Research</a>
-    <a href="#">Awards & Grants</a>
-</nav>
-
-<section class="about">
-    <h2>About Me</h2>
-    <p>
-        I am a researcher working in artificial intelligence, machine learning, and
-        complex systems. My work focuses on multimodal learning, cloud-based AI,
-        and theoretical modeling of dynamic systems.
-    </p>
-</section>
-
-<section>
-<h2>Research</h2>
-
-<!-- PROJECT 1 -->
-<div class="project">
-    <div class="project-text">
-        <h3>Human Tracking</h3>
-        <p class="project-desc">
-            Detection and motion estimation in 3D point cloud sequences.
-        </p>
-
-        <div class="project-links">
-            <a href="blog_3DPointCloud.html">📝 Blog</a>
-        </div>
-
-        <ul class="pub-list">
-            <li>
-                <a href="https://www.researchgate.net/publication/400359763_Human_Tracking_in_3D_Point_Cloud_Sequences_Detection_Tracking_and_Motion_Estimation">
-                    Human Tracking in 3D Point Cloud Sequences
-                </a>
-            </li>
-        </ul>
+            <div className="mt-3">
+              <a
+                href={p.blog}
+                className="text-blue-500 hover:underline"
+              >
+                📝 Blog
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-
-    <div class="project-images">
-        <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
-    </div>
-</div>
-
-<!-- PROJECT 2 -->
-<div class="project">
-    <div class="project-text">
-        <h3>Large Reasoning Models (LRMs)</h3>
-        <p class="project-desc">
-            AI systems that break down problems into reasoning steps using chain-of-thought strategies.
-        </p>
-
-        <div class="project-links">
-            <a href="blog_LRM.html">📝 Blog</a>
-        </div>
-    </div>
-
-    <div class="project-images">
-        <img src="im/Audio.png">
-    </div>
-</div>
-
-<!-- PROJECT 3 -->
-<div class="project">
-    <div class="project-text">
-        <h3>AWS Generative AI</h3>
-        <p class="project-desc">
-            Working with Amazon Bedrock and generative AI tools in cloud environments.
-        </p>
-
-        <div class="project-links">
-            <a href="blog_AWSGenerativeAI.html">📝 Blog</a>
-            <a href="blog_LLMinAWS.html">📝 LLM in AWS</a>
-        </div>
-    </div>
-</div>
-
-<!-- PROJECT 4 -->
-<div class="project">
-    <div class="project-text">
-        <h3>Multimodal IoT in Cloud</h3>
-        <p class="project-desc">
-            Visual data analysis, motion tracking, and object detection in cloud systems.
-        </p>
-
-        <div class="project-links">
-            <a href="blog-IOTinCloud.html">📝 Blog</a>
-            <a href="https://github.com/SaraAmeli/Multimodal-IOT-in-cloud">
-                <i class="fab fa-github"></i> Code
-            </a>
-        </div>
-    </div>
-
-    <div class="project-images">
-        <img src="images/associative_computing.jpg">
-    </div>
-</div>
-
-<!-- PROJECT 5 -->
-<div class="project">
-    <div class="project-text">
-        <h3>Transformers & Conformers</h3>
-        <p class="project-desc">
-            Sequence modeling for NLP and speech processing using transformer architectures.
-        </p>
-
-        <div class="project-links">
-            <a href="blog_Transformer.html">📝 Blog</a>
-            <a href="Blog_TransformerTypes.html">📝 Types</a>
-            <a href="blog_MemTransformer.html">📝 Memory Transformers</a>
-        </div>
-    </div>
-
-    <div class="project-images">
-        <img src="im/transformer.png">
-    </div>
-</div>
-
-<!-- PROJECT 6 -->
-<div class="project">
-    <div class="project-text">
-        <h3>Graph Neural Networks</h3>
-        <p class="project-desc">
-            Learning representations from graph-structured data.
-        </p>
-
-        <div class="project-links">
-            <a href="blog_GNN.html">📝 Blog</a>
-        </div>
-    </div>
-</div>
-
-<!-- PROJECT 7 -->
-<div class="project">
-    <div class="project-text">
-        <h3>Control Theory & Nonlinear Dynamics</h3>
-        <p class="project-desc">
-            Studying synchronization, oscillators, and complex network dynamics.
-        </p>
-
-        <div class="project-links">
-            <a href="blog_sync.html">📝 Blog</a>
-        </div>
-
-        <ul class="pub-list">
-            <li><a href="#">Synchronization of Kuramoto model</a></li>
-            <li><a href="#">Explosive synchronization</a></li>
-        </ul>
-    </div>
-
-    <div class="project-images">
-        <img src="im/theory.png">
-    </div>
-</div>
-
-</section>
-
-<section>
-<h2>Contact</h2>
-<p>Email: <a href="mailto:sara.ameli.ka@gmail.com">sara.ameli.ka@gmail.com</a></p>
-</section>
-
-</body>
-</html>
+  );
+}
