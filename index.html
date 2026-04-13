@@ -20,7 +20,7 @@ header {
     padding: 50px 20px;
 }
 
-/* FILTERS */
+/* FILTER BUTTONS */
 .filters {
     text-align: center;
     margin: 20px;
@@ -32,13 +32,24 @@ header {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    background: #eee;
     font-weight: bold;
+    color: white;
+    transition: 0.2s;
 }
 
+.filters button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.all { background: #555; }
+.ai-btn { background: #007acc; }
+.cloud-btn { background: #2ecc71; }
+.theory-btn { background: #9b59b6; }
+.systems-btn { background: #e67e22; }
+
 .filters button.active {
-    background: #007acc;
-    color: white;
+    outline: 3px solid black;
 }
 
 /* GRID */
@@ -54,13 +65,14 @@ header {
 /* CARD */
 .card {
     display: block;
-    text-decoration: none;
-    color: inherit;
     padding: 15px;
     border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     transition: 0.25s;
     position: relative;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -83,7 +95,7 @@ header {
     font-size: 22px;
 }
 
-/* CATEGORY COLORS */
+/* CATEGORY STYLES */
 
 /* AI */
 .card.ai {
@@ -137,7 +149,6 @@ header {
     font-size: 22px;
     cursor: pointer;
 }
-
 </style>
 </head>
 
@@ -148,53 +159,60 @@ header {
     <p>AI Research | Cloud | Complex Systems</p>
 </header>
 
+<!-- FILTERS -->
 <div class="filters">
-    <button class="active" onclick="filterProjects('all')">All</button>
-    <button onclick="filterProjects('AI')">AI</button>
-    <button onclick="filterProjects('Cloud')">Cloud</button>
-    <button onclick="filterProjects('Theory')">Theory</button>
-    <button onclick="filterProjects('Systems')">Systems</button>
+    <button class="active all" onclick="filterProjects('all', event)">All</button>
+    <button class="ai-btn" onclick="filterProjects('AI', event)">🧠 AI</button>
+    <button class="cloud-btn" onclick="filterProjects('Cloud', event)">☁️ Cloud</button>
+    <button class="theory-btn" onclick="filterProjects('Theory', event)">📈 Theory</button>
+    <button class="systems-btn" onclick="filterProjects('Systems', event)">⚙️ Systems</button>
 </div>
 
+<!-- GRID -->
 <div class="grid">
 
 <!-- AI -->
-<div class="card ai" data-category="AI" onclick="openModal('Human Tracking', '3D tracking using point clouds.', 'https://example.com')">
-    <span class="icon">🧠</span>
-    <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
-    <h3>Human Tracking</h3>
-    <p>3D point cloud detection and motion estimation.</p>
-</div>
-
-<div class="card ai" data-category="AI" onclick="openModal('Transformers', 'Sequence modeling for NLP.', 'blog_Transformer.html')">
+<div class="card ai" data-category="AI"
+onclick="openModal('Transformers & Conformers','Sequence modeling for NLP and speech tasks.','blog_Transformer.html')">
     <span class="icon">🧠</span>
     <img src="im/transformer.png">
     <h3>Transformers & Conformers</h3>
     <p>Sequence modeling for NLP and speech tasks.</p>
 </div>
 
+<div class="card ai" data-category="AI"
+onclick="openModal('Human Tracking','3D point cloud detection and motion estimation.','#')">
+    <span class="icon">🧠</span>
+    <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
+    <h3>Human Tracking</h3>
+    <p>3D tracking and motion estimation.</p>
+</div>
+
 <!-- CLOUD -->
-<div class="card cloud" data-category="Cloud" onclick="openModal('IoT Cloud', 'Multimodal IoT systems.', 'blog-IOTinCloud.html')">
+<div class="card cloud" data-category="Cloud"
+onclick="openModal('Multimodal IoT','Visual data processing in cloud systems.','blog-IOTinCloud.html')">
     <span class="icon">☁️</span>
     <img src="images/associative_computing.jpg">
     <h3>Multimodal IoT</h3>
-    <p>Visual data processing in cloud systems.</p>
+    <p>Cloud-based visual systems.</p>
 </div>
 
 <!-- THEORY -->
-<div class="card theory" data-category="Theory" onclick="openModal('Control Theory', 'Nonlinear dynamics.', 'blog_sync.html')">
+<div class="card theory" data-category="Theory"
+onclick="openModal('Control Theory','Nonlinear dynamics and synchronization.','blog_sync.html')">
     <span class="icon">📈</span>
     <img src="im/theory.png">
     <h3>Control Theory</h3>
-    <p>Nonlinear dynamics and synchronization.</p>
+    <p>Nonlinear systems and stability.</p>
 </div>
 
 <!-- SYSTEMS -->
-<div class="card systems" data-category="Systems" onclick="openModal('AWS Infra', 'Cloud infrastructure.', 'https://github.com')">
+<div class="card systems" data-category="Systems"
+onclick="openModal('AWS Infrastructure','Highly available cloud architecture.','https://github.com')">
     <span class="icon">⚙️</span>
     <img src="im/Untitled-2025-04-28-1344(3).svg">
     <h3>AWS Infrastructure</h3>
-    <p>Highly available systems.</p>
+    <p>Multi-AZ scalable systems.</p>
 </div>
 
 </div>
@@ -210,8 +228,7 @@ header {
 </div>
 
 <script>
-
-function filterProjects(category) {
+function filterProjects(category, event) {
     let cards = document.querySelectorAll(".card");
     let buttons = document.querySelectorAll(".filters button");
 
@@ -245,7 +262,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
 </script>
 
 </body>
