@@ -45,8 +45,8 @@ header {
 .all { background: #555; }
 .ai-btn { background: #007acc; }
 .cloud-btn { background: #2ecc71; }
-.theory-btn { background: #9b59b6; }
-.systems-btn { background: #e67e22; }
+.nonlinear-btn { background: #9b59b6; }
+.neuro-btn { background: #e67e22; }
 
 .filters button.active {
     outline: 3px solid black;
@@ -111,19 +111,19 @@ header {
 }
 .card.cloud h3 { color: #2ecc71; }
 
-/* THEORY */
-.card.theory {
+/* NONLINEAR DYNAMICS */
+.card.nonlinear {
     border-left: 6px solid #9b59b6;
     background: linear-gradient(to right, #faf5ff, white);
 }
-.card.theory h3 { color: #9b59b6; }
+.card.nonlinear h3 { color: #9b59b6; }
 
-/* SYSTEMS */
-.card.systems {
+/* NEUROMORPHIC */
+.card.neuro {
     border-left: 6px solid #e67e22;
     background: linear-gradient(to right, #fff7f0, white);
 }
-.card.systems h3 { color: #e67e22; }
+.card.neuro h3 { color: #e67e22; }
 
 /* MODAL */
 .modal {
@@ -156,7 +156,7 @@ header {
 
 <header>
     <h1>Sara Ameli</h1>
-    <p>AI Research | Cloud | Complex Systems</p>
+    <p>AI Research | Cloud | Neuromorphic Computing | Nonlinear Dynamics</p>
 </header>
 
 <!-- FILTERS -->
@@ -164,8 +164,8 @@ header {
     <button class="active all" onclick="filterProjects('all', event)">All</button>
     <button class="ai-btn" onclick="filterProjects('AI', event)">🧠 AI</button>
     <button class="cloud-btn" onclick="filterProjects('Cloud', event)">☁️ Cloud</button>
-    <button class="theory-btn" onclick="filterProjects('Theory', event)">📈 Theory</button>
-    <button class="systems-btn" onclick="filterProjects('Systems', event)">⚙️ Systems</button>
+    <button class="nonlinear-btn" onclick="filterProjects('Nonlinear', event)">📈 Nonlinear</button>
+    <button class="neuro-btn" onclick="filterProjects('Neuro', event)">⚡ Neuro</button>
 </div>
 
 <!-- GRID -->
@@ -180,39 +180,31 @@ onclick="openModal('Transformers & Conformers','Sequence modeling for NLP and sp
     <p>Sequence modeling for NLP and speech tasks.</p>
 </div>
 
-<div class="card ai" data-category="AI"
-onclick="openModal('Human Tracking','3D point cloud detection and motion estimation.','#')">
-    <span class="icon">🧠</span>
-    <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
-    <h3>Human Tracking</h3>
-    <p>3D tracking and motion estimation.</p>
-</div>
-
 <!-- CLOUD -->
 <div class="card cloud" data-category="Cloud"
-onclick="openModal('Multimodal IoT','Visual data processing in cloud systems.','blog-IOTinCloud.html')">
+onclick="openModal('Multimodal IoT','Cloud-based visual systems.','blog-IOTinCloud.html')">
     <span class="icon">☁️</span>
     <img src="images/associative_computing.jpg">
     <h3>Multimodal IoT</h3>
-    <p>Cloud-based visual systems.</p>
+    <p>Visual data processing in cloud systems.</p>
 </div>
 
-<!-- THEORY -->
-<div class="card theory" data-category="Theory"
+<!-- NONLINEAR -->
+<div class="card nonlinear" data-category="Nonlinear"
 onclick="openModal('Control Theory','Nonlinear dynamics and synchronization.','blog_sync.html')">
     <span class="icon">📈</span>
     <img src="im/theory.png">
-    <h3>Control Theory</h3>
-    <p>Nonlinear systems and stability.</p>
+    <h3>Nonlinear Dynamics</h3>
+    <p>Complex systems and synchronization.</p>
 </div>
 
-<!-- SYSTEMS -->
-<div class="card systems" data-category="Systems"
-onclick="openModal('AWS Infrastructure','Highly available cloud architecture.','https://github.com')">
-    <span class="icon">⚙️</span>
-    <img src="im/Untitled-2025-04-28-1344(3).svg">
-    <h3>AWS Infrastructure</h3>
-    <p>Multi-AZ scalable systems.</p>
+<!-- NEUROMORPHIC -->
+<div class="card neuro" data-category="Neuro"
+onclick="openModal('Hopfield Networks','Associative memory and neuromorphic models.','blog_Hopfield.html')">
+    <span class="icon">⚡</span>
+    <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
+    <h3>Neuromorphic Computing</h3>
+    <p>Brain-inspired computation and memory systems.</p>
 </div>
 
 </div>
@@ -244,7 +236,6 @@ function filterProjects(category, event) {
     });
 }
 
-/* MODAL */
 function openModal(title, desc, link) {
     document.getElementById("popup").style.display = "block";
     document.getElementById("modal-title").innerText = title;
