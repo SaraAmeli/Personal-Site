@@ -283,7 +283,12 @@ onclick="openModal('Collective dynamics of a population is ruled by a manifold d
 -->
 
 
-<div class="card nonlinear" data-category="Nonlinear">
+<div class="card nonlinear" data-category="Nonlinear"
+onclick="openModal(
+'Collective dynamics of a population is ruled by a manifold defined by the parameters of interaction',
+'Nonlinear dynamics and synchronization.',
+'blog_sync.html'
+)">
 
     <span class="icon">📈</span>
     <img src="Pspace8.png">
@@ -292,13 +297,24 @@ onclick="openModal('Collective dynamics of a population is ruled by a manifold d
     <p>Low-dimensional behavior of generalized Kuramoto model</p>
 
     <div class="links">
-        <a href="https://your-publication-link.com" target="_blank">
-            📄 View Publication
+
+        <a href="https://your-publication-link.com"
+           target="_blank"
+           onclick="event.stopPropagation()">
+           📄 Publication
         </a>
 
-        <a href="blog_sync.html">
-            📝 Blog
+        <a href="blog_sync.html"
+           onclick="event.stopPropagation()">
+           📝 Blog
         </a>
+
+        <a href="https://github.com/your-repo"
+           target="_blank"
+           onclick="event.stopPropagation()">
+           💻 Code
+        </a>
+
     </div>
 
 </div>
