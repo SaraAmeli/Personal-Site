@@ -55,75 +55,50 @@ header {
 /* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     max-width: 1100px;
     margin: auto;
     gap: 20px;
     padding: 20px;
 }
 
-/* CARD */
-.card {
-    display: block;
-    padding: 15px;
-    border-radius: 12px;
-    text-decoration: none;
-    color: inherit;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: 0.25s;
-    position: relative;
-    cursor: pointer;
+/* CATEGORY CARD */
+.category-card {
+    border-radius: 16px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
-.card:hover {
-    transform: translateY(-6px);
+/* CATEGORY COLORS */
+.category-card.ai { border-left: 6px solid #007acc; }
+.category-card.cloud { border-left: 6px solid #2ecc71; }
+.category-card.nonlinear { border-left: 6px solid #9b59b6; }
+.category-card.neuro { border-left: 6px solid #e67e22; }
+
+/* TITLE */
+.category-card h2 {
+    margin-bottom: 15px;
 }
 
-/* IMAGE */
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+/* SUB GRID */
+.sub-grid {
+    display: grid;
+    gap: 15px;
+}
+
+/* SUB CARD */
+.sub-card {
+    padding: 12px;
     border-radius: 10px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-/* ICON */
-.icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 22px;
+.sub-card:hover {
+    transform: translateY(-3px);
 }
-
-/* CATEGORY STYLES */
-
-/* AI */
-.card.ai {
-    border-left: 6px solid #007acc;
-    background: linear-gradient(to right, #f0f8ff, white);
-}
-.card.ai h3 { color: #007acc; }
-
-/* CLOUD */
-.card.cloud {
-    border-left: 6px solid #2ecc71;
-    background: linear-gradient(to right, #f0fff5, white);
-}
-.card.cloud h3 { color: #2ecc71; }
-
-/* NONLINEAR DYNAMICS */
-.card.nonlinear {
-    border-left: 6px solid #9b59b6;
-    background: linear-gradient(to right, #faf5ff, white);
-}
-.card.nonlinear h3 { color: #9b59b6; }
-
-/* NEUROMORPHIC */
-.card.neuro {
-    border-left: 6px solid #e67e22;
-    background: linear-gradient(to right, #fff7f0, white);
-}
-.card.neuro h3 { color: #e67e22; }
 
 /* MODAL */
 .modal {
@@ -156,7 +131,7 @@ header {
 
 <header>
     <h1>Sara Ameli</h1>
-    This page is under construction
+    <p>This page is under construction</p>
     <p>AI Research | Cloud | Neuromorphic Computing | Nonlinear Dynamics</p>
 </header>
 
@@ -165,193 +140,89 @@ header {
     <button class="active all" onclick="filterProjects('all', event)">All</button>
     <button class="ai-btn" onclick="filterProjects('AI', event)">🧠 AI</button>
     <button class="cloud-btn" onclick="filterProjects('Cloud', event)">☁️ Cloud</button>
-    <button class="nonlinear-btn" onclick="filterProjects('Nonlinear', event)">📈 Nonlinear Dynamics</button>
-    <button class="neuro-btn" onclick="filterProjects('Neuro', event)">⚡ Neuromorphic Computing</button>
+    <button class="nonlinear-btn" onclick="filterProjects('Nonlinear', event)">📈 Nonlinear</button>
+    <button class="neuro-btn" onclick="filterProjects('Neuro', event)">⚡ Neuro</button>
 </div>
 
 <!-- GRID -->
 <div class="grid">
 
 <!-- AI -->
- <div class="card ai" data-category="AI"
-onclick="openModal('Benchmarking CNN- and Transformer-Based Models for Surgical Instrument Segmentation in Robotic-Assisted Surgery','Sequence modeling for NLP and speech tasks.','blog_Transformer.html')">
-    <span class="icon">🧠</span>
-    <img src="im/42F20.png">
-    <h3>Video Processing</h3>
-    <p>Sequence modeling for NLP and speech tasks.</p>
-</div>
- 
-
-<div class="card ai" data-category="AI"
-onclick="openModal('Transformers & Conformers','Sequence modeling for NLP and speech tasks.','blog_Transformer.html')">
-    <span class="icon">🧠</span>
-    <img src="im/transformer.png">
-    <h3>Audio Processing</h3>
-    <p>Sequence modeling for NLP and speech tasks.</p>
-</div>    
-
-<div class="card ai" data-category="AI"
-onclick="openModal('Transformers & Conformers','Sequence modeling for NLP and speech tasks.','blog_Transformer.html')">
-    <span class="icon">🧠</span>
-    <img src="im/transformer.png">
-    <h3>Language Processing</h3>
-    <p>Sequence modeling for NLP and speech tasks.</p>
-</div>   
-
-
-<!-- NEUROMORPHIC -->
-<div class="card neuro" data-category="Neuromorphic Computing"
-onclick="openModal('Hopfield Networks','Associative memory and neuromorphic models.','blog_Hopfield.html')">
-    <span class="icon">⚡</span>
-    <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
-    <h3>Neuromorphic Computing</h3>
-    <p>Brain-inspired computation and memory systems.</p>
-</div>
-
-<!-- <div class="card neuro" data-category="Neuromorphic Computing"
-onclick="openModal('Hopfield Networks','Associative memory and neuromorphic models.','blog_Hopfield.html')">
-    <span class="icon">⚡</span>
-    <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
-    <h3>Associative Memories</h3>
-    <p>.</p>
+<div class="category-card ai" data-category="AI">
+    <h2>🧠 AI</h2>
+    <div class="sub-grid">
+        <div class="sub-card" onclick="openModal('Video Processing','Sequence modeling','blog_Transformer.html')">
+            <h3>Video Processing</h3>
+            <p>Sequence modeling</p>
+        </div>
+        <div class="sub-card" onclick="openModal('Audio Processing','Speech modeling','blog_Transformer.html')">
+            <h3>Audio Processing</h3>
+            <p>Speech & signals</p>
+        </div>
+        <div class="sub-card" onclick="openModal('Language Processing','NLP models','blog_Transformer.html')">
+            <h3>Language Processing</h3>
+            <p>Transformers</p>
+        </div>
     </div>
--->
-
-    <a href="AM.html"
-   class="card neuro"
-   data-category="Neuro">
-
-    <span class="icon">⚡</span>
-    <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
-    <h3>Associative Memories</h3>
-    <p>.</p>
-
-</a>
-    
-
-
-<div class="card neuro" data-category="Neuromorphic Computing"
-onclick="openModal('Hopfield Networks','Associative memory and neuromorphic models.','blog_Hopfield.html')">
-    <span class="icon">⚡</span>
-    <img src="im/memories_are_stored_in_a_landscape_-_cropped.png">
-    <h3>Neuromorphic Computing</h3>
-    <p>Brain-inspired computation and memory systems.</p>
 </div>
-    
 
 <!-- CLOUD -->
-<div class="card cloud" data-category="Cloud"
-onclick="openModal('Multimodal IoT','Cloud-based visual systems.','blog-IOTinCloud.html')">
-    <span class="icon">☁️</span>
-    <img src="im/Untitled-2025-04-28-1344(3).svg">
-    <h3>Highly Available AWS Cloud Infrastructure</h3>
-    <p>  </p>
+<div class="category-card cloud" data-category="Cloud">
+    <h2>☁️ Cloud</h2>
+    <div class="sub-grid">
+        <div class="sub-card">
+            <h3>AWS Infrastructure</h3>
+            <p>Highly available setup</p>
+        </div>
+        <div class="sub-card">
+            <h3>Multimodal IoT</h3>
+            <p>Cloud-based systems</p>
+        </div>
+        <div class="sub-card">
+            <h3>Generative AI</h3>
+            <p>LLMs in AWS</p>
+        </div>
+    </div>
 </div>
-
-<div class="card cloud" data-category="Cloud"
-onclick="openModal('Multimodal IoT','Cloud-based visual systems.','blog-IOTinCloud.html')">
-    <span class="icon">☁️</span>
-    <img src="images/associative_computing.jpg">
-    <h3>Multimodal IoT in Cloud</h3>
-    <p><a href="blog-IOTinCloud.html">📝 Blog: IOT in Cloud</a></p>    
-    <a href="https://github.com/SaraAmeli/Multimodal-IOT-in-cloud" target="_blank"> <i class="fab fa-github"></i> Code</a>
-</div>
-
-<!-- <div class="card cloud" data-category="Cloud"
-onclick="openModal('Multimodal IoT','Cloud-based visual systems.','blog-IOTinCloud.html')">
-    <span class="icon">☁️</span>
-    <img src="images/associative_computing.jpg">
-    <h3>AWS Generative AI </h3>
-    <p>LLM in AWS</p>
-</div>
--->
-<a href="aws_infra.html" class="card cloud" data-category="Cloud">
-    <span class="icon">☁️</span>
-    <img src="im/Untitled-2025-04-28-1344(3).svg">
-    <h3>Highly Available AWS Cloud Infrastructure</h3>
-</a>
 
 <!-- NONLINEAR -->
-<!--<div class="card nonlinear" data-category="Nonlinear Dynamics"
-onclick="openModal('Control Theory','Nonlinear dynamics and synchronization.','blog_sync.html')">
-    <span class="icon">📈</span>
-    <img src="im/1-s2.0-S0167278924003002-gr2.jpg">
-    <h3>Synchronization Transition</h3>
-    <p>Complex systems and synchronization.</p>
-</div>-->
-
-
-    <a href="blog_sync.html"
-   class="card nonlinear"
-   data-category="Nonlinear Dynamics">
-
-    <span class="icon">⚡</span>
-    <img src="im/1-s2.0-S0167278924003002-gr2.jpg">
-    <h3>Synchronization Transition</h3>
-    <p>.</p>
-
-</a>
-    
-
-<!--<div class="card nonlinear" data-category="Nonlinear Dynamics"
-onclick="openModal('Collective dynamics of a population is ruled by a manifold defined by the parameters of interaction','Nonlinear dynamics and synchronization.','blog_sync.html')">
-    <span class="icon">📈</span>
-    <img src="Pspace8.png">
-    <h3>Low Dimentional Manifolds</h3>
-    <p> Low-dimensional behavior of generalized Kuramoto model</p>
-</div>
--->
-
-
-<div class="card nonlinear" data-category="Nonlinear"
-onclick="openModal(
-'Collective dynamics of a population is ruled by a manifold defined by the parameters of interaction',
-'Nonlinear dynamics and synchronization.',
-'blog_sync.html'
-)">
-
-    <span class="icon">📈</span>
-    <img src="Pspace8.png">
-
-    <h3>Low Dimensional Manifolds</h3>
-    <p>Low-dimensional behavior of generalized Kuramoto model</p>
-
-    <div class="links">
-
-        <a href="https://your-publication-link.com"
-           target="_blank"
-           onclick="event.stopPropagation()">
-           📄 Publication
-        </a>
-
-        <a href="blog_sync.html"
-           onclick="event.stopPropagation()">
-           📝 Blog
-        </a>
-
-        <a href="https://github.com/your-repo"
-           target="_blank"
-           onclick="event.stopPropagation()">
-           💻 Code
-        </a>
-
+<div class="category-card nonlinear" data-category="Nonlinear">
+    <h2>📈 Nonlinear Dynamics</h2>
+    <div class="sub-grid">
+        <div class="sub-card">
+            <h3>Synchronization</h3>
+            <p>Complex systems</p>
+        </div>
+        <div class="sub-card">
+            <h3>Manifolds</h3>
+            <p>Low-dimensional dynamics</p>
+        </div>
+        <div class="sub-card">
+            <h3>Network Effects</h3>
+            <p>Topology & delay</p>
+        </div>
     </div>
-
 </div>
 
-    
-<a href="https://pubs.aip.org/aip/cha/article-abstract/31/11/113125/342037/Time-delayed-Kuramoto-model-in-the-Watts-Strogatz"
-   target="_blank"
-   class="card nonlinear"
-   data-category="Nonlinear">
+<!-- NEURO -->
+<div class="category-card neuro" data-category="Neuro">
+    <h2>⚡ Neuromorphic</h2>
+    <div class="sub-grid">
+        <div class="sub-card">
+            <h3>Hopfield Networks</h3>
+            <p>Associative memory</p>
+        </div>
+        <div class="sub-card">
+            <h3>Associative Memories</h3>
+            <p>Memory landscapes</p>
+        </div>
+        <div class="sub-card">
+            <h3>Brain-inspired Systems</h3>
+            <p>Neuromorphic models</p>
+        </div>
+    </div>
+</div>
 
-    <span class="icon">📈</span>
-    <img src="im/9a-chimeraD.png">
-    <h3>Delay and Network Topology</h3>
-    <p>Effect of network topology and latency on collective behavior in complex networks</p>
-
-</a>
-    
 </div>
 
 <!-- MODAL -->
@@ -360,13 +231,13 @@ onclick="openModal(
     <span class="close" onclick="closeModal()">&times;</span>
     <h2 id="modal-title"></h2>
     <p id="modal-desc"></p>
-    <a id="modal-link" href="#" target="_blank">🔗 View Publication / Blog</a>
+    <a id="modal-link" href="#" target="_blank">🔗 View</a>
   </div>
 </div>
 
 <script>
 function filterProjects(category, event) {
-    let cards = document.querySelectorAll(".card");
+    let cards = document.querySelectorAll(".category-card");
     let buttons = document.querySelectorAll(".filters button");
 
     buttons.forEach(btn => btn.classList.remove("active"));
@@ -400,8 +271,8 @@ window.onclick = function(event) {
 }
 </script>
 
-
-
+</body>
+</html>
 
 
 
