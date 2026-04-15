@@ -79,44 +79,20 @@ header {
     gap: 15px;
 }
 
-/* SUB CARD */
+/* SUB CARD AS LINK */
 .sub-card {
+    display: block;
     padding: 15px;
     border-radius: 10px;
     background: #f9f9f9;
-    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
     transition: 0.25s;
-    position: relative;
 }
 
 .sub-card:hover {
-    transform: translateY(-3px);
-}
-
-/* EXPANDABLE CONTENT */
-.sub-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    margin-top: 10px;
-}
-
-.sub-card.active .sub-content {
-    max-height: 200px;
-}
-
-/* little arrow */
-.sub-card::after {
-    content: "▼";
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 12px;
-    transition: transform 0.3s;
-}
-
-.sub-card.active::after {
-    transform: rotate(180deg);
+    transform: translateY(-4px);
+    background: #f0f0f0;
 }
 </style>
 </head>
@@ -142,119 +118,92 @@ header {
 
 <!-- AI -->
 <div class="category-card ai" data-category="AI">
-    <h2>AI</h2>
+    <h2>🧠 AI</h2>
     <div class="sub-grid">
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="video.html" class="sub-card">
             <h3>Video Processing</h3>
-            <div class="sub-content">
-                <p>Sequence modeling for video understanding.</p>
-                <a href="#">🔗 View Project</a>
-            </div>
-        </div>
+            <p>Sequence modeling for video understanding</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="audio.html" class="sub-card">
             <h3>Audio Processing</h3>
-            <div class="sub-content">
-                <p>Speech and signal modeling.</p>
-                <a href="#">🔗 View Project</a>
-            </div>
-        </div>
+            <p>Speech and signal models</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="nlp.html" class="sub-card">
             <h3>Language Processing</h3>
-            <div class="sub-content">
-                <p>Transformers and NLP systems.</p>
-                <a href="#">🔗 View Project</a>
-            </div>
-        </div>
+            <p>Transformers & NLP</p>
+        </a>
 
     </div>
 </div>
 
 <!-- CLOUD -->
 <div class="category-card cloud" data-category="Cloud">
-    <h2>Cloud</h2>
+    <h2>☁️ Cloud</h2>
     <div class="sub-grid">
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="aws_infra.html" class="sub-card">
             <h3>AWS Infrastructure</h3>
-            <div class="sub-content">
-                <p>Highly available cloud architecture.</p>
-            </div>
-        </div>
+            <p>Highly available cloud architecture</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="blog-IOTinCloud.html" class="sub-card">
             <h3>Multimodal IoT</h3>
-            <div class="sub-content">
-                <p>IoT systems integrated with cloud.</p>
-            </div>
-        </div>
+            <p>Cloud-based IoT systems</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="aws_genai.html" class="sub-card">
             <h3>Generative AI</h3>
-            <div class="sub-content">
-                <p>Deploying LLMs in AWS.</p>
-            </div>
-        </div>
+            <p>LLMs in AWS</p>
+        </a>
 
     </div>
 </div>
 
 <!-- NONLINEAR -->
 <div class="category-card nonlinear" data-category="Nonlinear">
-    <h2>Nonlinear Dynamics</h2>
+    <h2>📈 Nonlinear Dynamics</h2>
     <div class="sub-grid">
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="blog_sync.html" class="sub-card">
             <h3>Synchronization</h3>
-            <div class="sub-content">
-                <p>Complex systems behavior.</p>
-            </div>
-        </div>
+            <p>Complex systems</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="manifolds.html" class="sub-card">
             <h3>Manifolds</h3>
-            <div class="sub-content">
-                <p>Low-dimensional dynamics.</p>
-            </div>
-        </div>
+            <p>Low-dimensional dynamics</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="network.html" class="sub-card">
             <h3>Network Effects</h3>
-            <div class="sub-content">
-                <p>Topology and delay.</p>
-            </div>
-        </div>
+            <p>Topology & delay</p>
+        </a>
 
     </div>
 </div>
 
 <!-- NEURO -->
 <div class="category-card neuro" data-category="Neuro">
-    <h2>Neuromorphic</h2>
+    <h2>⚡ Neuromorphic</h2>
     <div class="sub-grid">
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="blog_Hopfield.html" class="sub-card">
             <h3>Hopfield Networks</h3>
-            <div class="sub-content">
-                <p>Associative memory models.</p>
-            </div>
-        </div>
+            <p>Associative memory</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="AM.html" class="sub-card">
             <h3>Associative Memories</h3>
-            <div class="sub-content">
-                <p>Energy-based memory systems.</p>
-            </div>
-        </div>
+            <p>Energy-based models</p>
+        </a>
 
-        <div class="sub-card" onclick="toggleCard(this)">
+        <a href="neuromorphic.html" class="sub-card">
             <h3>Brain-inspired Systems</h3>
-            <div class="sub-content">
-                <p>Neuromorphic computing.</p>
-            </div>
-        </div>
+            <p>Neuromorphic computing</p>
+        </a>
 
     </div>
 </div>
@@ -277,16 +226,10 @@ function filterProjects(category, event) {
         }
     });
 }
-
-/* EXPAND / COLLAPSE */
-function toggleCard(card) {
-    card.classList.toggle("active");
-}
 </script>
 
 </body>
 </html>
-
 
 
 
