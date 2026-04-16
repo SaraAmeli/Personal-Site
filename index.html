@@ -20,32 +20,6 @@ header {
     padding: 50px 20px;
 }
 
-/* FILTERS */
-.filters {
-    text-align: center;
-    margin: 20px;
-}
-
-.filters button {
-    padding: 10px 18px;
-    margin: 6px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    color: white;
-}
-
-.all { background: #555; }
-.ai-btn { background: #007acc; }
-.cloud-btn { background: #2ecc71; }
-.nonlinear-btn { background: #9b59b6; }
-.neuro-btn { background: #e67e22; }
-
-.filters button.active {
-    outline: 3px solid black;
-}
-
 /* GRID */
 .grid {
     display: grid;
@@ -79,7 +53,7 @@ header {
     gap: 15px;
 }
 
-/* SUB CARD AS LINK */
+/* SUB CARD */
 .sub-card {
     display: block;
     padding: 15px;
@@ -94,180 +68,8 @@ header {
     transform: translateY(-4px);
     background: #f0f0f0;
 }
-</style>
-</head>
 
-<body>
-
-<header>
-    <h1>Sara Ameli</h1>
-    <p>AI Research | Cloud | Neuromorphic Computing | Nonlinear Dynamics</p>
-</header>
-
-<!-- FILTERS -->
-<div class="filters">
-    <button class="active all" onclick="filterProjects('all', event)">All</button>
-    <button class="ai-btn" onclick="filterProjects('AI', event)">AI</button>
-    <button class="cloud-btn" onclick="filterProjects('Cloud', event)">Cloud</button>
-    <button class="nonlinear-btn" onclick="filterProjects('Nonlinear', event)">Nonlinear</button>
-    <button class="neuro-btn" onclick="filterProjects('Neuro', event)">Neuro</button>
-</div>
-
-<!-- GRID -->
-<div class="grid">
-
-<!-- AI -->
-<div class="category-card ai" data-category="AI">
-    <h2>🧠 AI</h2>
-    <div class="sub-grid">
-
-        <a href="video.html" class="sub-card">
-            <h3>Video Processing</h3>
-            <p>Sequence modeling for video understanding</p>
-
-        </a>
-
-        <a href="audio.html" class="sub-card">
-            <h3>Audio Processing</h3>
-            <p>Speech and signal models</p>
-        </a>
-
-        <a href="blog_LRM.html" class="sub-card">
-            <h3>Language Processing</h3>
-            <p>Transformers & NLP</p>
-        </a>
-
-    </div>
-</div>
-
-<!-- CLOUD -->
-<div class="category-card cloud" data-category="Cloud">
-    <h2>☁️ Cloud</h2>
-    <div class="sub-grid">
-
-        <a href="aws_infra.html" class="sub-card">
-            <h3>AWS Infrastructure</h3>
-            <p>Highly available cloud architecture</p>
-        </a>
-
-        <a href="blog-IOTinCloud.html" class="sub-card">
-            <h3>Multimodal IoT</h3>
-            <p>Cloud-based IoT systems</p>
-        </a>
-
-        <a href="aws_genai.html" class="sub-card">
-            <h3>Generative AI</h3>
-            <p>LLMs in AWS</p>
-        </a>
-
-    </div>
-</div>
-
-
-<!-- NEURO -->
-<div class="category-card neuro" data-category="Neuro">
-    <h2>⚡ Neuromorphic</h2>
-    <div class="sub-grid">
-
-        <a href="blog_Hopfield.html" class="sub-card">
-            <h3>Hopfield Networks</h3>
-            <p>Associative memory</p>
-        </a>
-
-        <a href="AM.html" class="sub-card">
-            <h3>Associative Memories</h3>
-            <p>Energy-based models</p>
-        </a>
-
-        <a href="neuromorphic.html" class="sub-card">
-            <h3>Brain-inspired Systems</h3>
-            <p>Neuromorphic computing</p>
-        </a>
-
-    </div>
-</div>
-
-    
-<!-- NONLINEAR -->
-<div class="category-card nonlinear" data-category="Nonlinear">
-    <h2>📈 Nonlinear Dynamics</h2>
-    <div class="sub-grid">
-
-        <a href="blog_sync.html" class="sub-card">
-            <h3>Synchronization</h3>
-            <p>Complex systems</p>
-        </a>
-
-        <a href="manifolds.html" class="sub-card">
-            <h3>Manifolds</h3>
-            <p>Low-dimensional dynamics</p>
-        </a>
-
-        <a href="network.html" class="sub-card">
-            <h3>Network Effects</h3>
-            <p>Topology & delay</p>
-        </a>
-
-    </div>
-</div>
-</div>
-
-<script>
-function filterProjects(category, event) {
-    let cards = document.querySelectorAll(".category-card");
-    let buttons = document.querySelectorAll(".filters button");
-
-    buttons.forEach(btn => btn.classList.remove("active"));
-    event.target.classList.add("active");
-
-    cards.forEach(card => {
-        if (category === "all" || card.dataset.category === category) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-}
-</script>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<head>
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sara</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
-
-header {
-    background: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
+/* PROJECT SECTION */
 section {
     padding: 20px;
     max-width: 1000px;
@@ -279,8 +81,6 @@ h2 {
     border-bottom: 2px solid #007acc;
     padding-bottom: 5px;
 }
-
-/* PROJECT LAYOUT */
 
 .project {
     display: flex;
@@ -298,8 +98,6 @@ h2 {
     padding-right: 20px;
 }
 
-/* IMAGE COLUMN */
-
 .project-images {
     display: flex;
     flex-direction: column;
@@ -315,8 +113,6 @@ h2 {
 .project-images img:hover {
     transform: scale(1.05);
 }
-
-/* PUBLICATIONS */
 
 .pub-list {
     margin-top: 10px;
@@ -337,14 +133,9 @@ h2 {
 }
 
 /* MOBILE */
-
 @media (max-width: 768px) {
     .project {
         flex-direction: column;
-    }
-
-    .project-text {
-        padding-right: 0;
     }
 
     .project-images {
@@ -357,460 +148,129 @@ h2 {
     }
 }
 </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
-
-</body>
-</html>
-
-
-
-
-
-
-    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <h1>Other Projects</h1>
-        <p> </p>
 
-        <style>
-.project img {
-    margin-top: 80px;
-}
-</style>
-        
-    </header>
+<header>
+    <h1>Sara Ameli</h1>
+    <p>AI Research | Cloud | Neuromorphic Computing | Nonlinear Dynamics</p>
+</header>
 
+<!-- GRID -->
+<div class="grid">
 
-
-
-
-    
-    <section>
-        <h2>Projects</h2>
-
-
-
-    <div class="project">
-         <div class="project-text">
-            <h3>Human Tracking</h3>
-            <p>Exploring </p>
-            <h4>Publications:</h4>
-            <ul class="pub-list">
-                <li><a href="https://www.researchgate.net/publication/400359763_Human_Tracking_in_3D_Point_Cloud_Sequences_Detection_Tracking_and_Motion_Estimation?channel=doi&linkId=698112b47247bc6473dd8e5a&showFulltext=true" target="_blank">Human Tracking in 3D Point Cloud Sequences Detection, Tracking, and Motion Estimation</a></li>    </ul>
-         </div>
-         <a href="https://www.researchgate.net/publication/400359763_Human_Tracking_in_3D_Point_Cloud_Sequences_Detection_Tracking_and_Motion_Estimation?channel=doi&linkId=698112b47247bc6473dd8e5a&showFulltext=true" target="_blank" rel="noopener noreferrer">
-         <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg" alt="">
-
-         <p><a href="blog_3DPointCloud.html">📝 Blog: 3D Point Cloud Sequences Detection</a></p>
+<!-- AI -->
+<div class="category-card ai">
+    <h2>🧠 AI</h2>
+    <div class="sub-grid">
+        <a href="video.html" class="sub-card">
+            <h3>Video Processing</h3>
+            <p>Sequence modeling</p>
+        </a>
+        <a href="audio.html" class="sub-card">
+            <h3>Audio Processing</h3>
+            <p>Speech models</p>
+        </a>
+        <a href="blog_LRM.html" class="sub-card">
+            <h3>Language Processing</h3>
+            <p>Transformers & NLP</p>
+        </a>
     </div>
+</div>
 
+<!-- CLOUD -->
+<div class="category-card cloud">
+    <h2>☁️ Cloud</h2>
+    <div class="sub-grid">
+        <a href="aws_infra.html" class="sub-card">
+            <h3>AWS Infrastructure</h3>
+        </a>
+        <a href="blog-IOTinCloud.html" class="sub-card">
+            <h3>Multimodal IoT</h3>
+        </a>
+        <a href="aws_genai.html" class="sub-card">
+            <h3>Generative AI</h3>
+        </a>
+    </div>
+</div>
 
-        
+<!-- NEURO -->
+<div class="category-card neuro">
+    <h2>⚡ Neuromorphic</h2>
+    <div class="sub-grid">
+        <a href="blog_Hopfield.html" class="sub-card">
+            <h3>Hopfield Networks</h3>
+        </a>
+        <a href="AM.html" class="sub-card">
+            <h3>Associative Memories</h3>
+        </a>
+        <a href="neuromorphic.html" class="sub-card">
+            <h3>Brain-inspired Systems</h3>
+        </a>
+    </div>
+</div>
 
+<!-- NONLINEAR -->
+<div class="category-card nonlinear">
+    <h2>📈 Nonlinear Dynamics</h2>
+    <div class="sub-grid">
+        <a href="blog_sync.html" class="sub-card">
+            <h3>Synchronization</h3>
+        </a>
+        <a href="manifolds.html" class="sub-card">
+            <h3>Manifolds</h3>
+        </a>
+        <a href="network.html" class="sub-card">
+            <h3>Network Effects</h3>
+        </a>
+    </div>
+</div>
 
+</div>
 
-        
+<!-- OTHER PROJECTS -->
+<section>
+    <h2>Other Projects</h2>
+
     <div class="project">
         <div class="project-text">
-            <h3> NAS </h3>
-            <p>  </p>
-        
-                <p><a href="blog_NAS.html">📝 Blog: NAS </a></p>
-        </div>
-
-        <img src="im/Audio.png" 
-             alt="" 
-             width="300" height="auto">
-    </div> 
-
-         
-        
-        <div class="project"> 
-            <div class="project-text">
-                <h3>AWS Generative AI </h3>
-                <p>Amazon Bedrock and Q Developer</p>
-                
-                <p><a href="blog_AWSGenerativeAI.html">📝 Blog: AWS Generative AI</a></p>
-
-                <p><a href="blog_LLMinAWS.html">📝 Blog: LLM in AWS </a></p>
-
-            </div>
-
-        </div>
-
-
-        
-        <div class="project"> 
-            <div class="project-text">
-                <h3>Multimodal IOT in cloud</h3>
-                <p>Building algorithms for visual data analysis, transformation, and enhancement, including motion tracking and object detection.</p>
-
+            <h3>Human Tracking</h3>
             <ul class="pub-list">
-                <li><a href="https://github.com/SaraAmeli/Multimodal-IOT-in-cloud" target="_blank"> <i class="fab fa-github"></i> Code</a></li>
+                <li>
+                    <a href="https://www.researchgate.net/publication/400359763_Human_Tracking_in_3D_Point_Cloud_Sequences_Detection_Tracking_and_Motion_Estimation" target="_blank">
+                        Human Tracking in 3D Point Cloud Sequences
+                    </a>
+                </li>
             </ul>
-                <p><a href="blog-IOTinCloud.html">📝 Blog: IOT in Cloud</a></p>
-            </div>
-            <img src="images/associative_computing.jpg" alt="">
-
+            <p><a href="blog_3DPointCloud.html">📝 Blog</a></p>
         </div>
+        <img src="Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg">
+    </div>
 
+    <div class="project">
+        <div class="project-text">
+            <h3>NAS</h3>
+            <p><a href="blog_NAS.html">📝 Blog</a></p>
+        </div>
+    </div>
 
-        <div class="project">
-            <div class="project">
-                <div class="project-text">
-                    <h3>Highly Available AWS Cloud Infrastructure</h3>
-                    <p>Multi-AZ WordPress Deployment:</p>
-                    <ul>
-                        <li>Private and public subnets</li>
-                        <li>Launching EC2 instances running WordPress and a database locally</li>
-                        <li>Optionally launching a Bastion Host for improved security</li>
-                        <li>Fully automated setup with user data script</li>
-                        <li>Implement core services like autoscaling and load balancing</li>
-                        <li>Launch EC2 instances in multiple Availability Zones (AZs)</li>
-                        <li>Using NAT Gateway </li>
-                    </ul>
-                </div>
-            </div>
-
-            <img src="im/Untitled-2025-04-28-1344(3).svg" 
-                 alt="Image processing illustration" 
-                 width="300" height="auto">            
-            <ul class="pub-list">
-                <li><a href="https://github.com/SaraAmeli/terraform-wordpress-multiple-AZ" target="_blank"> <i class="fab fa-github"></i> Code</a></li>
-            </ul>
-
-        </div>        
-
-        
     <div class="project">
         <div class="project-text">
             <h3>Audio Compression</h3>
-            <p> High fidelity audio compression</p>
-        
-            <p><a href="blog_Audio.html">📝 Blog: Speech and Language Processing Approaches</a></p>
+            <p><a href="blog_Audio.html">📝 Blog</a></p>
         </div>
-
-        <img src="im/Audio.png" 
-             alt="" 
-             width="300" height="auto">
-    </div>        
-        
-
-<div class="project">
-    <div class="project-text">
-        <h3>Transformers and Conformers</h3>
-        <p>Exploring transformer and conformer architectures for sequence modeling, natural language processing, and audio/speech understanding tasks.</p>
-    
-        <p><a href="blog_Transformer.html">📝 Blog: Transformers & Conformers</a></p>
-        
-        <p><a href="Blog_TransformerTypes.html">📝 Blog: Transformers types and hardware implementations</a></p>
-        
-        <p><a href="blog_MemTransformer.html">📝 Blog: Memory Transformers </a></p>
+        <img src="im/Audio.png">
     </div>
 
-    <a href="https://arxiv.org/abs/1706.03762" target="_blank">
-        <img src="im/transformer.png" 
-             alt="Transformers and Conformers illustration" 
-             width="300" height="auto">
-    </a>
-</div>
+</section>
 
+<section>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:sara.ameli.ka@gmail.com">sara.ameli.ka@gmail.com</a></p>
+</section>
 
-        
-     <div class="project">
-            <div class="project-text">
-                <h3>State-space models from a control theory perspective</h3>
-                <p>Investigating State-space models.</p>
-            </div>
-            <img src="images/generative_learning.jpg" alt="">
-
-            <ul class="pub-list">
-                <p><a href="blog_SSM.html">📝 Blog: State-space models </a></p>
-            </ul>
-    </div>
-
-        
-
-
-
-     <div class="project">
-            <div class="project-text">
-                <h3>Edge computing </h3>
-                <p>  </p>
-            </div>
-    
-            <ul class="pub-list">
-                <p><a href="blog_Edge.html">📝 Blog: Edge computing</a></p>
-            </ul>
-    </div>
-
-        
-     <div class="project">
-            <div class="project-text">
-                <h3>On-Chip Learning </h3>
-                <p>  </p>
-            </div>
-    
-            <ul class="pub-list">
-                <p><a href="blog_On-chip learning.html">📝 Blog: On-Chip Learning of Memristor-Based Hardware</a></p>
-            </ul>
-    </div>
-        
-
-    <div class="project">
-        <div class="project-text">
-            <h3>Graph Neural Networks</h3>
-            <p>gnn</p>
-            <p><a href="blog_GNN.html">📝 Blog: GNNs</a></p>
-        </div>
-    </div>
-
-
-
-        
-        <div class="project">
-            <div class="project-text">
-                <h3>Image/Video Processing</h3>
-                <p>Building algorithms for visual data analysis, transformation, and enhancement, including motion tracking and object detection.</p>
-                <h4>Publications:</h4>
-
-                Coming soon ...
-                <ul class="pub-list">
-                    <li><a href="https://example.com/pub10" target="_blank">Benchmarking CNN- and Transformer-Based Models for Surgical Instrument Segmentation in Robotic-Assisted Surgery</a></li>
-
-                </ul>
-            </div>
-
-            <img src="im/42F20.png" 
-     alt="Image processing illustration" 
-     width="300" height="auto">
-            
-            <ul class="pub-list"> 
-                <li><a href="https://github.com/SaraAmeli/Video-Processing-in-Surgical-Instrument-Segmentation" target="_blank"> <i class="fab fa-github"></i> Code</a></li>
-
-            </ul>
-        </div>
-
-
-
-        <div class="project">
-            <div class="project-text">
-                <h3>PET Image Processing</h3>
-                <p>  </p>
-            </div>
-        </div>
-
-
-
-
-
-        
-     <div class="project">
-            <div class="project-text">
-                <h3>Generative Learning</h3>
-                <p>Investigating AI models for creative and generative problem-solving in text, audio, and visual domains.</p>
-            </div>
-            <img src="images/generative_learning.jpg" alt="">
-
-            <ul class="pub-list">
-                <li><a href="https://github.com/SaraAmeli/Efficient-Image-Encoder" target="_blank"> <i class="fab fa-github"></i> Code</a></li>
-            </ul>
-    </div>
-        
-        
-    <div class="project">
-        <div class="project-text">
-            <h3>Hopfield Networks</h3>
-            <p>Classic vs. modern</p>
-            <p><a href="blog_Hopfield.html">📝 Blog: Hopfield Networks</a></p>
-        </div>
-
-        <a href="https://www.sainsburywellcome.org/web/blog/hopfield-hinton-and-hassabis-2024-nobel-laureates-shaping-neuroscience" target="_blank" rel="noopener noreferrer">
-            <img src="im/memories_are_stored_in_a_landscape_-_cropped.png" 
-                 alt="Transformers and Conformers illustration" 
-                 width="300" height="auto">
-        </a>
-    </div>
-
-        
-
-<div class="project">
-
-    <div class="project-text">
-        <h3>Associative Computing</h3>
-        <p>Your description here.</p>
-
-        <h4>Publications:</h4>
-        <ul class="pub-list">
-            <li>
-                <a href="LINK_TO_PAPER">
-                    Paper title
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="project-images">
-        <a href="LINK_TO_PAPER">
-            <img src="im/your_image.png" alt="Associative computing">
-        </a>
-    </div>
-
-</div>
-
-
-    
-<div class="project">
-    <div class="project-text">
-        <h3>Material Research for Neuromorphic Computing</h3>
-        <p>Mott memristors for neuromorphic computing.</p>
-        <h4>Publication:</h4>
-        <ul class="pub-list">
-            <li>
-                <a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.107.075154" target="_blank">
-                    Mott memristors based on field-induced carrier avalanche multiplication.
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="project-images">
-        <a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.107.075154" target="_blank">
-            <img src="im/medium0.png" 
-                 alt="Neuromorphic research illustration" 
-                 width="300" height="auto">
-        </a>
-
-        <a href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.107.075154" target="_blank">
-            <img src="im/medium.png" 
-                 alt="Second neuromorphic research image" 
-                 width="300" height="auto">
-        </a>
-    </div>
-</div>
-
-        
-<div class="project">
-    <div class="project-text">
-        <h3>Control Theory and Iterative Control</h3>
-        <p>Designing feedback and feedforward control strategies for dynamic systems.</p>
-
-        <h4>Publication:</h4>
-        <ul class="pub-list">
-            <li>
-                <a href="https://pubs.aip.org/aip/cha/article/34/10/103129/3317174" target="_blank">
-                    Arnold’s tongue for digital oscillators
-                </a>
-            </li>
-
-            <li>
-                <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GCviBK0AAAAJ&sortby=pubdate&citation_for_view=GCviBK0AAAAJ:_Qo2XoVZTnwC">
-                    Event-based model for digital oscillators
-                </a>
-            </li>
-        </ul>
-
-        <p><a href="blog-IControl.html">📝 Blog</a></p>
-    </div>
-
-    <div class="project-images">
-        <a href="https://pubs.aip.org/aip/cha/article/34/10/103129/3317174">
-            <img src="im/Parameter16.png">
-        </a>
-
-        <a href="https://pubs.aip.org/aip/cha/article/34/10/103129/3317174">
-            <img src="im/103129_1_5.0223068.figures.online.f1.jpeg">
-        </a>
-    </div>
-</div>
-
-
-<div class="project">
-    <div class="project-text">
-
-        <h3>Nonlinear Dynamics in Networks</h3>
-        <p>Studying how complex network systems behave under nonlinear interactions.</p>
-
-        <h4>Publications:</h4>
-
-        <ul class="pub-list">
-            <li>
-                <a href="https://arxiv.org/abs/2502.00884">
-                    Synchronization of the time-delayed Kuramoto model in a regular network
-                </a>
-            </li>
-
-            <li>
-                <a href="https://www.sciencedirect.com/science/article/pii/S0167278924003002">
-                    Two-step and explosive synchronization in frequency-weighted Kuramoto model
-                </a>
-            </li>
-
-            <li>
-                <a href="https://link.springer.com/article/10.1007/s11071-022-07703-0">
-                    Low-dimensional behavior of generalized Kuramoto model
-                </a>
-            </li>
-
-            <li>
-                <a href="https://pubs.aip.org/aip/cha/article-abstract/31/11/113125/342037/Time-delayed-Kuramoto-model-in-the-Watts-Strogatz">
-                    Time-delayed Kuramoto model in the Watts–Strogatz small-world networks
-                </a>
-            </li>
-        </ul>
-
-        <p><a href="blog_sync.html">📝 Blog: Synchronization</a></p>
-
-    </div>
-
-    <div class="project-images">
-        <img src="im/theory.png">
-        <img src="im/1-s2.0-S0167278924003002-gr2.jpg">
-        <img src="Pspace8.png">
-        <img src="im/9a-chimeraD.png">
-    </div>
-</div>
-
-
-
-
-<style>
-.pub-item{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-}
-
-.pub-text{
-    width: 70%;
-}
-
-.pub-fig img{
-    width: 180px;
-    border-radius: 6px;
-    transition: transform 0.2s;
-}
-
-.pub-fig img:hover{
-    transform: scale(1.05);
-}
-</style>
-
-
-        
-    </section>
-
-    <section>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:your@email.com">sara.ameli.ka@gmail.com</a></p>
-    </section>
-
-
-    
 </body>
 </html>
