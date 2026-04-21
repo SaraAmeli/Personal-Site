@@ -1,150 +1,234 @@
-<h1>Modern Approaches to Audio Processing</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Modern Audio Processing — From Signal Processing to Transformers</title>
+
+<style>
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  line-height: 1.6;
+  color: #111;
+  padding: 28px;
+  max-width: 900px;
+  margin: auto;
+  background: #fafafa;
+}
+
+/* HEADINGS */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+  color: #0b9e8a;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin-top: 1.6rem;
+  color: #0b9e8a;
+}
+
+/* SECTION CARDS */
+.section {
+  margin: 14px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #0b9e8a;
+  background: #f3fffc;
+  border-radius: 8px;
+}
+
+/* HIGHLIGHT */
+.highlight {
+  background: #eef7ff;
+  border-left: 4px solid #007acc;
+}
+
+/* TEXT */
+.meta {
+  font-weight: 600;
+  color: #0b9e8a;
+}
+
+.desc {
+  margin-top: 6px;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* LIST */
+ul {
+  margin: 8px 0 12px 20px;
+}
+
+/* LINKS */
+a {
+  color: #0b9e8a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* CODE */
+code {
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 30px;
+  font-size: 0.85rem;
+  color: #555;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Modern Audio Processing</h1>
 
 <p>
-Audio processing has evolved rapidly over the past decade, transitioning from traditional signal processing techniques to deep learning-driven systems. Today, state-of-the-art models leverage large-scale data, self-supervised learning, and transformer architectures to achieve remarkable performance across tasks such as speech recognition, audio classification, and sound generation.
+Audio processing has evolved from handcrafted signal processing techniques to powerful deep learning systems capable of understanding speech, music, and environmental sounds. 
+Recent advances focus on transformer-based models, self-supervised learning, and multimodal systems that learn directly from raw audio.
 </p>
 
-<h2>1. Traditional Audio Processing Methods</h2>
+<hr/>
 
-<p>
-Early audio processing relied heavily on handcrafted features and statistical models. Common techniques included:
-</p>
+<h2>1. Traditional Audio Processing</h2>
 
-<ul>
-    <li><b>Fourier Transform & Spectrograms</b> – Representing audio in the frequency domain</li>
-    <li><b>MFCC (Mel-Frequency Cepstral Coefficients)</b> – Widely used for speech recognition</li>
-    <li><b>Hidden Markov Models (HMMs)</b> – Modeling temporal sequences</li>
-</ul>
+<div class="section">
+  <div class="meta">Signal-Based Methods</div>
+  <div class="desc">
+    Early audio systems relied on mathematical transformations:
+    <ul>
+      <li>Fourier Transform & Spectrograms</li>
+      <li>MFCC (Mel-Frequency Cepstral Coefficients)</li>
+      <li>Filter banks and signal decomposition</li>
+    </ul>
+    These approaches required domain expertise and were sensitive to noise.
+  </div>
+</div>
 
-<p>
-While effective, these methods required domain expertise and struggled with noisy, real-world data.
-</p>
+<h2>2. Deep Learning for Audio</h2>
 
-<h2>2. Deep Learning-Based Audio Processing</h2>
+<div class="section">
+  <div class="meta">Learning Representations</div>
+  <div class="desc">
+    Neural networks replaced handcrafted features:
+    <ul>
+      <li>CNNs applied to spectrograms (treating audio as images)</li>
+      <li>RNNs / LSTMs for temporal modeling</li>
+    </ul>
+    These methods improved performance but struggled with long-range dependencies.
+  </div>
+</div>
 
-<p>
-The introduction of deep learning brought significant improvements by learning features directly from data.
-</p>
+<h2>3. Transformer-Based Audio Models</h2>
 
-<h3>Convolutional Neural Networks (CNNs)</h3>
-<p>
-CNNs process spectrograms like images, capturing spatial patterns in frequency-time representations.
-</p>
+<div class="section highlight">
+  <div class="meta">Attention for Audio</div>
+  <div class="desc">
+    Transformers introduced attention mechanisms to capture global dependencies:
+    <ul>
+      <li>Parallel processing of entire audio sequences</li>
+      <li>Better modeling of long-term context</li>
+    </ul>
 
-<h3>Recurrent Neural Networks (RNNs, LSTMs)</h3>
-<p>
-RNN-based models capture temporal dependencies in audio sequences, making them suitable for speech and sequential signals.
-</p>
+    Modern systems like Whisper integrate encoder-decoder transformers for speech-to-text tasks :contentReference[oaicite:0]{index=0}.
+  </div>
+</div>
 
-<p>
-These approaches significantly improved performance but still relied on labeled data and struggled with long-range dependencies.
-</p>
+<h2>4. Self-Supervised Audio Models</h2>
 
-<h2>3. Transformer-Based Audio Models (Recent Breakthrough)</h2>
+<div class="section">
+  <div class="meta">Learning Without Labels</div>
+  <div class="desc">
+    Models such as <code>wav2vec 2.0</code> learn directly from raw audio without labeled data:
+    <ul>
+      <li>Pre-training on large unlabeled datasets</li>
+      <li>Fine-tuning for speech recognition tasks</li>
+    </ul>
 
-<p>
-Transformers revolutionized audio processing by introducing attention mechanisms that capture long-range dependencies efficiently.
-</p>
+    These models achieve strong performance even with limited labeled data :contentReference[oaicite:1]{index=1}.
+  </div>
+</div>
 
-<ul>
-    <li><b>Self-attention mechanisms</b> allow models to focus on important parts of the audio</li>
-    <li><b>Parallel processing</b> improves training efficiency</li>
-</ul>
+<h2>5. Conformer Models (Hybrid Approach)</h2>
 
-<p>
-Transformer-based models are now dominant in speech processing tasks :contentReference[oaicite:0]{index=0}.
-</p>
+<div class="section">
+  <div class="meta">Best of CNNs + Transformers</div>
+  <div class="desc">
+    Conformer models combine:
+    <ul>
+      <li>Transformers → global context</li>
+      <li>Convolutions → local feature extraction</li>
+    </ul>
 
-<h3>Whisper</h3>
-<p>
-Whisper is a large-scale supervised model trained on hundreds of thousands of hours of labeled audio. It performs multiple tasks including transcription, translation, and language identification with strong robustness to noise and accents :contentReference[oaicite:1]{index=1}.
-</p>
+    This hybrid design is widely used in modern speech recognition systems :contentReference[oaicite:2]{index=2}.
+  </div>
+</div>
 
-<h3>Wav2Vec 2.0 (Self-Supervised Learning)</h3>
-<p>
-Wav2Vec 2.0 learns directly from raw audio without requiring labeled data, making it highly efficient. It pre-trains on unlabeled speech and fine-tunes for specific tasks, significantly reducing the need for annotated datasets :contentReference[oaicite:2]{index=2}.
-</p>
+<h2>6. Emerging Trends</h2>
 
-<h2>4. Conformer Models (Hybrid Architectures)</h2>
-
-<p>
-Conformer models combine the strengths of transformers and convolutional networks:
-</p>
-
-<ul>
-    <li>Transformers → capture global dependencies</li>
-    <li>Convolutions → capture local patterns</li>
-</ul>
-
-<p>
-This hybrid design achieves state-of-the-art performance in speech recognition tasks :contentReference[oaicite:3]{index=3}.
-</p>
-
-<h2>5. Emerging Trends in Audio Processing</h2>
-
-<ul>
-    <li><b>Self-Supervised Learning</b> – Reduces dependency on labeled data</li>
-    <li><b>Multimodal Learning</b> – Combining audio with text, vision, or sensors</li>
-    <li><b>End-to-End Models</b> – Direct mapping from raw audio to output</li>
-    <li><b>Generative Audio Models</b> – Music and speech synthesis (e.g., AudioLM, MusicGen)</li>
-</ul>
-
-<p>
-Recent research shows that performance depends not only on model size but also on training data diversity and realism :contentReference[oaicite:4]{index=4}.
-</p>
+<div class="section">
+  <div class="meta">Future of Audio AI</div>
+  <div class="desc">
+    <ul>
+      <li>Self-supervised learning at scale</li>
+      <li>Multimodal systems (audio + text + vision)</li>
+      <li>End-to-end speech pipelines</li>
+      <li>Generative audio models (music & speech synthesis)</li>
+    </ul>
+  </div>
+</div>
 
 <h2>Summary</h2>
 
-<ul>
-    <li><b>Traditional methods</b>: Feature engineering + statistical models</li>
-    <li><b>Deep learning</b>: CNNs and RNNs improved accuracy</li>
-    <li><b>Transformers</b>: Dominant modern approach</li>
-    <li><b>Self-supervised models</b>: Reduce labeling cost</li>
-    <li><b>Conformers</b>: Best of both worlds (local + global features)</li>
-</ul>
+<div class="section highlight">
+  <div class="desc">
+    <ul>
+      <li><b>Traditional methods</b> → Signal processing</li>
+      <li><b>Deep learning</b> → CNNs & RNNs</li>
+      <li><b>Transformers</b> → Global context modeling</li>
+      <li><b>Self-supervised models</b> → Less labeled data</li>
+      <li><b>Conformers</b> → State-of-the-art hybrid approach</li>
+    </ul>
 
-<p>
-Overall, the field is moving toward large-scale, data-driven models that learn directly from raw audio and generalize across tasks.
-</p>
+    Audio processing is shifting toward large-scale, data-driven models that learn directly from raw signals and generalize across tasks.
+  </div>
+</div>
 
 <h2>My Project: Speech Transformer Benchmark</h2>
 
-<p>
-To explore these modern approaches in practice, I developed a benchmark for evaluating transformer-based speech models.
-</p>
+<div class="section">
+  <div class="meta">Evaluating Modern Speech Models</div>
+  <div class="desc">
+    This project benchmarks Whisper-based speech models on the LibriSpeech dataset:
+    <ul>
+      <li>Evaluation of Whisper Tiny, Base, and Small models</li>
+      <li>Word Error Rate (WER) computation</li>
+      <li>Inference latency benchmarking</li>
+      <li>Automated evaluation pipeline</li>
+    </ul>
 
-<p><b>Project Highlights:</b></p>
+    It highlights the trade-off between transcription accuracy and computational efficiency.
+    <br/><br/>
 
-<ul>
-    <li>Evaluation of multiple Whisper model variants</li>
-    <li>Word Error Rate (WER) computation</li>
-    <li>Inference latency benchmarking</li>
-    <li>Automated evaluation pipeline</li>
-    <li>Visualization of performance metrics</li>
-</ul>
+    👉 <a href="https://github.com/SaraAmeli/Video-Processing-in-Surgical-Instrument-Segmentation" target="_blank">
+    View GitHub Repository
+    </a>
+  </div>
+</div>
 
-<p><b>Dataset:</b> LibriSpeech</p>
+<footer>
+Sara Ameli — Audio Processing • AI • Research
+</footer>
 
-<p><b>Models Evaluated:</b></p>
-<ul>
-    <li>Whisper Tiny</li>
-    <li>Whisper Base</li>
-    <li>Whisper Small</li>
-</ul>
-
-<p><b>Evaluation Metrics:</b></p>
-<ul>
-    <li>Word Error Rate (WER)</li>
-    <li>Inference Latency</li>
-</ul>
-
-<p>
-This project highlights the trade-off between transcription accuracy and computational efficiency in modern speech models.
-</p>
-
-<p>
-👉 <b>GitHub Repository:</b><br>
-<a href="https://github.com/SaraAmeli/Video-Processing-in-Surgical-Instrument-Segmentation" target="_blank">
-https://github.com/SaraAmeli/Video-Processing-in-Surgical-Instrument-Segmentation
-</a>
-</p>
+</body>
+</html>
