@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Tracking in 3D Point Cloud Sequences Detection, Tracking, and Motion Estimation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+        }
+        .links {
+            margin-bottom: 30px;
+        }
+        .links a {
+            display: inline-block;
+            margin-right: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .figure {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .figure img {
+            max-width: 80%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .caption {
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Human Tracking in 3D Point Cloud Sequences Detection, Tracking, and Motion Estimation</h1>
+This report presents the design and implementation of a complete pipeline for processing, detecting, and tracking a human within timestamped 3D point cloud sequences stored as PCD files. The goal of the project is to compute a consistent human trajectory, maintain a stable identity across frames, and estimate instantaneous and smoothed velocity.The pipeline includes:
+  • Loading and parsing raw binary PCD files.
+  • Preprocessing and voxel downsampling.
+  • Human detection using DBSCAN clustering.
+  • Multi-frame temporal tracking via a Kalman Filter.
+  • Track-to-detection association using the Hungarian Algorithm.
+  • Trajectory and speed computation over time.
+  This workflow mirrors the perception stack used in autonomous robots, mobile mapping systems, and advanced motion analytics. 
+
+
+    <div class="links">
+        <a href="https:" target="_blank">
+            GitHub Code
+        </a>
+        <a href="https://www.researchgate.net/publication/400359763_Human_Tracking_in_3D_Point_Cloud_Sequences_Detection_Tracking_and_Motion_Estimation" target="_blank">
+            Publication
+        </a>
+    </div>
+
+    <div class="figure">
+        <img src="im/Reconstructed-trajectory-of-the-tracked-human-obtained-by-plotting-the-sequence-of_W640.jpg" alt="Figure 1">
+        <div class="caption">Fig. 1: .</div>
+    </div>
+
+</body>
+</html>
