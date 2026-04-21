@@ -44,6 +44,11 @@
 <body>
 
     <h1>Surgical Instrument Segmentation</h1>
+Accurate segmentation of surgical instruments in robotic-assisted surgery is critical for enabling context-aware computer-assisted interventions, such as tool tracking, workflow analysis, and autonomous decision-making. In this study, we benchmark five deep learning architectures—UNet, UNet++, DeepLabV3+, Attention UNet, and SegFormer—on the SAR-RARP50 dataset for multi-class semantic segmentation of surgical instruments in real-world radical prostatectomy videos. The models are trained with a compound loss function combining Cross-Entropy and Dice loss to address class imbalance and capture fine object boundaries.
+
+Our experiments reveal that while convolutional models such as UNet++ and Attention UNet provide strong baseline performance, DeepLabV3+ achieves results comparable to SegFormer, demonstrating the effectiveness of atrous convolution and multi-scale context aggregation in capturing complex surgical scenes. Transformer-based architectures like SegFormer further enhance global contextual understanding, leading to improved generalization across varying instrument appearances and surgical conditions.
+
+This work provides a comprehensive comparison and practical insights for selecting segmentation models in surgical AI applications, highlighting the trade-offs between convolutional and transformer-based approaches.
 
     <div class="links">
         <a href="https://github.com/SaraAmeli/Video-Processing-in-Surgical-Instrument-Segmentation" target="_blank">
