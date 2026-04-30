@@ -1,71 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Synchronization — Notes & Research</title>
+
 <style>
-.project{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-top: 3rem;
+:root {
+  --fg:#111;
+  --muted:#555;
+  --bg:#fff;
+  --card:#f7f7f8;
 }
 
-@media (min-width: 900px){
-    .project{
-        grid-template-columns: 1.2fr 1fr;
-        align-items: start;
-    }
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--fg);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+}
+
+/* LAYOUT */
+.wrap{
+  max-width:1000px;
+  margin:auto;
+  padding:2rem 1.25rem;
+}
+
+/* HEADER */
+header h1{
+  font-size:2rem;
+  margin:0;
+}
+header p{
+  color:var(--muted);
+  margin:.3rem 0 0;
+}
+
+/* ARTICLE */
+article{
+  display:grid;
+  gap:1.25rem;
+  margin-top:1.5rem;
+}
+@media (min-width: 820px){
+  article{
+    grid-template-columns:320px 1fr;
+  }
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  padding:1.25rem;
+  border-radius:16px;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+/* IMAGE (BOOK COVER) */
+figure{
+  margin:0;
+  border-radius:16px;
+  overflow:hidden;
+  background:var(--card);
+}
+figure img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* BUTTONS */
+.btns{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+  margin-top:.8rem;
+}
+a.btn{
+  padding:.6rem .9rem;
+  border-radius:999px;
+  text-decoration:none;
+  background:#111;
+  color:#fff;
+  font-size:.9rem;
+}
+a.btn.secondary{
+  background:#eaeaec;
+  color:#111;
+}
+
+/* CODE BLOCK */
+pre{
+  background:#fff;
+  border:1px solid #ececf1;
+  border-radius:12px;
+  padding:1rem;
+  overflow:auto;
+}
+
+/* PROJECT SECTION */
+.project{
+  display:grid;
+  gap:1.5rem;
+  margin-top:3rem;
+}
+@media (min-width:900px){
+  .project{
+    grid-template-columns:1.2fr 1fr;
+  }
 }
 
 /* TEXT SIDE */
 .project-text{
-    background: var(--card);
-    padding: 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  background:var(--card);
+  padding:1.5rem;
+  border-radius:16px;
+  box-shadow:0 2px 6px rgba(0,0,0,.05);
 }
 
-/* PUBLICATION LIST */
 .pub-list{
-    padding-left: 1.2rem;
+  padding-left:1.2rem;
 }
 .pub-list li{
-    margin-bottom: .6rem;
+  margin-bottom:.6rem;
 }
 .pub-list a{
-    text-decoration: none;
-    color: #111;
+  text-decoration:none;
+  color:#111;
 }
 .pub-list a:hover{
-    text-decoration: underline;
+  text-decoration:underline;
 }
 
-/* IMAGE GRID */
+/* IMAGE GRID FIX */
 .project-images{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
 
-/* IMAGE CARDS */
 .project-images img{
-    width: 100%;
-    height: 180px;              /* KEY FIX: forces uniform height */
-    object-fit: cover;         /* keeps proportions nicely cropped */
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    transition: transform .25s ease, box-shadow .25s ease;
+  width:100%;
+  height:180px;            /* uniform size */
+  object-fit:cover;        /* key fix */
+  border-radius:14px;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  transition:all .25s ease;
 }
 
-/* hover effect */
 .project-images img:hover{
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 18px rgba(0,0,0,.15);
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 10px 22px rgba(0,0,0,.15);
 }
 
-/* small screens */
-@media (max-width: 600px){
-    .project-images{
-        grid-template-columns: 1fr;
-    }
-    .project-images img{
-        height: 220px;
-    }
+/* MOBILE */
+@media (max-width:600px){
+  .project-images{
+    grid-template-columns:1fr;
+  }
+  .project-images img{
+    height:220px;
+  }
+}
+
+/* FOOTER */
+footer{
+  margin-top:2rem;
+  color:var(--muted);
+  font-size:.9rem;
 }
 </style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<header>
+  <h1>Synchronization — Book Notes</h1>
+  <p>By Pikovsky, Rosenblum & Kurths (2001)</p>
+</header>
+
+<article>
+
+  <figure>
+    <img src="81P-ArIdwYL._UF1000,1000_QL80_.jpg" alt="Book cover">
+  </figure>
+
+  <div>
+    <div class="card">
+      <h2>Synchronization</h2>
+      <p>
+        <strong>Authors:</strong> Arkady Pikovsky, Michael Rosenblum, Jürgen Kurths<br>
+        <strong>Publisher:</strong> Cambridge University Press<br>
+        <strong>Year:</strong> 2001
+      </p>
+
+      <div class="btns">
+        <a id="download-bib" class="btn" href="#">Download BibTeX</a>
+        <a class="btn secondary" href="#bibtex">View BibTeX</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+      <h2 id="bibtex">Collective Behavior in Networks</h2>
+      <pre><code>
+@book{pikovsky2001synchronization,
+  title={Synchronization: A Universal Concept in Nonlinear Sciences},
+  author={Pikovsky, A. and Rosenblum, M. and Kurths, J.},
+  year={2001},
+  publisher={Cambridge University Press}
+}
+      </code></pre>
+    </div>
+  </div>
+
+</article>
+
+<!-- PROJECT SECTION -->
+<div class="project">
+
+  <div class="project-text">
+    <h3>Nonlinear Dynamics in Networks</h3>
+    <p>Studying how complex systems behave under nonlinear interactions.</p>
+
+    <h4>Publications:</h4>
+    <ul class="pub-list">
+      <li><a href="https://arxiv.org/abs/2502.00884">Synchronization of the time-delayed Kuramoto model</a></li>
+      <li><a href="https://www.sciencedirect.com/science/article/pii/S0167278924003002">Explosive synchronization in frequency-weighted Kuramoto model</a></li>
+      <li><a href="https://link.springer.com/article/10.1007/s11071-022-07703-0">Low-dimensional behavior of generalized Kuramoto model</a></li>
+      <li><a href="https://pubs.aip.org/aip/cha/article-abstract/31/11/113125">Time-delayed Kuramoto model in small-world networks</a></li>
+    </ul>
+
+    <p><a href="blog_sync.html">📝 Blog: Synchronization</a></p>
+  </div>
+
+  <div class="project-images">
+    <img src="im/theory.png" alt="">
+    <img src="im/1-s2.0-S0167278924003002-gr2.jpg" alt="">
+    <img src="Pspace8.png" alt="">
+    <img src="im/9a-chimeraD.png" alt="">
+  </div>
+
+</div>
+
+<footer>
+  <p>Notes for personal study. All rights belong to the original authors.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var bibText = document.querySelector('#bibtex + pre code')?.innerText || '';
+  var href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(bibText);
+  var a = document.getElementById('download-bib');
+  if (a && bibText.trim().length) a.setAttribute('href', href);
+})();
+</script>
+
+</body>
+</html>
