@@ -1,0 +1,102 @@
+<article class="blog-post">
+
+    <header>
+        <h1>Associative Memories: From Theory to Memristive Hardware</h1>
+        <p class="subtitle">
+            How machines learn to recall patterns from partial information
+        </p>
+    </header>
+
+    <section>
+        <h2>What is Associative Memory?</h2>
+        <p>
+            Unlike conventional memory (e.g., RAM), where data is retrieved using an explicit address,
+            <strong>associative memory</strong> retrieves information based on its content.
+            This means that even a partial or noisy input can trigger the recall of a complete stored pattern.
+        </p>
+
+        <p>
+            This idea is deeply inspired by the human brain: hearing a fragment of a song or seeing part of an image
+            can bring back a full memory along with related experiences. In computational systems,
+            associative memory is often implemented using neural networks that store patterns as stable states,
+            which can be recovered through dynamic evolution of the system :contentReference[oaicite:0]{index=0}.
+        </p>
+
+        <p>
+            Classical models such as Hopfield networks and modern content-addressable memories aim to replicate this
+            behavior. More recently, <strong>memristor-based hardware</strong> has emerged as a promising platform,
+            enabling compact and energy-efficient implementations of brain-like associative learning :contentReference[oaicite:1]{index=1}.
+        </p>
+    </section>
+
+    <section>
+        <h2>Recent Advances</h2>
+
+        <h3>
+            <a href="https://openreview.net/forum?id=4Ne3hwJU2r" target="_blank">
+                Adaptive Associative Memory with Differentiable Content-Addressable Memories for Online Learning
+            </a>
+        </h3>
+        <p>
+            This work introduces an adaptive associative memory framework designed for <strong>online learning</strong>.
+            By leveraging differentiable content-addressable memory mechanisms, the model can continuously update
+            stored patterns while maintaining stable recall performance. This bridges the gap between classical
+            associative memory models and modern machine learning systems, enabling integration with gradient-based optimization.
+        </p>
+
+        <h3>
+            <a href="https://dl.acm.org/doi/full/10.1145/3767110.3767132" target="_blank">
+                Associative Clustering with Analog Content-Addressable Memory
+            </a>
+        </h3>
+        <p>
+            This paper explores <strong>analog content-addressable memory (CAM)</strong> for clustering tasks.
+            Instead of relying on digital representations, the approach uses analog dynamics to group similar patterns,
+            demonstrating how associative memory principles can naturally extend to unsupervised learning and
+            pattern organization in hardware-efficient systems.
+        </p>
+
+        <h3>
+            <a href="https://ieeexplore.ieee.org/abstract/document/10848806" target="_blank">
+                A Memristor Variation-Aware Analog Programming Circuit for Associative Memories
+            </a>
+        </h3>
+        <p>
+            One of the key challenges in memristive systems is device variability.
+            This work proposes a <strong>variation-aware programming circuit</strong> that improves robustness
+            and reliability in analog associative memory implementations, addressing a critical bottleneck
+            for real-world deployment.
+        </p>
+
+        <h3>
+            <a href="https://ieeexplore.ieee.org/abstract/document/10405732" target="_blank">
+                Analog Feedback-Controlled Memristor Programming Circuit for Analog Content Addressable Memory
+            </a>
+        </h3>
+        <p>
+            This study presents a <strong>feedback-controlled programming approach</strong> for memristors,
+            enabling precise tuning of analog states. Such control is essential for achieving accurate and stable
+            associative recall in hardware, especially when dealing with continuous-valued patterns.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why It Matters</h2>
+        <p>
+            Associative memory sits at the intersection of neuroscience, machine learning, and hardware design.
+            It enables systems that are:
+        </p>
+        <ul>
+            <li>Robust to noise and incomplete inputs</li>
+            <li>Capable of fast, parallel retrieval</li>
+            <li>Energy-efficient when implemented in analog or in-memory hardware</li>
+        </ul>
+
+        <p>
+            As emerging technologies like memristors continue to mature, associative memories are becoming
+            a key building block for next-generation computing systems that blur the boundary between
+            memory and computation.
+        </p>
+    </section>
+
+</article>
