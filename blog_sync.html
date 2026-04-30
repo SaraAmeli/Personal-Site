@@ -1,162 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Notes on “Synchronization” — Pikovsky, Rosenblum & Kurths (2001)</title>
-  <style>
-    :root { --fg:#111; --muted:#555; --bg:#fff; --card:#f7f7f8; }
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;}
-    .wrap{max-width:900px;margin:auto;padding:2rem 1.25rem;}
-    header h1{font-size:2rem; line-height:1.2; margin:0 0 .25rem;}
-    header p{color:var(--muted); margin:.25rem 0 0;}
-    article{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:1.25rem;}
-    @media (min-width: 820px){ article{grid-template-columns:320px 1fr;} }
-    figure{background:var(--card);margin:0;border-radius:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);}
-    figure img{display:block;width:100%;height:auto}
-    .card{background:var(--card);padding:1rem;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.05);}
-    h2{font-size:1.25rem;margin:0 0 .5rem}
-    .btns{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0 0}
-    a.btn{display:inline-block;padding:.6rem .9rem;border-radius:999px;text-decoration:none;background:#111;color:#fff}
-    a.btn.secondary{background:#eaeaec;color:#111}
-    code, pre{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;}
-    pre{white-space:pre-wrap;background:#fff;border:1px solid #ececf1;border-radius:12px;padding:1rem;margin:0}
-    footer{margin-top:2rem;color:var(--muted);font-size:.95rem}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <h1>Synchronization — Book Notes</h1>
-      <p>By Arkady Pikovsky, Michael Rosenblum, and Jürgen Kurths (Cambridge University Press, 2001)</p>
-    </header>
-
-    <article itemscope itemtype="https://schema.org/Book">
-      <figure>
-        <img src="81P-ArIdwYL._UF1000,1000_QL80_.jpg"
-             alt="Cover: Synchronization by Pikovsky, Rosenblum & Kurths"
-             loading="lazy" itemprop="image">
-      </figure>
-
-      <div>
-        <div class="card" style="margin-bottom:1rem">
-          <h2 itemprop="name">Synchronization</h2>
-          <p class="meta" style="margin:.25rem 0 0">
-            <strong>Authors:</strong>
-            <span itemprop="author">Arkady Pikovsky</span>,
-            <span itemprop="author">Michael Rosenblum</span>,
-            <span itemprop="author">Jürgen Kurths</span><br>
-            <strong>Publisher:</strong> <span itemprop="publisher">Cambridge University Press</span> —
-            <strong>Year:</strong> <span itemprop="datePublished">2001</span>
-          </p>
-          <div class="btns">
-            <!-- This link will be wired up by JS to download your exact BibTeX -->
-            <a id="download-bib" class="btn" href="#" download="pikovsky2001synchronization.bib">Download BibTeX</a>
-            <!-- Optional: jump to the BibTeX block below -->
-            <a class="btn secondary" href="#bibtex">View BibTeX</a>
-          </div>
-        </div>
-
-        <section class="card">
-          <h2 id="bibtex">  Collective behavior in networks </h2>
-          <pre><code>
-            
-            
-            </code></pre>
-        </section>
-      </div>
-    </article>
-
-    <footer>
-      <p>Notes compiled for personal study; all rights to the book remain with the authors and publisher.</p>
-    </footer>
-  </div>
-
-  <script>
-    // Turn the visible BibTeX above into a downloadable link (no external hosting needed).
-    (function () {
-      var bibText = document.querySelector('#bibtex + pre > code')?.innerText || '';
-      var href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(bibText);
-      var a = document.getElementById('download-bib');
-      if (a && bibText.trim().length) a.setAttribute('href', href);
-    }());
-  </script>
-
-
-
-  <div class="project">
-    <div class="project-text">
-
-        <h3>Nonlinear Dynamics in Networks</h3>
-        <p>Studying how complex network systems behave under nonlinear interactions.</p>
-
-        <h4>Publications:</h4>
-
-        <ul class="pub-list">
-            <li>
-                <a href="https://arxiv.org/abs/2502.00884">
-                    Synchronization of the time-delayed Kuramoto model in a regular network
-                </a>
-            </li>
-
-            <li>
-                <a href="https://www.sciencedirect.com/science/article/pii/S0167278924003002">
-                    Two-step and explosive synchronization in frequency-weighted Kuramoto model
-                </a>
-            </li>
-
-            <li>
-                <a href="https://link.springer.com/article/10.1007/s11071-022-07703-0">
-                    Low-dimensional behavior of generalized Kuramoto model
-                </a>
-            </li>
-
-            <li>
-                <a href="https://pubs.aip.org/aip/cha/article-abstract/31/11/113125/342037/Time-delayed-Kuramoto-model-in-the-Watts-Strogatz">
-                    Time-delayed Kuramoto model in the Watts–Strogatz small-world networks
-                </a>
-            </li>
-        </ul>
-
-        <p><a href="blog_sync.html">📝 Blog: Synchronization</a></p>
-
-    </div>
-
-    <div class="project-images">
-        <img src="im/theory.png">
-        <img src="im/1-s2.0-S0167278924003002-gr2.jpg">
-        <img src="Pspace8.png">
-        <img src="im/9a-chimeraD.png">
-    </div>
-</div>
-
-
-
-
 <style>
-.pub-item{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
+.project{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
 }
 
-.pub-text{
-    width: 70%;
+@media (min-width: 900px){
+    .project{
+        grid-template-columns: 1.2fr 1fr;
+        align-items: start;
+    }
 }
 
-.pub-fig img{
-    width: 180px;
-    border-radius: 6px;
-    transition: transform 0.2s;
+/* TEXT SIDE */
+.project-text{
+    background: var(--card);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
 }
 
-.pub-fig img:hover{
-    transform: scale(1.05);
+/* PUBLICATION LIST */
+.pub-list{
+    padding-left: 1.2rem;
+}
+.pub-list li{
+    margin-bottom: .6rem;
+}
+.pub-list a{
+    text-decoration: none;
+    color: #111;
+}
+.pub-list a:hover{
+    text-decoration: underline;
+}
+
+/* IMAGE GRID */
+.project-images{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+/* IMAGE CARDS */
+.project-images img{
+    width: 100%;
+    height: 180px;              /* KEY FIX: forces uniform height */
+    object-fit: cover;         /* keeps proportions nicely cropped */
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* hover effect */
+.project-images img:hover{
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 18px rgba(0,0,0,.15);
+}
+
+/* small screens */
+@media (max-width: 600px){
+    .project-images{
+        grid-template-columns: 1fr;
+    }
+    .project-images img{
+        height: 220px;
+    }
 }
 </style>
-
-
-
-</body>
-</html>
