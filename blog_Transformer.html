@@ -81,7 +81,17 @@
     </figure>
   </section>
 
-   <h2>4. FlashAttention</h2>
+   <h2>4. FlashAttention:  IO‑aware attention kernels</h2>
+    <ul>
+      <li><strong> IO-awareness </strong> 
+
+Minimising memory reads and writes between slow high bandwidth memory (HBM) and fast on-chip Static Random Access Memory (SRAM).
+
+Standard attention is memory-bound (limited by memory bandwidth rather than compute power).
+
+Flash attention reduces memory access complexity to ￼, where N is sequence length, d is head dimension, and M is SRAM size.</li>
+
+    </ul>  
 
   <footer>
     <p>📅 Last updated: August 2025</p>
