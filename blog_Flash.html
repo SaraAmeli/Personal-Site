@@ -45,19 +45,6 @@
   </header>
 
   <section>
-    <h2>1. Key Innovations in 2024-2025</h2>
-    <ul>
-      <li><strong>Mixture of Experts (MoE)</strong> scaling for efficiency.</li>
-      <li><strong>Sparse Attention</strong> for long-context processing.</li>
-      <li><strong>Multimodal Transformers</strong> for text, images, audio, and video.</li>
-      <li>Advances in <strong>instruction tuning</strong> and alignment.</li>
-    </ul>
-
-    <figure>
-      <img src="images/moe_architecture.png" alt="Mixture of Experts Architecture" width="80%">
-      <figcaption>Figure 2: Example of Mixture of Experts architecture for large models.</figcaption>
-    </figure>
-  </section>
 
    <h2>2. FlashAttention:  IO‑aware attention kernels</h2>
     <ul>
@@ -74,15 +61,19 @@ Flash attention reduces memory access complexity to ￼, where N is sequence len
       
 On GPUs, performance is often limited not by how many FLOPs the GPU can compute with its compute resources, but by how often data must be read from or written to slower memory units. In other words, the bottleneck is usually memory access rather than computation.
 
-<li><strong> Three components to optimise:</strong> .</li>
-</li>Compute: Time spent by the GPU computing floating point operations (FLOPS).</li>
-</li>Memory: Time spent transferring tensors within a GPU.</li>
-</li>Overhead: All other operations (Python interpreter, PyTorch dispatch,…).</li>
-    
-    
-    
-    </ul>  
 
+    <h2>Three components to optimise:</h2>
+    <ul>
+</li><strong>Compute:</strong> Time spent by the GPU computing floating point operations (FLOPS).</li>
+</li><strong>Memory:</strong> Time spent transferring tensors within a GPU.</li>
+</li><strong>Overhead:</strong> All other operations (Python interpreter, PyTorch dispatch,…).</li>
+    </ul>  
+    <figure>
+      <img src="images/moe_architecture.png" alt="Mixture of Experts Architecture" width="80%">
+      <figcaption>Figure 2: Example of Mixture of Experts architecture for large models.</figcaption>
+    </figure>
+  </section>
+  
   <footer>
     <p>📅 Last updated: August 2025</p>
     <p>✍️ Author: Sara Ameli | </p>
