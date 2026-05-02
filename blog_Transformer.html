@@ -91,6 +91,10 @@ Standard attention is memory-bound (limited by memory bandwidth rather than comp
 
 Flash attention reduces memory access complexity to ￼, where N is sequence length, d is head dimension, and M is SRAM size.</li>
 
+
+
+      
+On GPUs, performance is often limited not by how many FLOPs the GPU can compute with its compute resources, but by how often data must be read from or written to slower memory units. In other words, the bottleneck is usually memory access rather than computation.
     </ul>  
 
   <footer>
