@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Attention Mechanisms: Types & Hardware Implementations</title>
-  <meta name="description" content="A modern overview of attention mechanisms in deep learning—types, efficient variants, recent advances (2024–2026), and hardware implementations." />
-
+  <meta name="description" content="A clear, modern overview of attention mechanisms in deep learning—soft vs. hard, global vs. local, self/cross/multi-head, efficient variants—and the hardware that powers them." />
   <style>
+    /* --- Minimal, blog-friendly styling --- */
     :root {
       --bg: #0f1115;
       --card: #151823;
@@ -17,261 +17,341 @@
       --code: #0b0d12;
       --border: #242838;
     }
-
     * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--text);
-      background: var(--bg);
+      background: radial-gradient(1200px 800px at 10% -10%, #1c2132 0%, transparent 60%),
+                  radial-gradient(1200px 800px at 110% 10%, #1a2030 0%, transparent 60%),
+                  var(--bg);
       line-height: 1.6;
     }
-
     .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px 80px;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 56px 20px 96px;
     }
-
     header {
-      padding: 24px;
+      margin-bottom: 28px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(20,24,36,.8), rgba(20,24,36,.6));
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      color: var(--muted);
+      margin: 0;
+      font-size: 1rem;
+    }
+    nav.toc {
+      margin: 22px 0 32px;
+      padding: 18px 20px;
       border: 1px solid var(--border);
       border-radius: 14px;
       background: var(--card);
-      margin-bottom: 24px;
     }
+    nav.toc strong { display:block; margin-bottom: 8px; color: var(--accent); }
+    nav.toc a { color: var(--muted); text-decoration: none; }
+    nav.toc a:hover { color: var(--text); text-decoration: underline; }
 
-    h1 { margin: 0 0 10px; font-size: 2.4rem; }
-    h2 { margin-top: 20px; }
-    h3 { color: var(--accent); }
-
-    .subtitle { color: var(--muted); }
-
-    nav {
-      background: var(--card);
-      padding: 16px;
-      border-radius: 12px;
+    section.card {
       border: 1px solid var(--border);
-      margin-bottom: 20px;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px 22px;
+      margin-bottom: 18px;
     }
 
-    section {
-      background: var(--card);
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      margin-bottom: 16px;
-    }
+    h2 { margin-top: 12px; font-size: 1.6rem; letter-spacing: -.01em; }
+    h3 { margin-top: 16px; font-size: 1.15rem; color: var(--accent); }
+
+    p { margin: 10px 0 14px; }
+    ul { margin: 8px 0 14px 20px; }
+    li { margin: 6px 0; }
 
     .callout {
       border-left: 3px solid var(--accent);
-      padding: 10px;
-      background: rgba(122,162,247,0.08);
-      border-radius: 8px;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, rgba(122,162,247,.1), rgba(122,162,247,.04));
+      border-radius: 10px;
+      margin: 12px 0 2px;
     }
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-2); }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 880px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
     }
 
-    td, th {
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      background: var(--code);
       border: 1px solid var(--border);
-      padding: 8px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: .9em;
+      color: var(--muted);
     }
+
+    table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+    th, td { border: 1px solid var(--border); padding: 10px; }
+    th { text-align: left; background: rgba(255,255,255,0.02); }
+
+    footer {
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-align: center;
+    }
+
+
+
+a {
+  color: var(--accent);        /* light blue */
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--accent);        /* keep same color after visiting */
+}
+
+a:hover {
+  color: var(--accent-2);      /* lighter green on hover */
+  text-decoration: underline;
+}
+    
+    
   </style>
 </head>
-
 <body>
-<div class="container">
+  <div class="container">
+    <header>
+      <h1>Attention Mechanisms: Types & Hardware Implementations</h1>
+      <p class="subtitle">A concise, practical tour through soft vs. hard, local vs. global, self/cross/multi‑head, efficient variants — and the silicon that makes it all run.</p>
+    </header>
 
-<header>
-  <h1>Attention Mechanisms</h1>
-  <p class="subtitle">
-    Types, efficient variants, recent advances (2024–2026), and hardware implementations
-  </p>
-</header>
+    <nav class="toc">
+      <strong>On this page</strong>
+      <ol>
+        <li><a href="#what-is-attention">What is “attention”?</a></li>
+        <li><a href="#taxonomy">A taxonomy of attention</a></li>
+        <li><a href="#efficient">Efficient / sparse / structured attention</a></li>
+        <li><a href="#modality">Modality‑specific variants</a></li>
+        <li><a href="#hardware">Hardware implementations</a></li>
+        <li><a href="#summary">Summary table</a></li>
+      </ol>
+    </nav>
 
-<nav>
-  <strong>Contents</strong>
-  <ol>
-    <li><a href="#what">What is attention?</a></li>
-    <li><a href="#types">Types of attention</a></li>
-    <li><a href="#efficient">Efficient attention</a></li>
-    <li><a href="#recent">Recent advances</a></li>
-    <li><a href="#hardware">Hardware</a></li>
-    <li><a href="#summary">Summary</a></li>
-  </ol>
-</nav>
+    <section id="what-is-attention" class="card">
+      <h2>What is “attention”?</h2>
+      <p>
+        In deep learning, <em>attention</em> lets models focus on the most relevant parts of the input when producing an output, assigning dynamic weights to elements (tokens, regions, channels). Most modern systems use <span class="kbd">Q</span>, <span class="kbd">K</span>, and <span class="kbd">V</span> projections to score and combine context.
+      </p>
+      <div class="callout">
+        <strong>Key idea:</strong> Compute similarity between a <em>query</em> and a set of <em>keys</em>, turn those scores into a distribution, and use it to mix the <em>values</em>.
+      </div>
+    </section>
 
-<section id="what">
-  <h2>What is attention?</h2>
-  <p>
-    Attention allows models to focus on relevant parts of the input by computing
-    relationships between elements using queries (Q), keys (K), and values (V).
-  </p>
+    <section id="taxonomy" class="card">
+      <h2>A taxonomy of attention</h2>
+      <div class="grid-2">
+        <div>
+          <h3>1) Soft vs. Hard</h3>
+          <ul>
+            <li><strong>Soft (differentiable):</strong> Weighted average over all inputs; trained by backprop; standard in Transformers.</li>
+            <li><strong>Hard (non‑differentiable):</strong> Selects specific elements; trained via RL/sampling (e.g., REINFORCE); more efficient but trickier to train.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>2) Global vs. Local</h3>
+          <ul>
+            <li><strong>Global:</strong> Each token attends to every other token; <span class="kbd">O(n²)</span> complexity.</li>
+            <li><strong>Local:</strong> Attend within a window; complexity <span class="kbd">O(nw)</span> with window size <span class="kbd">w</span>.</li>
+          </ul>
+        </div>
 
-  <div class="callout">
-    Core idea: similarity(Q, K) → weights → weighted sum of V
+        <div>
+          <h3>3) Self‑, Cross‑, and Multi‑Head</h3>
+          <ul>
+            <li><strong>Self‑attention:</strong> Q, K, V from the same sequence (intra‑sequence dependencies).</li>
+            <li><strong>Cross‑attention:</strong> Queries from one sequence, keys/values from another (encoder‑decoder).</li>
+            <li><strong>Multi‑head:</strong> Multiple heads learn different subspaces in parallel for stability and capacity.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>4) Scoring functions</h3>
+          <ul>
+            <li><strong>Additive (Bahdanau):</strong> MLP‑based scoring.</li>
+            <li><strong>Dot‑product (Luong):</strong> Simpler dot‑product score.</li>
+            <li><strong>Scaled dot‑product:</strong> Dot‑product with <span class="kbd">1/√d<sub>k</sub></span> for stability (Transformer default).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="efficient" class="card">
+      <h2>Efficient / sparse / structured attention</h2>
+      <p>These methods reduce the cost or memory of global attention, especially important for long sequences.</p>
+      <ul>
+        <li><strong>Sparse patterns:</strong> Attend to a subset (block/stride/random) — e.g., Sparse Transformer, BigBird.</li>
+        <li><strong>Local + global tokens:</strong> Windows with a few global tokens — e.g., Longformer.</li>
+        <li><strong>Low‑rank projection:</strong> Approximate the attention map — e.g., Linformer, Nyströmformer.</li>
+        <li><strong>Kernelized / linear attention:</strong> Replace softmax with kernel features to get <span class="kbd">O(n)</span> — e.g., Performer, Linear Transformer.</li>
+        <li><strong>Memory / retrieval‑augmented:</strong> External memory, caches, or kNN retrieval to avoid quadratic compute.</li>
+      </ul>
+    </section>
+
+    <section id="modality" class="card">
+      <h2>Modality‑specific variants</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Vision</h3>
+          <ul>
+            <li><strong>Spatial attention:</strong> Focus on image regions.</li>
+            <li><strong>Channel attention:</strong> Reweight feature channels (e.g., SENet, CBAM).</li>
+            <li><strong>Vision Transformers (ViT):</strong> Self‑attention over patch tokens.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Graphs & Multimodal</h3>
+          <ul>
+            <li><strong>Graph Attention Networks (GAT):</strong> Attention over neighbors.</li>
+            <li><strong>Cross‑modal attention:</strong> Bridge text, vision, audio streams.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="hardware" class="card">
+      <h2>Hardware implementations</h2>
+      <p>Attention is dominated by matrix multiplications and memory traffic. Here’s how it lands on silicon:</p>
+      <h3>General‑purpose accelerators</h3>
+      <ul>
+        <li><strong>GPUs (NVIDIA, AMD):</strong> Highly optimized kernels (e.g., FlashAttention), Tensor Cores for QKᵀ and attention‑V.</li>
+        <li><strong>TPUs (Google):</strong> Large matmul arrays (bfloat16), high‑bandwidth interconnects; attention maps well to their systolic cores.</li>
+      </ul>
+
+      <h3>Specialized AI chips / ASICs</h3>
+      <ul>
+        <li><strong>Cerebras Wafer‑Scale Engine:</strong> Massive on‑chip memory keeps activations local; high utilization for attention.</li>
+        <li><strong>Graphcore IPU / Groq / Tenstorrent / SambaNova:</strong> Architectures tuned for fine‑grained parallelism and fast attention kernels.</li>
+      </ul>
+
+      <h3>Research prototypes</h3>
+      <ul>
+        <li><strong>Attention‑centric accelerators:</strong> Designs that compute QKᵀ and softmax in‑place to cut memory traffic.</li>
+        <li><strong>Sparse‑attention hardware:</strong> Dataflows that skip zeros/unselected keys (e.g., dynamic sparsity like SpAtten).</li>
+        <li><strong>Kernel‑aware kernels:</strong> Algorithms such as FlashAttention reduce reads/writes and tile the sequence dimension for SRAM reuse.</li>
+      </ul>
+
+      <h3>Frontiers</h3>
+      <ul>
+        <li><strong>Analog / in‑memory compute:</strong> Memristive crossbars for vector‑matrix ops (mixed‑signal attention blocks).</li>
+        <li><strong>Optical compute:</strong> Photonic matmuls and optical softmax approximations (early‑stage).</li>
+        <li><strong>Neuromorphic:</strong> Event‑driven selective attention inspired by spiking systems.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Rule of thumb:</strong> Performance hinges on <em>bandwidth</em> and <em>SRAM reuse</em>. Algorithmic tricks like tiling and fused kernels often beat raw FLOPs increases.
+      </div>
+    </section>
+
+    <section id="summary" class="card">
+      <h2>Summary table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Examples</th>
+            <th>Why use it?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Soft vs. Hard</td>
+            <td>Bahdanau; REINFORCE‑trained hard attention</td>
+            <td>Differentiability vs. efficiency</td>
+          </tr>
+          <tr>
+            <td>Global vs. Local</td>
+            <td>Transformer; Longformer</td>
+            <td>Context range & complexity</td>
+          </tr>
+          <tr>
+            <td>Self / Cross / Multi‑head</td>
+            <td>BERT, T5 (self); encoder‑decoder (cross)</td>
+            <td>Intra vs. inter‑sequence relations; capacity</td>
+          </tr>
+          <tr>
+            <td>Efficient / Sparse / Linear</td>
+            <td>BigBird, Linformer, Performer</td>
+            <td>Long sequences; lower memory/compute</td>
+          </tr>
+          <tr>
+  <td>Hardware</td>
+  <td>
+    
+    <a href="https://arxiv.org/abs/2205.14135">FlashAttention </a>; 
+    TPU; IPU; Cerebras
+  </td>
+  <td>High throughput, bandwidth efficiency</td>
+</tr>
+        </tbody>
+      </table>
+    </section>
+
+    
+        <a href="blog_MemTransformer.html" class="sub-card">
+            <p>📝 Blog: Memory Transformers </p>
+        </a>
+
+        <a href="blog_Flash.html" class="sub-card">
+            <p>📝 Blog: Flash attention</p>
+        </a>
+    
+
+    
+    <section class="card">
+      <h2>Further reading</h2>
+      <ul>
+        <li>Bahdanau et al. (2015): Neural Machine Translation by Jointly Learning to Align and Translate</li>
+        <li> <a href="https://arxiv.org/abs/1508.04025 "> Luong et al. (2015): Effective Approaches to Attention-based Neural Machine Translation </a>  </li>
+        <li>Vaswani et al. (2017): Attention Is All You Need</li>
+        <li>  Longformer, BigBird </li>
+        <li> <a href="https://arxiv.org/abs/2009.14794"> Rethinking Attention with Performers</a> </li>
+        <li> <a https://arxiv.org/abs/2006.04768"> Linformer: Self-Attention with Linear Complexity</a> </li>
+        <li> <a href="https://arxiv.org/abs/2102.03902">   Nyströmformer (efficient attention family)</a> </li>
+        <li> <a href="https://arxiv.org/abs/2205.14135">FlashAttention series: IO‑aware attention kernels </a>    </li>
+        <li> <a href="https://arxiv.org/abs/2307.08691">FlashAttention2</a> </li>
+        <li> <a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/7ede97c3e082c6df10a8d6103a2eebd2-Abstract-Conference.html">FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision</a> </li>
+        <li> <a href="https://arxiv.org/abs/2411.10958"> SageAttention2: Efficient Attention with Thorough Outlier Smoothing and Per-thread INT4 Quantization  </a> </li>
+        <li> <a href="https://arxiv.org/abs/2505.11594"> SageAttention3: Microscaling FP4 Attention for Inference and An Exploration of 8-Bit Training  </a> </li>
+        <li> <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5978094"> A Comprehensive Survey on Large Language Models: From Pre-training to Autonomous Agents</a> </li>
+        
+      
+      </ul>
+    </section>
+
+    <footer>
+      © <span id="year"></span> • Attention Mechanisms — A Developer’s Primer
+    </footer>
   </div>
-</section>
 
-<section id="types">
-  <h2>Types of attention</h2>
-
-  <h3>Soft vs Hard</h3>
-  <ul>
-    <li><b>Soft:</b> differentiable, standard in Transformers</li>
-    <li><b>Hard:</b> discrete selection, harder to train</li>
-  </ul>
-
-  <h3>Global vs Local</h3>
-  <ul>
-    <li><b>Global:</b> full attention (O(n²))</li>
-    <li><b>Local:</b> windowed attention (O(nw))</li>
-  </ul>
-
-  <h3>Self / Cross / Multi-head</h3>
-  <ul>
-    <li>Self-attention: same sequence</li>
-    <li>Cross-attention: different sequences</li>
-    <li>Multi-head: parallel attention subspaces</li>
-  </ul>
-</section>
-
-<section id="efficient">
-  <h2>Efficient attention</h2>
-
-  <ul>
-    <li>Sparse attention (BigBird, Longformer)</li>
-    <li>Low-rank (Linformer)</li>
-    <li>Linear attention (Performer)</li>
-    <li>FlashAttention (IO-aware kernels)</li>
-    <li>Streaming / chunked attention</li>
-    <li>Quantized attention (FP8 / INT4)</li>
-  </ul>
-</section>
-
-<section id="recent">
-  <h2>Recent advances (2024–2026)</h2>
-
-  <h3>FlashAttention evolution</h3>
-  <ul>
-    <li>FlashAttention-2/3 improves tiling and parallelism</li>
-    <li>Eliminates large memory overhead</li>
-  </ul>
-
-  <h3>Low precision attention</h3>
-  <ul>
-    <li>FP8 → FP4 → INT4</li>
-    <li>SageAttention improves quantization stability</li>
-  </ul>
-
-  <h3>Long-context models</h3>
-  <ul>
-    <li>100K → 1M+ tokens</li>
-    <li>KV-cache optimization</li>
-  </ul>
-
-  <h3>Hybrid architectures</h3>
-  <ul>
-    <li>Attention + State-space models (Mamba)</li>
-    <li>Linear-time alternatives emerging</li>
-  </ul>
-
-  <h3>MoE + attention</h3>
-  <ul>
-    <li>Sparse expert routing</li>
-    <li>Trillion-parameter scaling</li>
-  </ul>
-
-  <div class="callout">
-    Modern progress focuses on efficiency and hardware co-design rather than changing the core attention formula.
-  </div>
-</section>
-
-<section id="hardware">
-  <h2>Hardware implementations</h2>
-
-  <h3>GPUs / TPUs</h3>
-  <ul>
-    <li>Matrix multiplication optimized</li>
-    <li>FlashAttention kernels</li>
-  </ul>
-
-  <h3>AI accelerators</h3>
-  <ul>
-    <li>Cerebras (wafer-scale)</li>
-    <li>Graphcore, Groq</li>
-  </ul>
-
-  <h3>Trends</h3>
-  <ul>
-    <li>Low precision (FP4, INT4)</li>
-    <li>KV-cache optimized inference</li>
-    <li>Memory bandwidth optimization</li>
-  </ul>
-</section>
-
-<section id="summary">
-  <h2>Summary</h2>
-
-  <table>
-    <tr>
-      <th>Category</th>
-      <th>Examples</th>
-      <th>Goal</th>
-    </tr>
-
-    <tr>
-      <td>Types</td>
-      <td>Soft, Hard, Multi-head</td>
-      <td>Model flexibility</td>
-    </tr>
-
-    <tr>
-      <td>Efficient</td>
-      <td>FlashAttention, Linformer</td>
-      <td>Reduce compute</td>
-    </tr>
-
-    <tr>
-      <td>Recent</td>
-      <td>FP4, MoE, Long-context</td>
-      <td>Scale + efficiency</td>
-    </tr>
-
-    <tr>
-      <td>Hardware</td>
-      <td>GPU, TPU, ASIC</td>
-      <td>Performance</td>
-    </tr>
-  </table>
-</section>
-
-<section>
-  <h2>Further reading</h2>
-  <ul>
-    <li><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a></li>
-    <li><a href="https://arxiv.org/abs/2205.14135">FlashAttention</a></li>
-    <li><a href="https://arxiv.org/abs/2307.08691">FlashAttention-2</a></li>
-    <li><a href="https://arxiv.org/abs/2009.14794">Performer</a></li>
-    <li><a href="https://arxiv.org/abs/2006.04768">Linformer</a></li>
-  </ul>
-</section>
-
-<footer style="text-align:center; color:gray; margin-top:40px;">
-  © <span id="year"></span>
-</footer>
-
-</div>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
+  <script>
+    // Set year dynamically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
