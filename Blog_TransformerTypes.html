@@ -210,6 +210,11 @@ a:hover {
         <li><strong>Low‑rank projection:</strong> Approximate the attention map — e.g., Linformer, Nyströmformer.</li>
         <li><strong>Kernelized / linear attention:</strong> Replace softmax with kernel features to get <span class="kbd">O(n)</span> — e.g., Performer, Linear Transformer.</li>
         <li><strong>Memory / retrieval‑augmented:</strong> External memory, caches, or kNN retrieval to avoid quadratic compute.</li>
+     
+        <li><strong>IO-aware attention:</strong> FlashAttention-style kernels that minimize memory reads/writes.</li>
+        <li><strong>Quantized attention:</strong> FP8/FP4/INT4 attention for inference efficiency.</li>
+        <li><strong>Streaming / chunked attention:</strong> Process sequences incrementally for long contexts.</li>
+      
       </ul>
     </section>
 
