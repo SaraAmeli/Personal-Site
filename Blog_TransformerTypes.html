@@ -234,6 +234,65 @@ a:hover {
       </div>
     </section>
 
+
+
+<!-- NEW SECTION: place before Hardware or after Efficient -->
+<section id="recent" class="card">
+  <h2>Recent advances </h2>
+
+  <p>
+    The past years have pushed attention mechanisms beyond their original Transformer formulation, focusing on <strong>efficiency, long context, and hardware co-design</strong>.
+  </p>
+
+  <h3>1) IO-aware & fused attention kernels</h3>
+  <ul>
+    <li><strong>FlashAttention-2/3:</strong> Further reduces memory movement with better tiling, parallelism, and async execution.</li>
+    <li><strong>Key idea:</strong> Avoid materializing the full attention matrix in HBM; compute in SRAM tiles.</li>
+    <li><strong>Impact:</strong> Enables training and inference at much larger sequence lengths.</li>
+  </ul>
+
+  <h3>2) Ultra-low precision attention</h3>
+  <ul>
+    <li><strong>FP8 → FP4 → INT4:</strong> Aggressive quantization for attention weights and activations.</li>
+    <li><strong>SageAttention family:</strong> Uses outlier smoothing + per-thread quantization.</li>
+    <li><strong>Benefit:</strong> Massive memory + bandwidth savings with minimal accuracy loss.</li>
+  </ul>
+
+  <h3>3) Long-context scaling (100K → 1M+ tokens)</h3>
+  <ul>
+    <li><strong>Techniques:</strong> Sliding windows, recurrence, chunked attention, and KV-cache optimization.</li>
+    <li><strong>Streaming attention:</strong> Processes tokens incrementally without recomputing full context.</li>
+    <li><strong>Applications:</strong> Codebases, books, multimodal timelines.</li>
+  </ul>
+
+  <h3>4) Hybrid architectures (Attention + State Space)</h3>
+  <ul>
+    <li><strong>State-space models (SSMs):</strong> Linear-time alternatives to attention (e.g., Mamba-style designs).</li>
+    <li><strong>Hybrid stacks:</strong> Combine attention layers (for reasoning) with SSMs (for efficiency).</li>
+    <li><strong>Trend:</strong> Attention is no longer the only sequence modeling primitive.</li>
+  </ul>
+
+  <h3>5) Retrieval-augmented and memory attention</h3>
+  <ul>
+    <li><strong>External memory:</strong> Vector databases + kNN retrieval integrated into attention flow.</li>
+    <li><strong>KV-cache optimization:</strong> Reuse past attention states efficiently during inference.</li>
+    <li><strong>Result:</strong> Better factual grounding and reduced compute.</li>
+  </ul>
+
+  <h3>6) Mixture-of-Experts (MoE) + attention</h3>
+  <ul>
+    <li><strong>Sparse activation:</strong> Only a subset of experts process each token.</li>
+    <li><strong>Interaction:</strong> Attention routes information; MoE scales model capacity.</li>
+    <li><strong>Outcome:</strong> Trillion-parameter models with manageable compute.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Takeaway:</strong> Modern progress is less about changing the attention formula itself and more about <em>how it’s computed, stored, and combined with other mechanisms</em>.
+  </div>
+</section>
+
+
+    
     <section id="hardware" class="card">
       <h2>Hardware implementations</h2>
       <p>Attention is dominated by matrix multiplications and memory traffic. Here’s how it lands on silicon:</p>
