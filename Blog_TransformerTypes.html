@@ -436,7 +436,15 @@ a:hover {
   </div>
 </section>
 
-
+<section class="card">
+  <h2>When should you use which attention?</h2>
+  <ul>
+    <li><strong>Standard attention:</strong> Best default; highly optimized on GPUs</li>
+    <li><strong>FlashAttention:</strong> Use for long sequences (training + inference)</li>
+    <li><strong>Linear attention:</strong> Useful for extreme sequence lengths but often slower in practice</li>
+    <li><strong>Sparse attention:</strong> Good when structure is known (e.g., documents)</li>
+  </ul>
+</section>
 
     
     <footer>
