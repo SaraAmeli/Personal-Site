@@ -424,6 +424,21 @@ a:hover {
       </ul>
     </section>
 
+
+<section class="card">
+  <h2>Key Insight: Attention is Bandwidth-Bound</h2>
+  <p>
+    Despite its <span class="kbd">O(n²)</span> complexity, modern attention implementations often outperform linear variants in practice. 
+  </p>
+  <div class="callout">
+    <strong>Why?</strong> Performance is limited by <em>memory bandwidth</em>, not FLOPs. 
+    IO-aware kernels like FlashAttention minimize memory movement, making them faster than theoretically efficient alternatives.
+  </div>
+</section>
+
+
+
+    
     <footer>
       © <span id="year"></span> • Attention Mechanisms — A Developer’s Primer
     </footer>
