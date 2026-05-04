@@ -325,8 +325,15 @@ a:hover {
         <li><strong>Analog / in‑memory compute:</strong> Memristive crossbars for vector‑matrix ops (mixed‑signal attention blocks).</li>
         <li><strong>Optical compute:</strong> Photonic matmuls and optical softmax approximations (early‑stage).</li>
         <li><strong>Neuromorphic:</strong> Event‑driven selective attention inspired by spiking systems.</li>
-      </ul>
 
+
+<li><strong>Low-precision compute:</strong> Native FP8/FP4/INT4 support in next-gen accelerators.</li>
+<li><strong>KV-cache optimized inference:</strong> Hardware designs focused on fast autoregressive decoding.</li>
+<li><strong>Attention-specific kernels:</strong> Vendor-optimized fused ops (e.g., FlashAttention in CUDA/ROCm).</li>
+<li><strong>Memory hierarchy co-design:</strong> Architectures increasingly shaped around attention bandwidth limits.</li>
+
+      </ul>
+      
       <div class="callout">
         <strong>Rule of thumb:</strong> Performance hinges on <em>bandwidth</em> and <em>SRAM reuse</em>. Algorithmic tricks like tiling and fused kernels often beat raw FLOPs increases.
       </div>
